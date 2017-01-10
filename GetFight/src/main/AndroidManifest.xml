@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.daitu_liang.study.mytest">
+
+    <permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.daitu_liang.study.mytest.MainActivityOriginal"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.daitu_liang.study.mytest.MainTwoActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.AnimationActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.PaintActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.MatrixActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.PorterDuffXfermodeActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.WaveDemoActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.svg.MainActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.FloatActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.IndraftActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.SnowActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.FloatTestActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.BottomActivity" />
+        <activity
+            android:name="com.daitu_liang.study.mytest.datepicker.SignDialogActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/umeng_socialize_popup_dialog" />
+        <activity android:name="com.daitu_liang.study.mytest.http.RetroftActivity"></activity>
+    </application>
+
+</manifest>
