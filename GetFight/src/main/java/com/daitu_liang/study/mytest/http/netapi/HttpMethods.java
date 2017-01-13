@@ -22,8 +22,8 @@ import rx.schedulers.Schedulers;
  * Created by leixiaoliang on 2017/1/5.
  */
 public class HttpMethods {
-    public static final String BASE_URL1 = "https://api.douban.com/v2/movie/";
-    public static final String BASE_URL = " https://webapi.hsuperior.com/";
+    public static final String BASE_URL = "https://api.douban.com/v2/movie/";
+
 
     private final ApiClientService mService;
     private final Retrofit retrofit;
