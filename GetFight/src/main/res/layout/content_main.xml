@@ -59,12 +59,12 @@
         android:id="@+id/btn7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Retroft"
+        android:text="Retroft-RxJava"
         />
     <Button
         android:id="@+id/btn8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Retroft"
+        android:text="Retroft-RxJava-test"
         />
 </LinearLayout>

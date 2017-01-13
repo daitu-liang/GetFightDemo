@@ -14,9 +14,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
+import com.daitu_liang.study.mytest.http.HttpTestActivity;
 import com.daitu_liang.study.mytest.http.RetroftActivity;
+import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
+import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
+import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
+import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.svg.MainActivity;
+import com.daitu_liang.study.mytest.util.Logger;
+import com.daitu_liang.study.mytest.util.PreferencesManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +33,7 @@ import butterknife.OnClick;
 public class MainActivityOriginal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG ="MainActivityOriginal" ;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.btn1)
@@ -48,6 +57,7 @@ public class MainActivityOriginal extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_origin);
         ButterKnife.bind(this);
+        getData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -116,6 +126,8 @@ public class MainActivityOriginal extends AppCompatActivity
                 startActivity(new Intent(MainActivityOriginal.this, SignDialogActivity.class));
             }
         });
+
+
     }
 
     @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,R.id.btn7,R.id.btn8})
@@ -136,7 +148,7 @@ public class MainActivityOriginal extends AppCompatActivity
                 startActivity(new Intent(MainActivityOriginal.this, RetroftActivity.class));
                 break;
             case R.id.btn8:
-
+                startActivity(new Intent(MainActivityOriginal.this, HttpTestActivity.class));
                 break;
         }
     }
@@ -195,6 +207,27 @@ public class MainActivityOriginal extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void getData() {
+        SubscriberOnNextListener<NiuxInfo> getSubscriber = new SubscriberOnNextListener<NiuxInfo>() {
+            @Override
+            public void onNext(NiuxInfo s) {
+                PreferencesManager pre = GetFightApplication.getPreferenceManager();
+                pre.setSaveNunix(s.getNunix());
+                Logger.getLogger("").i(TAG,"nunix--Times="+s.getNunix());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+        };
+        HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber,this),"https://webapi.hsuperior.com/sys/getnunix");
     }
 
 

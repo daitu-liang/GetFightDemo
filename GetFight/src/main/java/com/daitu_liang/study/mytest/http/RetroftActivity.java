@@ -8,13 +8,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daitu_liang.study.mytest.R;
+import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.daitu_liang.study.mytest.http.netapi.ApiClientService;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.HttpResultTest;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
 import com.daitu_liang.study.mytest.modle.MovieEntity;
+import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.modle.Subject;
+import com.daitu_liang.study.mytest.util.PreferencesManager;
 
 import java.util.List;
 
@@ -60,8 +63,31 @@ public class RetroftActivity extends AppCompatActivity {
         getData();
     }
 
-
     private void getData() {
+        SubscriberOnNextListener<NiuxInfo> getSubscriber = new SubscriberOnNextListener<NiuxInfo>() {
+            @Override
+            public void onNext(NiuxInfo s) {
+                resultTV.setText(s.getNunix());
+                PreferencesManager pre = GetFightApplication.getPreferenceManager();
+                pre.setSaveNunix(s.getNunix());
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                resultTV.setText(e.getMessage());
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+        };
+        HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber,this),"https://webapi.hsuperior.com/sys/getnunix");
+    }
+
+
+    private void getDat1a() {
         getMovieOnNext=new SubscriberOnNextListener<List<Subject>>(){
 
             @Override

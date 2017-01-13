@@ -48,7 +48,7 @@ public  class ProgressSubscriber<T> extends Subscriber<T>  implements ProgressCa
         if (mSubscriberOnNextListener != null) {
             mSubscriberOnNextListener.onCompleted();
         }
-        Toast.makeText(context, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, " Completed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

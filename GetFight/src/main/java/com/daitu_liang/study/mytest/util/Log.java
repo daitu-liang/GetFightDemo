@@ -10,8 +10,8 @@ import java.util.Date;
 public class Log extends Logger implements ExtStorageHelper.ExtStorageNotifyListener {
 
 
-	private static final String APP_TAG = "RGBH";
-	private static final String LOG_FILE_NAME = "jewelry.txt";
+	private static final String APP_TAG = "HttpMethods";
+	private static final String LOG_FILE_NAME = "test.txt";
 	private static PrintStream logStream;
 	private static final String LOG_ENTRY_FORMAT = "[%tF %tT]%s";
 	private boolean mIsSdMounted = true;

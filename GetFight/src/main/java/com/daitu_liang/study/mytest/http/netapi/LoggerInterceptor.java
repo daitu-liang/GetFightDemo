@@ -109,6 +109,7 @@ public class LoggerInterceptor implements Interceptor
                 Log.e(tag, "headers : " + headers.toString());
             }
             RequestBody requestBody = request.body();
+
             if (requestBody != null)
             {
                 MediaType mediaType = requestBody.contentType();

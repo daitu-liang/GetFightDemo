@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GetFight/app.iml" filepath="$PROJECT_DIR$/GetFight/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GetFight/GetFight.iml" filepath="$PROJECT_DIR$/GetFight/GetFight.iml" />
       <module fileurl="file://$PROJECT_DIR$/MTesy.iml" filepath="$PROJECT_DIR$/MTesy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GetFight/app.iml" filepath="$PROJECT_DIR$/GetFight/app.iml" />
     </modules>
   </component>
 </project>

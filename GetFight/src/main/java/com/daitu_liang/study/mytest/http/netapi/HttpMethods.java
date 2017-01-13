@@ -1,12 +1,13 @@
 package com.daitu_liang.study.mytest.http.netapi;
 
+import com.daitu_liang.study.mytest.modle.LoginResponse;
 import com.daitu_liang.study.mytest.modle.MovieEntity;
+import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.modle.Subject;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,26 +22,20 @@ import rx.schedulers.Schedulers;
  * Created by leixiaoliang on 2017/1/5.
  */
 public class HttpMethods {
-    public static final String BASE_URL = "https://api.douban.com/v2/movie/";
-    private static final int DEFAULT_TIMEOUT = 5;
+    public static final String BASE_URL1 = "https://api.douban.com/v2/movie/";
+    public static final String BASE_URL = " https://webapi.hsuperior.com/";
+
     private final ApiClientService mService;
     private final Retrofit retrofit;
-
     private HttpMethods() {
-        OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
-        builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-        builder.addInterceptor(new LoggerInterceptor("HttpMethods",true));
-
-
         retrofit = new Retrofit.Builder()
-                .client(builder.build())
+                .client(OkHttpUtils.getInstance().getClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
         mService = retrofit.create(ApiClientService.class);
     }
-
     //在访问HttpMethods时创建单例
     private static class SingletonHolder {
         private static final HttpMethods instance = new HttpMethods();
@@ -55,11 +50,37 @@ public class HttpMethods {
 
         @Override
         public T call(HttpResult<T> tHttpResult) {
-            if (tHttpResult.getCount() ==0) {
-                throw new ApiException(101);
+            if (tHttpResult.getErrcode()!=200) {
+                throw new ApiException(tHttpResult.getErrcode(),tHttpResult.getErrmsg());
             }
-            return tHttpResult.getSubjects();
+            return tHttpResult.getResult();
         }
+    }
+
+
+
+    public void getCode(Subscriber<String> subscriber,HashMap<String,String> map){
+       mService.getCode(map)
+                .map(new HttpResultFunc<String>())
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void getUserInfo(Subscriber<LoginResponse>subscriber, HashMap<String,String> map){
+        Observable<LoginResponse> observable = mService.getUserInfo(map)
+                .map(new HttpResultFunc<LoginResponse>());;
+        toSubscribe(observable,subscriber);
+
+    }
+    public void getNunix(Subscriber<NiuxInfo> subscriber, String url){
+        mService.getNunix(url)
+                .map(new HttpResultFunc<NiuxInfo>())
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
     }
 
 
@@ -100,7 +121,7 @@ public class HttpMethods {
         toSubscribe(observable, movieEntitySubscriber);
     }
 
-    private void toSubscribe(Observable  observable, Subscriber<List<Subject>> subscriber) {
+    private void toSubscribe(Observable  observable, Subscriber subscriber) {
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
