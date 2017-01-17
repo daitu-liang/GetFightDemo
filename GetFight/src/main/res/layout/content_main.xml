@@ -67,4 +67,13 @@
         android:layout_height="wrap_content"
         android:text="Retroft-RxJava-test"
         />
+    <TextView
+        android:id="@+id/content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/dark"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+        android:text=""/>
+
 </LinearLayout>

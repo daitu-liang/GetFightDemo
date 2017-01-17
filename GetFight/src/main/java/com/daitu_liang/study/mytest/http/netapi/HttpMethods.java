@@ -41,6 +41,21 @@ public class HttpMethods {
         private static final HttpMethods instance = new HttpMethods();
     }
 
+/*    //（双重校验锁）创建单列
+    private static  HttpMethods getSingletonHolderInstance(){
+        if(instance==null){
+            synchronized (HttpMethods.class){
+                if(instance==null){
+                    instance=new HttpMethods();
+                }
+            }
+        }
+        return instance;
+    }*/
+
+
+
+
     //获取单列
     public static HttpMethods getInstance() {
         return SingletonHolder.instance;

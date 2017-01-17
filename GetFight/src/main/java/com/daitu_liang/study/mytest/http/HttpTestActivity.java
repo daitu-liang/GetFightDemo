@@ -12,11 +12,14 @@ import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
 import com.daitu_liang.study.mytest.modle.LoginResponse;
+import com.daitu_liang.study.mytest.modle.MessageEvent;
 import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.util.AppInfoUtil;
 import com.daitu_liang.study.mytest.util.GetSign;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.MD5Utils;
+import com.daitu_liang.study.mytest.util.otto.BusProvider;
+import com.squareup.otto.Produce;
 
 import java.util.HashMap;
 
@@ -50,18 +53,18 @@ public class HttpTestActivity extends AppCompatActivity {
         DisplayMetrics dm = GetFightApplication.CONTEXT.getResources()
                 .getDisplayMetrics();
 
-        String  from="2";//不可空，1、IOS  2、安卓  3、PC
-        String  sys_version=android.os.Build.VERSION.RELEASE+"";//
-        String nunix= GetFightApplication.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
-        String version= AppInfoUtil.getVsersionName(GetFightApplication.CONTEXT);//APP版本名称
-        HashMap<String,String> map=new HashMap<>();
-        map.put("from","2");
-        map.put("version",version);
-        map.put("nunix",nunix);
-        Logger.getLogger("").e("","nunix-huoqu时间戳-Times="+nunix);
-        map.put("mobile",phone);
-        map.put("sms_mode","register");
-        map.put("sign",GetSign.giveSign(map));
+        String from = "2";//不可空，1、IOS  2、安卓  3、PC
+        String sys_version = android.os.Build.VERSION.RELEASE + "";//
+        String nunix = GetFightApplication.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
+        String version = AppInfoUtil.getVsersionName(GetFightApplication.CONTEXT);//APP版本名称
+        HashMap<String, String> map = new HashMap<>();
+        map.put("from", "2");
+        map.put("version", version);
+        map.put("nunix", nunix);
+        Logger.getLogger("").e("", "nunix-huoqu时间戳-Times=" + nunix);
+        map.put("mobile", phone);
+        map.put("sms_mode", "register");
+        map.put("sign", GetSign.giveSign(map));
 
         SubscriberOnNextListener<String> getCode = new SubscriberOnNextListener<String>() {
             @Override
@@ -71,56 +74,65 @@ public class HttpTestActivity extends AppCompatActivity {
             public void onError(Throwable e) {
                 resultTV.setText(e.getMessage());
             }
-
             @Override
             public void onCompleted() {
             }
         };
-        HttpMethods.getInstance().getCode(new ProgressSubscriber<String>(getCode,this),map);
+        HttpMethods.getInstance().getCode(new ProgressSubscriber<String>(getCode, this), map);
 
     }
 
-    private void getData2(){
+    private void getData2() {
         String phone = "18200399223";
         String md5_passworld = MD5Utils.MD5("666666").toLowerCase();
         DisplayMetrics dm = GetFightApplication.CONTEXT.getResources()
                 .getDisplayMetrics();
+        String from = "2";//不可空，1、IOS  2、安卓  3、PC
+        String sys_version = android.os.Build.VERSION.RELEASE + "";//
+        String nunix = GetFightApplication.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
+        String version = AppInfoUtil.getVsersionName(GetFightApplication.CONTEXT);//APP版本名称
+        Logger.getLogger("").e("", "nunix-huoqu时间戳-Times=" + nunix);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("dev_name", AppInfoUtil.getAppDeviceName());
+        map.put("dev_num", AppInfoUtil.getAppDeviceId(this));
+        map.put("ip", AppInfoUtil.getPhoneIp());
+        map.put("mobile", phone);
+        map.put("password", md5_passworld);
 
-         String  from="2";//不可空，1、IOS  2、安卓  3、PC
-       String  sys_version=android.os.Build.VERSION.RELEASE+"";//
-        String nunix= GetFightApplication.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
-         String version= AppInfoUtil.getVsersionName(GetFightApplication.CONTEXT);//APP版本名称
-        Logger.getLogger("").e("","nunix-huoqu时间戳-Times="+nunix);
-        HashMap<String,String> map=new HashMap<>();
-        map.put("dev_name",AppInfoUtil.getAppDeviceName());
-        map.put("dev_num",AppInfoUtil.getAppDeviceId(this));
-        map.put("ip",AppInfoUtil.getPhoneIp());
-        map.put("mobile",phone);
-        map.put("password",md5_passworld);
-
-        map.put("screen_size",dm.heightPixels + "*" + dm.widthPixels);
-        map.put("from","2");
-        map.put("nunix",nunix);
-        map.put("sys_version",sys_version);
-        map.put("version",version);
-        map.put("sign",GetSign.giveSign(map));
-
-
-        SubscriberOnNextListener<LoginResponse> getLoginSubscrible=new SubscriberOnNextListener<LoginResponse>() {
+        map.put("screen_size", dm.heightPixels + "*" + dm.widthPixels);
+        map.put("from", "2");
+        map.put("nunix", nunix);
+        map.put("sys_version", sys_version);
+        map.put("version", version);
+        map.put("sign", GetSign.giveSign(map));
+        SubscriberOnNextListener<LoginResponse> getLoginSubscrible = new SubscriberOnNextListener<LoginResponse>() {
             @Override
             public void onNext(LoginResponse loginResponse) {
-                resultTV.setText(loginResponse.getMobile()+"-"+loginResponse.getNick_name()+"--"+loginResponse.getU_guid());
-            }
-            @Override
-            public void onError(Throwable e) {
-                resultTV.setText(e.getMessage());
+                resultTV.setText(loginResponse.getMobile() + "-" + loginResponse.getNick_name() + "--" + loginResponse.getU_guid());
+                BusProvider.getInstance().post(sendContent(loginResponse.getMobile() + "-" + loginResponse.getNick_name()));
             }
 
+            @Override
+            public void onError(Throwable e) {
+//                MessageEvent messageEvent=  new MessageEvent();
+//                messageEvent.setMsg(e.getMessage());
+//                BusProvider.getInstance().post(messageEvent);
+                BusProvider.getInstance().post(sendContent(e.getMessage()));
+                resultTV.setText(e.getMessage());
+                finish();
+            }
             @Override
             public void onCompleted() {
             }
         };
-        HttpMethods.getInstance().getUserInfo(new ProgressSubscriber<LoginResponse>(getLoginSubscrible,this),map);
+        HttpMethods.getInstance().getUserInfo(new ProgressSubscriber<LoginResponse>(getLoginSubscrible, this), map);
+    }
+
+    @Produce
+    public MessageEvent sendContent(String s) {
+        MessageEvent messageEvent = new MessageEvent();
+        messageEvent.setMsg(s);
+        return messageEvent;
     }
 
 
@@ -141,7 +153,7 @@ public class HttpTestActivity extends AppCompatActivity {
 
             }
         };
-        HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber,this),"https://webapi.hsuperior.com/sys/getnunix");
+        HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber, this), "https://webapi.hsuperior.com/sys/getnunix");
     }
 
 

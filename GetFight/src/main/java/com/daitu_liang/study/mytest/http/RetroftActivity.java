@@ -14,10 +14,12 @@ import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.HttpResultTest;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
+import com.daitu_liang.study.mytest.modle.MessageEvent;
 import com.daitu_liang.study.mytest.modle.MovieEntity;
 import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.modle.Subject;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
+import com.daitu_liang.study.mytest.util.otto.BusProvider;
 
 import java.util.List;
 
@@ -55,6 +57,7 @@ public class RetroftActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retroft);
         ButterKnife.bind(this);
+        BusProvider.getInstance().register(this);   //订阅事件
     }
 
     @OnClick(R.id.click_me_BN)
@@ -70,12 +73,17 @@ public class RetroftActivity extends AppCompatActivity {
                 resultTV.setText(s.getNunix());
                 PreferencesManager pre = GetFightApplication.getPreferenceManager();
                 pre.setSaveNunix(s.getNunix());
+                MessageEvent messageEvent=new MessageEvent();
+                messageEvent.setMsg(s.getNunix());
+                BusProvider.getInstance().post(messageEvent);
+                finish();
 
             }
 
             @Override
             public void onError(Throwable e) {
                 resultTV.setText(e.getMessage());
+                BusProvider.getInstance().post(e.getMessage());
             }
 
             @Override

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
@@ -21,10 +22,13 @@ import com.daitu_liang.study.mytest.http.RetroftActivity;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
+import com.daitu_liang.study.mytest.modle.MessageEvent;
 import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
+import com.daitu_liang.study.mytest.util.otto.BusProvider;
+import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +37,7 @@ import butterknife.OnClick;
 public class MainActivityOriginal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG ="MainActivityOriginal" ;
+    private static final String TAG = "MainActivityOriginal";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.btn1)
@@ -50,6 +54,8 @@ public class MainActivityOriginal extends AppCompatActivity
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.content_tv)
+    TextView contentTv;
     private Button btn;
 
     @Override
@@ -57,6 +63,7 @@ public class MainActivityOriginal extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_origin);
         ButterKnife.bind(this);
+        BusProvider.getInstance().register(this);////注册事件
         getData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -127,10 +134,15 @@ public class MainActivityOriginal extends AppCompatActivity
             }
         });
 
-
     }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,R.id.btn7,R.id.btn8})
+    @Subscribe
+    public void dealEvent(MessageEvent event){
+        contentTv.setText(event.getMsg());
+    }
+
+
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn7, R.id.btn8})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -208,13 +220,14 @@ public class MainActivityOriginal extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     private void getData() {
         SubscriberOnNextListener<NiuxInfo> getSubscriber = new SubscriberOnNextListener<NiuxInfo>() {
             @Override
             public void onNext(NiuxInfo s) {
                 PreferencesManager pre = GetFightApplication.getPreferenceManager();
                 pre.setSaveNunix(s.getNunix());
-                Logger.getLogger("").i(TAG,"nunix--Times="+s.getNunix());
+                Logger.getLogger("").i(TAG, "nunix--Times=" + s.getNunix());
             }
 
             @Override
@@ -227,8 +240,13 @@ public class MainActivityOriginal extends AppCompatActivity
 
             }
         };
-        HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber,this),"https://webapi.hsuperior.com/sys/getnunix");
+        HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber, this), "https://webapi.hsuperior.com/sys/getnunix");
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BusProvider.getInstance().unregister(this);
+    }
 }
