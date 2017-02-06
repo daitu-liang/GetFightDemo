@@ -22,6 +22,7 @@ import com.daitu_liang.study.mytest.http.RetroftActivity;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
+import com.daitu_liang.study.mytest.imageview.ImageViewActivity;
 import com.daitu_liang.study.mytest.modle.MessageEvent;
 import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.svg.MainActivity;
@@ -142,7 +143,7 @@ public class MainActivityOriginal extends AppCompatActivity
     }
 
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn7, R.id.btn8})
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn7, R.id.btn8, R.id.btn9, R.id.btn10})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -161,6 +162,12 @@ public class MainActivityOriginal extends AppCompatActivity
                 break;
             case R.id.btn8:
                 startActivity(new Intent(MainActivityOriginal.this, HttpTestActivity.class));
+                break;
+            case R.id.btn9:
+                startActivity(new Intent(MainActivityOriginal.this, ImageViewActivity.class));
+                break;
+            case R.id.btn10:
+//                startActivity(new Intent(MainActivityOriginal.this, HttpTestActivity.class));
                 break;
         }
     }
