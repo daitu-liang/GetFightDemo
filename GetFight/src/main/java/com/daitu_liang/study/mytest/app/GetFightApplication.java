@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.daitu_liang.study.mytest.util.PreferencesManager;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 /**
  * Created by leixiaoliang on 2017/1/10.
@@ -11,7 +13,12 @@ import com.daitu_liang.study.mytest.util.PreferencesManager;
 public class GetFightApplication extends Application {
     public static Context CONTEXT;
     public static PreferencesManager preferenceManager;
+    public static RefWatcher getRefWatcher(Context context) {
+        GetFightApplication application = (GetFightApplication) context.getApplicationContext();
+        return application.refWatcher;
+    }
 
+    private RefWatcher refWatcher;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -20,7 +27,7 @@ public class GetFightApplication extends Application {
     }
     private void init() {
         preferenceManager = PreferencesManager.getInstance(this);
-
+        refWatcher = LeakCanary.install(this);
     }
     private static void setContext(Context mContext) {
         CONTEXT = mContext;

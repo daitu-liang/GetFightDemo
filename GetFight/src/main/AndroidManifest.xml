@@ -59,6 +59,7 @@
         <activity android:name=".SnowActivity" />
         <activity android:name=".FloatTestActivity" />
         <activity android:name=".BottomActivity" />
+        <activity android:name="com.daitu_liang.study.mytest.javanature.HandleTestActivity" />
         <activity
             android:name=".datepicker.SignDialogActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -67,7 +68,7 @@
         <activity android:name=".http.RetroftActivity" />
         <activity android:name=".http.HttpTestActivity" />
         <activity android:name=".imageview.ImageViewActivity" />
-        <activity android:name=".javanature.SampleActivity"></activity>
+
     </application>
 
 </manifest>

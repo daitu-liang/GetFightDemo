@@ -12,9 +12,11 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 
+import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.view.ViewHelper;
+import com.squareup.leakcanary.RefWatcher;
 
 public class AnimationActivity extends AppCompatActivity {
 
@@ -82,5 +84,9 @@ public class AnimationActivity extends AppCompatActivity {
         });
         valueAnimator.start();
     }
-
+    @Override public void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        refWatcher.watch(this);
+    }
 }

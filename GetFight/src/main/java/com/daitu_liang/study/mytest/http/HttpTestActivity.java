@@ -40,6 +40,7 @@ public class HttpTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_http_test);
         ButterKnife.bind(this);
 
+
     }
 
     @OnClick(R.id.click_me_BN)
@@ -155,6 +156,9 @@ public class HttpTestActivity extends AppCompatActivity {
         };
         HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber, this), "https://webapi.hsuperior.com/sys/getnunix");
     }
+
+
+
 
 
 }

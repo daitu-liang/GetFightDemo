@@ -35,7 +35,6 @@ import android.view.animation.Interpolator;
 
 import com.daitu_liang.study.mytest.R;
 
-
 import java.text.ParseException;
 
 public class AnimatedSvgView extends View {
@@ -340,4 +339,6 @@ public class AnimatedSvgView extends View {
         Paint paint;
         float length;
     }
+
+
 }

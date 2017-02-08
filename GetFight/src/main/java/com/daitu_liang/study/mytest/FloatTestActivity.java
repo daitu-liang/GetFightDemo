@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.squareup.leakcanary.RefWatcher;
+
 public class FloatTestActivity extends AppCompatActivity {
 
     @Override
@@ -62,5 +65,9 @@ public class FloatTestActivity extends AppCompatActivity {
         });
 
     }
-
+    @Override public void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        refWatcher.watch(this);
+    }
 }

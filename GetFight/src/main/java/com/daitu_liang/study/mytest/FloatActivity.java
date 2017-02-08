@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.daitu_liang.study.mytest.paint.FloatView;
+import com.squareup.leakcanary.RefWatcher;
 
 public class FloatActivity extends AppCompatActivity {
 
@@ -37,5 +39,10 @@ public class FloatActivity extends AppCompatActivity {
             startBtn.setFloatType(FloatView.RIGHT);
         }
         startBtn.startAnimationFloat();
+    }
+    @Override public void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        refWatcher.watch(this);
     }
 }

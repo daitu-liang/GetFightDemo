@@ -16,6 +16,9 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.squareup.leakcanary.RefWatcher;
+
 import java.util.Random;
 
 public class IndraftActivity extends AppCompatActivity {
@@ -131,6 +134,11 @@ public class IndraftActivity extends AppCompatActivity {
         super.onDestroy();
         if(parent!=null){
             parent.removeAllViews();
+            parent=null;
         }
+        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        refWatcher.watch(this);
     }
+
+
 }

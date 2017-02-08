@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
 import com.daitu_liang.study.mytest.util.otto.BusProvider;
+import com.squareup.leakcanary.RefWatcher;
 import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
@@ -64,6 +66,7 @@ public class MainActivityOriginal extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_origin);
         ButterKnife.bind(this);
+        Log.i("MainActivityOriginal","onCreate="+savedInstanceState);
         BusProvider.getInstance().register(this);////注册事件
         getData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -143,7 +146,8 @@ public class MainActivityOriginal extends AppCompatActivity
     }
 
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn7, R.id.btn8, R.id.btn9, R.id.btn10})
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn7, R.id.btn8,
+            R.id.btn9, R.id.btn10})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -167,7 +171,7 @@ public class MainActivityOriginal extends AppCompatActivity
                 startActivity(new Intent(MainActivityOriginal.this, ImageViewActivity.class));
                 break;
             case R.id.btn10:
-//                startActivity(new Intent(MainActivityOriginal.this, HttpTestActivity.class));
+                startActivity(new Intent(MainActivityOriginal.this, AnimationActivity.class));
                 break;
         }
     }
@@ -255,5 +259,39 @@ public class MainActivityOriginal extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         BusProvider.getInstance().unregister(this);
+        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        refWatcher.watch(this);
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("key","apple");
+        Log.i("MainActivityOriginal","onSaveInstanceState");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i("MainActivityOriginal","onRestoreInstanceState");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("MainActivityOriginal","onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("MainActivityOriginal","onStop");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.i("MainActivityOriginal","onNewIntent");
+    }
+
 }

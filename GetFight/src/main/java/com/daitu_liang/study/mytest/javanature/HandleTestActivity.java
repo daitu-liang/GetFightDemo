@@ -1,6 +1,6 @@
 package com.daitu_liang.study.mytest.javanature;
 
-/*public class SampleActivity extends Activity {
+/*public class HandleTestActivity extends Activity {
 
     *//**修复方法：在 Activity 中避免使用非静态内部类，
      * 比如上面我们将 Handler 声明为静态的，则其存活期跟 Activity 的生命周期就无关了。
@@ -9,15 +9,15 @@ package com.daitu_liang.study.mytest.javanature;
      * reference to their outer class.
      *//*
     private static class MyHandler extends Handler {
-        private final WeakReference<SampleActivity> mActivity;
+        private final WeakReference<HandleTestActivity> mActivity;
 
-        public MyHandler(SampleActivity activity) {
-            mActivity = new WeakReference<SampleActivity>(activity);
+        public MyHandler(HandleTestActivity activity) {
+            mActivity = new WeakReference<HandleTestActivity>(activity);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            SampleActivity activity = mActivity.get();
+            HandleTestActivity activity = mActivity.get();
             if (activity != null) {
                 // ...
             }
@@ -28,10 +28,14 @@ package com.daitu_liang.study.mytest.javanature;
 
     */
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
+
+import com.daitu_liang.study.mytest.R;
+import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.squareup.leakcanary.RefWatcher;
 
 /**
      * Instances of anonymous classes do not hold an implicit
@@ -56,7 +60,7 @@ import android.os.Message;
 
 
 
-public class SampleActivity extends Activity {
+public class HandleTestActivity extends AppCompatActivity {
 
     private final Handler mLeakyHandler = new Handler() {
         @Override
@@ -68,6 +72,7 @@ public class SampleActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sample);
 
         // Post a message and delay its execution for 10 minutes.
         mLeakyHandler.postDelayed(new Runnable() {
@@ -86,11 +91,19 @@ public class SampleActivity extends Activity {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        refWatcher.watch(this);
+    }
+
 }
 /**
- * 在该 SampleActivity 中声明了一个延迟10分钟执行的消息 Message，mLeakyHandler
+ * 在该 HandleTestActivity 中声明了一个延迟10分钟执行的消息 Message，mLeakyHandler
  * 将其 push 进了消息队列 MessageQueue 里。当该 Activity 被 finish() 掉时，
  * 延迟执行任务的 Message 还会继续存在于主线程中，它持有该 Activity 的 Handler 引用，
  * 所以此时 finish() 掉的 Activity 就不会被回收了从而造成内存泄漏
- * （因 Handler 为非静态内部类，它会持有外部类的引用，在这里就是指 SampleActivity）
+ * （因 Handler 为非静态内部类，它会持有外部类的引用，在这里就是指 HandleTestActivity）
  */
