@@ -40,6 +40,10 @@ public class HttpMethods {
     private static class SingletonHolder {
         private static final HttpMethods instance = new HttpMethods();
     }
+    //获取单列
+    public static HttpMethods getInstance() {
+        return SingletonHolder.instance;
+    }
 
 /*    //（双重校验锁）创建单列
     private static  HttpMethods getSingletonHolderInstance(){
@@ -56,10 +60,7 @@ public class HttpMethods {
 
 
 
-    //获取单列
-    public static HttpMethods getInstance() {
-        return SingletonHolder.instance;
-    }
+
 
     private class HttpResultFunc<T> implements Func1<HttpResult<T>, T> {
 
