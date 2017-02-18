@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
     public static final String BASE_URL1 = "https://api.douban.com/v2/movie/";
-    public static final String BASE_URL = " http://app.api.hsuperior.com";
+    public static final String BASE_URL = " ";
 
     private final ApiClientService mService;
     private final Retrofit retrofit;
@@ -35,6 +35,7 @@ public class HttpMethods {
                 .baseUrl(BASE_URL)
                 .build();
         mService = retrofit.create(ApiClientService.class);
+
     }
     //在访问HttpMethods时创建单例
     private static class SingletonHolder {
