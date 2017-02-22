@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
     public static final String BASE_URL1 = "https://api.douban.com/v2/movie/";
-    public static final String BASE_URL = " ";
+    public static final String BASE_URL = "https://webapi.hsuperior.com";
 
     private final ApiClientService mService;
     private final Retrofit retrofit;
@@ -59,10 +59,11 @@ public class HttpMethods {
     }*/
 
 
-
-
-
-
+    /**
+     * RxJava 提供了对事件序列进行变换的支持,
+     * 在这里把HttpResult<T>类型处理，返回T类型
+     * @param <T>
+     */
     private class HttpResultFunc<T> implements Func1<HttpResult<T>, T> {
 
         @Override
@@ -75,13 +76,12 @@ public class HttpMethods {
     }
 
 
-
     public void getCode(Subscriber<String> subscriber,HashMap<String,String> map){
        mService.getCode(map)
-                .map(new HttpResultFunc<String>())
-                .subscribeOn(Schedulers.io())
+                .map(new HttpResultFunc<String>())//事件转化，处理为data类型返回给subscriber
+                .subscribeOn(Schedulers.io())// 指定 subscribe() 发生在 IO 线程
                 .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
                 .subscribe(subscriber);
     }
 
