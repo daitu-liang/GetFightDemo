@@ -1,4 +1,4 @@
-package com.daitu_liang.study.mytest.test;
+package com.daitu_liang.study.mytest.unittest;
 
 /**
  * Created by leixiaoliang on 2017/2/22.

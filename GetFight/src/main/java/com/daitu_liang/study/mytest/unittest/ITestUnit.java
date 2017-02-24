@@ -1,4 +1,4 @@
-package com.daitu_liang.study.mytest.test;
+package com.daitu_liang.study.mytest.unittest;
 
 /**
  * android studio 2.0进行单元测试，

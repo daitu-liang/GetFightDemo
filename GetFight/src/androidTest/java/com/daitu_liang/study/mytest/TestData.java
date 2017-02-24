@@ -2,8 +2,8 @@ package com.daitu_liang.study.mytest;
 
 import android.test.InstrumentationTestCase;
 
-import com.daitu_liang.study.mytest.test.ITestUnit;
-import com.daitu_liang.study.mytest.test.TestUnitImp;
+import com.daitu_liang.study.mytest.unittest.ITestUnit;
+import com.daitu_liang.study.mytest.unittest.TestUnitImp;
 
 /**
  * Created by leixiaoliang on 2017/2/22.

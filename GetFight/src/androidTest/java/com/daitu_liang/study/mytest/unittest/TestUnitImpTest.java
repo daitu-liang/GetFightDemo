@@ -1,4 +1,4 @@
-package com.daitu_liang.study.mytest.test;
+package com.daitu_liang.study.mytest.unittest;
 
 import junit.framework.TestCase;
 
