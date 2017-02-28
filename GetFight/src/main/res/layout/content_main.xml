@@ -14,9 +14,13 @@
     tools:showIn="@layout/app_bar_main">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/textview1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="使用shape绘制阴影图层阴影效果"
+        android:background="@drawable/bg_show">
+
+    </TextView>
     <Button
         android:id="@+id/btn1"
         android:layout_width="match_parent"

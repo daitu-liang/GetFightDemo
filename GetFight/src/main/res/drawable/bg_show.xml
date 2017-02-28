@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 第一层  上部和左部偏移一定距离-->
+
+    <item
+        android:left="2.66dp"
+        android:top="2.66dp">
+        <shape>
+            <solid android:color="#807e7e" />
+
+            <!-- 描边 -->
+            <stroke
+                android:width="3dp"
+                android:color="#cedcd2d2" />
+            <corners android:radius="10dp"></corners>
+            <gradient android:startColor="#e19c9494" android:endColor="#cedcd2d2" android:type="linear" android:angle="135"></gradient>
+        </shape>
+    </item>
+    <!-- 第二层 下部和有部偏移一定距离-->
+    <item
+        android:bottom="12.66dp"
+        android:right="3.66dp">
+        <shape>
+            <solid android:color="#833333" />
+            <!-- 描边 -->
+            <stroke android:width="0.33dp" android:color="#833333" />
+
+            <corners android:radius="10dp"></corners>
+        </shape>
+    </item>
+
+</layer-list>
