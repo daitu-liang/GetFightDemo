@@ -52,4 +52,8 @@ public interface ApiClientService {
     @FormUrlEncoded
     @POST("/user/vcodeget")
     Observable<HttpResult<String>> getCodeq(@Field("username") String username);
+
+    @FormUrlEncoded
+    @POST(NetWorkApi.getCarousel)
+    Observable<HttpResult<String>> getCodeqw(@Field("username") String username);
 }
