@@ -89,6 +89,8 @@ public class MainActivityOriginal extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //让左侧菜单显示原始设置的颜色
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
         Button btnPoperty = (Button) findViewById(R.id.btn1);
         btnPoperty.setOnClickListener(new View.OnClickListener() {
