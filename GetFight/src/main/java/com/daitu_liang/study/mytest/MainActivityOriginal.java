@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.daitu_liang.study.mytest.adapter.MainFragmentPagerAdapter;
 import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
 import com.daitu_liang.study.mytest.http.HttpTestActivity;
@@ -60,6 +63,10 @@ public class MainActivityOriginal extends AppCompatActivity
     @BindView(R.id.content_tv)
     TextView contentTv;
     private Button btn;
+    private TabLayout mTabLayout;
+    
+    private ViewPager mViewPager;
+    private MainFragmentPagerAdapter myFragmentPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +88,8 @@ public class MainActivityOriginal extends AppCompatActivity
                 startActivity(new Intent(MainActivityOriginal.this, AnimationActivity.class));
             }
         });
-
+       
+        initTabLayout();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -139,7 +147,15 @@ public class MainActivityOriginal extends AppCompatActivity
                 startActivity(new Intent(MainActivityOriginal.this, SignDialogActivity.class));
             }
         });
+    }
 
+    private void initTabLayout() {
+        mViewPager=(ViewPager)findViewById(R.id.viewPager);
+        mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        myFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(myFragmentPagerAdapter);
+        //将TabLayout与ViewPager绑定在一起
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Subscribe

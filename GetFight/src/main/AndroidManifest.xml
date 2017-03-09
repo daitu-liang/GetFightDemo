@@ -68,8 +68,11 @@
         <activity android:name=".http.RetroftActivity" />
         <activity android:name=".http.HttpTestActivity" />
         <activity android:name=".imageview.ImageViewActivity" />
-        <activity android:name=".unittest.UnitTestActivity"></activity>
-        <service android:name=".unittest.ServiceTest"></service>
+        <activity android:name=".unittest.UnitTestActivity" />
+
+        <service android:name=".unittest.ServiceTest" />
+
+        <activity android:name=".DrawableActivity"></activity>
     </application>
 
 </manifest>

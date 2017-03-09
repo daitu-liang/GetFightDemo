@@ -1,16 +1,20 @@
 package com.daitu_liang.study.mytest;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.nineoldandroids.animation.AnimatorSet;
@@ -23,12 +27,14 @@ public class AnimationActivity extends AppCompatActivity {
     private Button btn;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mIconLayoutParams;
+    private Button btntop;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation);
+
         // 使用WindowManager添加window需要android.permission.SYSTEM_ALERT_WINDOW权限
         mWindowManager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
         mIconLayoutParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT,
@@ -38,7 +44,21 @@ public class AnimationActivity extends AppCompatActivity {
         btn=(Button)findViewById(R.id.btn);
 //        test();
         test1();
+        btntop=(Button)findViewById(R.id.btntop);
+        btntop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AnimationActivity.this,DrawableActivity.class));
+            }
+        });
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP){
+            btntop.setElevation(20);
+        }
+        TextView tv = (TextView) findViewById(R.id.tv);
 
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP){
+            tv.setElevation(10);
+        }
     }
 
     private void test1() {
@@ -63,8 +83,6 @@ public class AnimationActivity extends AppCompatActivity {
 
 
     private void test() {
-
-
         ValueAnimator valueAnimator=ValueAnimator.ofFloat(0,90);
         valueAnimator.setDuration(5000);
         valueAnimator.setInterpolator(new LinearInterpolator());
