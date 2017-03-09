@@ -17,7 +17,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
     }
     @Override
     public Fragment getItem(int position) {
-       Fragment f1;
+       Fragment f1=null;
         Bundle bundle = new Bundle();
       /*  if(jeweleyInfo!=null){
             bundle.putSerializable("jeweleyInfo_key", jeweleyInfo);
