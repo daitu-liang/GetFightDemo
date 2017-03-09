@@ -72,7 +72,9 @@
 
         <service android:name=".unittest.ServiceTest" />
 
-        <activity android:name=".DrawableActivity"></activity>
+        <activity android:name=".DrawableActivity" />
+        <activity android:name=".PullDownActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
