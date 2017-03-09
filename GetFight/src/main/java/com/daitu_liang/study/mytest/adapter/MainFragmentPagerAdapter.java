@@ -22,6 +22,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
       /*  if(jeweleyInfo!=null){
             bundle.putSerializable("jeweleyInfo_key", jeweleyInfo);
         }
+
         bundle.putString("key", data.get(position).getGuid());
         f1.setArguments(bundle);*/
 

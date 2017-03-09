@@ -105,6 +105,7 @@ public class MainActivityOriginal extends AppCompatActivity
                 startActivity(new Intent(MainActivityOriginal.this, FloatTestActivity.class));
             }
         });
+
         Button btnPoperty2 = (Button) findViewById(R.id.btn2);
         btnPoperty2.setOnClickListener(new View.OnClickListener() {
             @Override

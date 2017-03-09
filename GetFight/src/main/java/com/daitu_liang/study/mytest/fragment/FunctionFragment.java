@@ -11,6 +11,7 @@ import com.daitu_liang.study.mytest.R;
 
 public class FunctionFragment extends Fragment {
 
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
