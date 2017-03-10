@@ -15,56 +15,35 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.daitu_liang.study.mytest.adapter.MainFragmentPagerAdapter;
 import com.daitu_liang.study.mytest.app.GetFightApplication;
-import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
-import com.daitu_liang.study.mytest.http.HttpTestActivity;
-import com.daitu_liang.study.mytest.http.RetroftActivity;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
-import com.daitu_liang.study.mytest.imageview.ImageViewActivity;
-import com.daitu_liang.study.mytest.modle.MessageEvent;
 import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
 import com.daitu_liang.study.mytest.util.otto.BusProvider;
 import com.squareup.leakcanary.RefWatcher;
-import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivityOriginal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivityOriginal";
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.btn1)
-    Button btn1;
-    @BindView(R.id.btn2)
-    Button btn2;
-    @BindView(R.id.btn3)
-    Button btn3;
-    @BindView(R.id.btn4)
-    Button btn4;
+
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.nav_view)
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
-    @BindView(R.id.content_tv)
-    TextView contentTv;
-    private Button btn;
+
     private TabLayout mTabLayout;
-    
     private ViewPager mViewPager;
     private MainFragmentPagerAdapter myFragmentPagerAdapter;
 
@@ -74,9 +53,10 @@ public class MainActivityOriginal extends AppCompatActivity
         setContentView(R.layout.activity_main_origin);
         ButterKnife.bind(this);
         Log.i("MainActivityOriginal","onCreate="+savedInstanceState);
-        BusProvider.getInstance().register(this);////注册事件
+
         getData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("测试demo");
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -86,66 +66,16 @@ public class MainActivityOriginal extends AppCompatActivity
                 startActivity(new Intent(MainActivityOriginal.this, AnimationActivity.class));
             }
         });
-       
         initTabLayout();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //让左侧菜单显示原始设置的颜色
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
-        Button btnPoperty = (Button) findViewById(R.id.btn1);
-        btnPoperty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivityOriginal.this, FloatTestActivity.class));
-            }
-        });
-
-        Button btnPoperty2 = (Button) findViewById(R.id.btn2);
-        btnPoperty2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivityOriginal.this, SnowActivity.class));
-            }
-        });
-        Button btnPoperty3 = (Button) findViewById(R.id.btn3);
-        btnPoperty3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivityOriginal.this, IndraftActivity.class));
-            }
-        });
-
-        Button btnPoperty4 = (Button) findViewById(R.id.btn4);
-        btnPoperty4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivityOriginal.this, MainTwoActivity.class));
-            }
-        });
-        Button btnPoperty5 = (Button) findViewById(R.id.btn5);
-        btnPoperty5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivityOriginal.this, BottomActivity.class));
-            }
-        });
-        Button btnPoperty6 = (Button) findViewById(R.id.btn6);
-        btnPoperty6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivityOriginal.this, SignDialogActivity.class));
-            }
-        });
     }
 
     private void initTabLayout() {
@@ -157,41 +87,6 @@ public class MainActivityOriginal extends AppCompatActivity
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    @Subscribe
-    public void dealEvent(MessageEvent event){
-        contentTv.setText(event.getMsg());
-    }
-
-
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn7, R.id.btn8,
-            R.id.btn9, R.id.btn10})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn1:
-                startActivity(new Intent(MainActivityOriginal.this, AnimationActivity.class));
-                break;
-            case R.id.btn2:
-                startActivity(new Intent(MainActivityOriginal.this, MainTwoActivity.class));
-                break;
-            case R.id.btn3:
-                startActivity(new Intent(MainActivityOriginal.this, PaintActivity.class));
-                break;
-            case R.id.btn4:
-                break;
-            case R.id.btn7:
-                startActivity(new Intent(MainActivityOriginal.this, RetroftActivity.class));
-                break;
-            case R.id.btn8:
-                startActivity(new Intent(MainActivityOriginal.this, HttpTestActivity.class));
-                break;
-            case R.id.btn9:
-                startActivity(new Intent(MainActivityOriginal.this, ImageViewActivity.class));
-                break;
-            case R.id.btn10:
-                startActivity(new Intent(MainActivityOriginal.this, AnimationActivity.class));
-                break;
-        }
-    }
 
     @Override
     public void onBackPressed() {
@@ -235,6 +130,7 @@ public class MainActivityOriginal extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(MainActivityOriginal.this, PaintActivity.class));
         } else if (id == R.id.nav_slideshow) {
+            startActivity(new Intent(MainActivityOriginal.this, LoginActivity.class));
 
         } else if (id == R.id.nav_manage) {
             startActivity(new Intent(MainActivityOriginal.this, PorterDuffXfermodeActivity.class));
@@ -257,20 +153,15 @@ public class MainActivityOriginal extends AppCompatActivity
                 pre.setSaveNunix(s.getNunix());
                 Logger.getLogger("").i(TAG, "nunix--Times=" + s.getNunix());
             }
-
             @Override
             public void onError(Throwable e) {
-
             }
-
             @Override
             public void onCompleted() {
-
             }
         };
         HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber, this), "https://webapi.hsuperior.com/sys/getnunix");
     }
-
 
     @Override
     protected void onDestroy() {
