@@ -1,10 +1,11 @@
 package com.daitu_liang.study.mytest;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import butterknife.BindView;
@@ -20,8 +21,8 @@ public class PullDownActivity extends AppCompatActivity {
     ImageView btnBack;
     @BindView(R.id.toolbar_pull)
     Toolbar toolbarPull;
-    @BindView(R.id.btn)
-    Button btn;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout refresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,24 @@ public class PullDownActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
         collapsingToolbarLayout.setTitle("Design Library");
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+            }
+        });
     }
 
-    @OnClick(R.id.btn)
+    private void loadData() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refresh.setRefreshing(false);
+            }
+        },3000);
+    }
+
+    @OnClick(R.id.btn_back)
     public void onClick() {
         finish();
     }

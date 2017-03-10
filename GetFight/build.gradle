@@ -42,4 +42,5 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    compile 'com.zhy:base-rvadapter:3.0.3'
 }
