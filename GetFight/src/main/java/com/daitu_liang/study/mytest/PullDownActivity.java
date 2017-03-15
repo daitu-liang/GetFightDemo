@@ -56,6 +56,8 @@ public class PullDownActivity extends AppCompatActivity {
                 refresh.setRefreshing(false);
             }
         }, 3000);
+
+
     }
 
 
