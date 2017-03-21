@@ -30,9 +30,8 @@ public class ProgressDialogHandler extends Handler {
     private void initProgressDialog(){
         if (pd == null) {
             pd = new ProgressDialog(context);
-
+            pd.setMessage("   loading....");
             pd.setCancelable(cancelable);
-
             if (cancelable) {
                 pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override

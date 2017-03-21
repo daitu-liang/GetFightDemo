@@ -83,7 +83,8 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".SanFunctionActivity"></activity>
+        <activity android:name=".SanFunctionActivity" />
+        <activity android:name=".html.HtmlToActivity"></activity>
     </application>
 
 </manifest>

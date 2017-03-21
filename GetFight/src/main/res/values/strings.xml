@@ -19,4 +19,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="htmlcolor">传参数背景</string>
+    <string name="bg">背景改变</string>
 </resources>

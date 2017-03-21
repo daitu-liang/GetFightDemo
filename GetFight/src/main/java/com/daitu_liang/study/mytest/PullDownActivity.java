@@ -12,6 +12,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -58,6 +62,7 @@ public class PullDownActivity extends AppCompatActivity {
         }, 3000);
 
 
+
     }
 
 
@@ -70,7 +75,19 @@ public class PullDownActivity extends AppCompatActivity {
             case R.id.btn:
                 startActivity(new Intent(PullDownActivity.this, SanFunctionActivity.class));
 
+                //       test();
                 break;
         }
+    }
+
+    private void test() {
+        //Arrays.asList没有add remove方法，所以报错UnsupportedOperationException
+        String str="d,f,f,g,h,h,j,j";
+        List<String> list = Arrays.asList(str.split(","));
+//        list.remove("j");
+
+        ArrayList<String> arrList = new ArrayList<>(list);
+        arrList.remove("j");
+
     }
 }
