@@ -11,12 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daitu_liang.study.mytest.AnimationActivity;
+import com.daitu_liang.study.mytest.FloatTestActivity;
+import com.daitu_liang.study.mytest.AnimateEffectActivity;
+import com.daitu_liang.study.mytest.PaintActivity;
+import com.daitu_liang.study.mytest.PorterDuffXfermodeActivity;
 import com.daitu_liang.study.mytest.PullDownActivity;
 import com.daitu_liang.study.mytest.R;
+import com.daitu_liang.study.mytest.SanFunctionActivity;
+import com.daitu_liang.study.mytest.WaveDemoActivity;
 import com.daitu_liang.study.mytest.adapter.FunAdapter;
+import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
 import com.daitu_liang.study.mytest.html.HtmlToActivity;
+import com.daitu_liang.study.mytest.imageview.ImageViewActivity;
+import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.widget.DividerItemDecoration;
-import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
@@ -29,8 +38,7 @@ public class FunctionFragment extends Fragment {
 
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
-    private ArrayList<String> mDatas;
-    private CommonAdapter mAdapter;
+    private ArrayList<String> mDatas= new ArrayList<String>();
     private FunAdapter funAdapter;
 
     @Override
@@ -52,20 +60,36 @@ public class FunctionFragment extends Fragment {
             protected void convert(ViewHolder holder, String info, int position) {
                 holder.setText(R.id.item_tv, mDatas.get(position)+"测试"+info);
             }
-
         };*/
 
         funAdapter = new FunAdapter(getActivity(), R.layout.item_main_one, mDatas);
         recyclerview.setAdapter(funAdapter);
-
-
     }
 
     private void initListData() {
-        mDatas = new ArrayList<String>();
-        for (int i = 'A'; i < 'z'; i++) {
-            mDatas.add("" + (char) i);
-        }
+            mDatas.add( "-CollapsingToolbarLayout" );
+            mDatas.add( "-Html5ToActivity交互" );
+            mDatas.add( "-AnimatedSvgView" );
+            mDatas.add( "-Shader渐变效果" );
+            mDatas.add( "-PorterDuffXfermodeView波浪效果" );
+            mDatas.add( "-WaveDemo波浪效果" );
+
+            mDatas.add( "-Float效果" );
+            mDatas.add( "-Elevation阴影+属性动画" );
+
+            mDatas.add( "-网络Retroft-RxJava" );
+            mDatas.add( "-下雨打雷闪电音乐符闪星效果" );
+            mDatas.add( "- Glide" );
+            mDatas.add( "- calendar" );
+            mDatas.add( "- nothing" );
+            mDatas.add( "- nothing" );
+            mDatas.add( "- nothing" );
+            mDatas.add( "- nothing" );
+            mDatas.add( "- nothing" );
+            mDatas.add( "- nothing" );
+            mDatas.add( "- nothing" );
+            mDatas.add( "- nothing" );
+
     }
 
     @Override
@@ -76,11 +100,34 @@ public class FunctionFragment extends Fragment {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
 
-                if (position == 1) {
-                    getActivity().startActivity(new Intent(getActivity(), HtmlToActivity.class));
-                } else {
+                if (position == 0) {
                     getActivity().startActivity(new Intent(getActivity(), PullDownActivity.class));
+                } else if(position == 1){
+                    getActivity().startActivity(new Intent(getActivity(), HtmlToActivity.class));
+                } else if(position == 2){
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                } else if(position == 3){
+                    startActivity(new Intent(getActivity(), PaintActivity.class));
+                } else if(position == 4){
+                    startActivity(new Intent(getActivity(), PorterDuffXfermodeActivity.class));
+                } else if(position == 5){
+                    startActivity(new Intent(getActivity(), WaveDemoActivity.class));
+                } else if(position == 6){
+                    startActivity(new Intent(getActivity(), FloatTestActivity.class));
+                } else if(position == 7){
+                    startActivity(new Intent(getActivity(), AnimationActivity.class));
+                } else if(position == 8){
+                    startActivity(new Intent(getActivity(), SanFunctionActivity.class));
+                } else if(position == 9){
+                    startActivity(new Intent(getActivity(), AnimateEffectActivity.class));
+                } else if(position == 10){
+                   startActivity(new Intent(getActivity(), ImageViewActivity.class));
+                }else if(position == 11){
+                    startActivity(new Intent(getActivity(), SignDialogActivity.class));
+                }else {
+
                 }
+
             }
 
             @Override
@@ -88,5 +135,14 @@ public class FunctionFragment extends Fragment {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mDatas!=null){
+            mDatas.clear();
+            mDatas=null;
+        }
     }
 }

@@ -17,7 +17,7 @@ import com.squareup.leakcanary.RefWatcher;
 import java.util.ArrayList;
 
 
-public class MainTwoActivity extends FragmentActivity {
+public class AnimateEffectActivity extends FragmentActivity {
 
     private ViewPager mViewPager;
     private TabViewLayout mTabLayout;
@@ -26,7 +26,7 @@ public class MainTwoActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_two);
+        setContentView(R.layout.activity_anint_effect);
         mViewPager = (ViewPager) findViewById(R.id.fragment_containers);
         mTabLayout = (TabViewLayout) findViewById(R.id.tab_layout);
 

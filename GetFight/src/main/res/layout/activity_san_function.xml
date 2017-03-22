@@ -22,38 +22,9 @@
         android:gravity="center">
 
     </TextView>
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="float漂浮"
 
-        />
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="绘制雪花"
-        />
-    <Button
-        android:id="@+id/btn3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="吸入"
-        />
-    <Button
-        android:id="@+id/btn4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="动画效果（闪电，雪花）"
-        />
 
-    <Button
-        android:id="@+id/btn5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="底部绘制"
-        />
+
     <Button
         android:id="@+id/btn6"
         android:layout_width="match_parent"

@@ -48,7 +48,7 @@ public class AnimationActivity extends AppCompatActivity {
         btntop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AnimationActivity.this,DrawableActivity.class));
+                startActivity(new Intent(AnimationActivity.this,ScrollToAndScrollByActivity.class));
             }
         });
         if (Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP){

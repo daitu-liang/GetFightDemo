@@ -42,7 +42,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivityOriginal"
+            android:name=".MainHomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -51,7 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainTwoActivity" />
+        <activity android:name=".AnimateEffectActivity" />
         <activity android:name=".AnimationActivity" />
         <activity android:name=".PaintActivity" />
         <activity android:name=".MatrixActivity" />
@@ -76,7 +76,6 @@
 
         <service android:name=".unittest.ServiceTest" />
 
-        <activity android:name=".DrawableActivity" />
         <activity
             android:name=".PullDownActivity"
             android:theme="@style/AppTheme.NoActionBar" />

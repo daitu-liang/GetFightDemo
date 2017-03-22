@@ -9,11 +9,13 @@ import com.squareup.leakcanary.RefWatcher;
 
 public class SnowActivity extends AppCompatActivity {
 
+    private SnowView startBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_);
-        SnowView startBtn = (SnowView) findViewById(R.id.float_btn);
+         startBtn = (SnowView) findViewById(R.id.float_btn);
         startBtn.startAnimationFloat();
     }
     @Override
@@ -21,5 +23,8 @@ public class SnowActivity extends AppCompatActivity {
         super.onDestroy();
         RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
         refWatcher.watch(this);
+        if(startBtn!=null){
+            startBtn=null;
+        }
     }
 }

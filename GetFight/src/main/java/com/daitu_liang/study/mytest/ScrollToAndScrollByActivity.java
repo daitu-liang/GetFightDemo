@@ -10,7 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DrawableActivity extends AppCompatActivity {
+public class ScrollToAndScrollByActivity extends AppCompatActivity {
 
     @BindView(R.id.btn)
     ImageView btn;
@@ -23,7 +23,6 @@ public class DrawableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drawable);
         ButterKnife.bind(this);
     }
-
 
     @OnClick({R.id.btn, R.id.scrolltv})
     public void onClick(View view) {

@@ -31,10 +31,10 @@ import com.squareup.leakcanary.RefWatcher;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivityOriginal extends AppCompatActivity
+public class MainHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "MainActivityOriginal";
+    private static final String TAG = "MainHomeActivity";
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -50,9 +50,9 @@ public class MainActivityOriginal extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_origin);
+        setContentView(R.layout.activity_home_main);
         ButterKnife.bind(this);
-        Log.i("MainActivityOriginal","onCreate="+savedInstanceState);
+        Log.i("MainHomeActivity","onCreate="+savedInstanceState);
 
         getData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -63,7 +63,7 @@ public class MainActivityOriginal extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivityOriginal.this, AnimationActivity.class));
+                startActivity(new Intent(MainHomeActivity.this, LoginActivity.class));
             }
         });
         initTabLayout();
@@ -126,18 +126,17 @@ public class MainActivityOriginal extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            startActivity(new Intent(MainActivityOriginal.this, MainActivity.class));
+            startActivity(new Intent(MainHomeActivity.this, MainActivity.class));
         } else if (id == R.id.nav_gallery) {
-            startActivity(new Intent(MainActivityOriginal.this, PaintActivity.class));
+            startActivity(new Intent(MainHomeActivity.this, PaintActivity.class));
         } else if (id == R.id.nav_slideshow) {
-            startActivity(new Intent(MainActivityOriginal.this, LoginActivity.class));
-
+            startActivity(new Intent(MainHomeActivity.this, LoginActivity.class));
         } else if (id == R.id.nav_manage) {
-            startActivity(new Intent(MainActivityOriginal.this, PorterDuffXfermodeActivity.class));
+            startActivity(new Intent(MainHomeActivity.this, PorterDuffXfermodeActivity.class));
         } else if (id == R.id.nav_share) {
-            startActivity(new Intent(MainActivityOriginal.this, MatrixActivity.class));
+            startActivity(new Intent(MainHomeActivity.this, MatrixActivity.class));
         } else if (id == R.id.nav_send) {
-            startActivity(new Intent(MainActivityOriginal.this, WaveDemoActivity.class));
+            startActivity(new Intent(MainHomeActivity.this, WaveDemoActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -175,31 +174,31 @@ public class MainActivityOriginal extends AppCompatActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("key","apple");
-        Log.i("MainActivityOriginal","onSaveInstanceState");
+        Log.i("MainHomeActivity","onSaveInstanceState");
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.i("MainActivityOriginal","onRestoreInstanceState");
+        Log.i("MainHomeActivity","onRestoreInstanceState");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i("MainActivityOriginal","onPause");
+        Log.i("MainHomeActivity","onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i("MainActivityOriginal","onStop");
+        Log.i("MainHomeActivity","onStop");
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.i("MainActivityOriginal","onNewIntent");
+        Log.i("MainHomeActivity","onNewIntent");
     }
 
 }

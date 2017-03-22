@@ -11,14 +11,15 @@
     tools:context="com.daitu_liang.study.mytest.AnimationActivity">
     <Button
         android:id="@+id/btn"
-        android:layout_width="500dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_gravity="center"
         android:background="@color/colorAccent"
+        android:layout_margin="20dp"
        />
     <Button
         android:id="@+id/btntop"
-        android:layout_width="500dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="testdrawble"
         android:background="@color/colorAccent"

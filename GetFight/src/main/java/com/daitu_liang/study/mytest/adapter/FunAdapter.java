@@ -19,12 +19,6 @@ public class FunAdapter<T> extends CommonAdapter<T> {
 
     @Override
     protected void convert(ViewHolder holder, T info, int position) {
-
-        if(position==1){
-            holder.setText(R.id.item_tv, mDatas.get(position)+"测试-Html5-"+info);
-        }else {
-            holder.setText(R.id.item_tv, mDatas.get(position)+"测试-FunAdapter-"+info);
-        }
+        holder.setText(R.id.item_tv, position + "-" + info);
     }
-
 }

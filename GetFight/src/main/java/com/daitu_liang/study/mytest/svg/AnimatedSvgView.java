@@ -231,8 +231,9 @@ public class AnimatedSvgView extends View {
         };
 
         Log.i(TAG, "---mWidth = " + mWidth + "---mViewport.x = " + mViewport.x);
-        Log.i(TAG, "mGlyphStrings.length = " + mGlyphStrings.length);
-        mGlyphData = new GlyphData[mGlyphStrings.length];
+        if(mGlyphStrings!=null){
+            mGlyphData = new GlyphData[mGlyphStrings.length];
+        }
         for (int i = 0; i < mGlyphStrings.length; i++) {
             mGlyphData[i] = new GlyphData();
             try {

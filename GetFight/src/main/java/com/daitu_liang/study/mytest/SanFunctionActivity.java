@@ -38,21 +38,11 @@ public class SanFunctionActivity extends AppCompatActivity {
         contentTv.setText(event.getMsg());
     }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn7, R.id.btn8,
-            R.id.btn9, R.id.btn10})
+    @OnClick({   R.id.btn7, R.id.btn8,
+            R.id.btn9})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn1:
-                startActivity(new Intent(SanFunctionActivity.this, AnimationActivity.class));
-                break;
-            case R.id.btn2:
-                startActivity(new Intent(SanFunctionActivity.this, MainTwoActivity.class));
-                break;
-            case R.id.btn3:
-                startActivity(new Intent(SanFunctionActivity.this, PaintActivity.class));
-                break;
-            case R.id.btn4:
-                break;
+
             case R.id.btn7:
                 startActivity(new Intent(SanFunctionActivity.this, RetroftActivity.class));
                 break;
@@ -62,9 +52,7 @@ public class SanFunctionActivity extends AppCompatActivity {
             case R.id.btn9:
                 startActivity(new Intent(SanFunctionActivity.this, ImageViewActivity.class));
                 break;
-            case R.id.btn10:
-                startActivity(new Intent(SanFunctionActivity.this, AnimationActivity.class));
-                break;
+
         }
     }
 
