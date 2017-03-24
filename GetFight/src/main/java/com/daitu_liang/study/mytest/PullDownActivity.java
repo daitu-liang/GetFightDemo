@@ -73,7 +73,7 @@ public class PullDownActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.btn:
-                startActivity(new Intent(PullDownActivity.this, SanFunctionActivity.class));
+                startActivity(new Intent(PullDownActivity.this, HttpFunctionActivity.class));
 
                 //       test();
                 break;

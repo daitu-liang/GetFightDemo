@@ -1,6 +1,6 @@
 package com.daitu_liang.study.mytest.http.netapi;
 
-import com.daitu_liang.study.mytest.modle.LoginResponse;
+import com.daitu_liang.study.mytest.modle.LoginEntity;
 import com.daitu_liang.study.mytest.modle.MovieEntity;
 import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.modle.Subject;
@@ -85,9 +85,9 @@ public class HttpMethods {
                 .subscribe(subscriber);
     }
 
-    public void getUserInfo(Subscriber<LoginResponse>subscriber, HashMap<String,String> map){
-        Observable<LoginResponse> observable = mService.getUserInfo(map)
-                .map(new HttpResultFunc<LoginResponse>());;
+    public void getUserInfo(Subscriber<LoginEntity>subscriber, HashMap<String,String> map){
+        Observable<LoginEntity> observable = mService.getUserInfo(map)
+                .map(new HttpResultFunc<LoginEntity>());;
         toSubscribe(observable,subscriber);
 
     }

@@ -23,6 +23,7 @@
     <color name="text_green">#b536a32a</color>
     <color name="text_red">#ab3f3f</color>
     <color name="aaaa">#94ab3f3f</color>
+    <color name="bg_loading">#3f161616</color>
 
     <color name="testcolor">#ff0000</color>
 </resources>

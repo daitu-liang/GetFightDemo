@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GetFight/GetFight.iml" filepath="$PROJECT_DIR$/GetFight/GetFight.iml" />
       <module fileurl="file://$PROJECT_DIR$/MTesy.iml" filepath="$PROJECT_DIR$/MTesy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fightdemo/fightdemo.iml" filepath="$PROJECT_DIR$/fightdemo/fightdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
     </modules>
   </component>

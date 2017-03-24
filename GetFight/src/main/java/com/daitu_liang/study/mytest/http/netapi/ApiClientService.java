@@ -1,6 +1,6 @@
 package com.daitu_liang.study.mytest.http.netapi;
 
-import com.daitu_liang.study.mytest.modle.LoginResponse;
+import com.daitu_liang.study.mytest.modle.LoginEntity;
 import com.daitu_liang.study.mytest.modle.MovieEntity;
 import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.modle.Subject;
@@ -43,7 +43,7 @@ public interface ApiClientService {
 
     @FormUrlEncoded
     @POST("user/login")
-    Observable<HttpResult<LoginResponse>> getUserInfo(@FieldMap() Map<String,String>map);
+    Observable<HttpResult<LoginEntity>> getUserInfo(@FieldMap() Map<String,String>map);
 
     @FormUrlEncoded
     @POST("/user/vcodeget")

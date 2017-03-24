@@ -11,7 +11,7 @@ import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
-import com.daitu_liang.study.mytest.modle.LoginResponse;
+import com.daitu_liang.study.mytest.modle.LoginEntity;
 import com.daitu_liang.study.mytest.modle.MessageEvent;
 import com.daitu_liang.study.mytest.modle.NiuxInfo;
 import com.daitu_liang.study.mytest.util.AppInfoUtil;
@@ -106,9 +106,9 @@ public class HttpTestActivity extends AppCompatActivity {
         map.put("sys_version", sys_version);
         map.put("version", version);
         map.put("sign", GetSign.giveSign(map));
-        SubscriberOnNextListener<LoginResponse> getLoginSubscrible = new SubscriberOnNextListener<LoginResponse>() {
+        SubscriberOnNextListener<LoginEntity> getLoginSubscrible = new SubscriberOnNextListener<LoginEntity>() {
             @Override
-            public void onNext(LoginResponse loginResponse) {
+            public void onNext(LoginEntity loginResponse) {
                 resultTV.setText(loginResponse.getMobile() + "-" + loginResponse.getNick_name() + "--" + loginResponse.getU_guid());
                 BusProvider.getInstance().post(sendContent(loginResponse.getMobile() + "-" + loginResponse.getNick_name()));
             }
@@ -126,7 +126,7 @@ public class HttpTestActivity extends AppCompatActivity {
             public void onCompleted() {
             }
         };
-        HttpMethods.getInstance().getUserInfo(new ProgressSubscriber<LoginResponse>(getLoginSubscrible, this), map);
+        HttpMethods.getInstance().getUserInfo(new ProgressSubscriber<LoginEntity>(getLoginSubscrible, this), map);
     }
 
     @Produce

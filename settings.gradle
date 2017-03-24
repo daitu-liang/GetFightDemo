@@ -1,1 +1,1 @@
-include ':GetFight', ':lib'
+include ':GetFight', ':lib', ':fightdemo'

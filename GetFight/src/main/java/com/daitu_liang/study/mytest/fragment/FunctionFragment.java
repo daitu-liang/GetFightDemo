@@ -18,7 +18,7 @@ import com.daitu_liang.study.mytest.PaintActivity;
 import com.daitu_liang.study.mytest.PorterDuffXfermodeActivity;
 import com.daitu_liang.study.mytest.PullDownActivity;
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.SanFunctionActivity;
+import com.daitu_liang.study.mytest.HttpFunctionActivity;
 import com.daitu_liang.study.mytest.WaveDemoActivity;
 import com.daitu_liang.study.mytest.adapter.FunAdapter;
 import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
@@ -117,7 +117,7 @@ public class FunctionFragment extends Fragment {
                 } else if(position == 7){
                     startActivity(new Intent(getActivity(), AnimationActivity.class));
                 } else if(position == 8){
-                    startActivity(new Intent(getActivity(), SanFunctionActivity.class));
+                    startActivity(new Intent(getActivity(), HttpFunctionActivity.class));
                 } else if(position == 9){
                     startActivity(new Intent(getActivity(), AnimateEffectActivity.class));
                 } else if(position == 10){

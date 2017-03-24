@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by leixiaoliang  ddd on 2016/8/1.
  */
-public class LoginResponse implements Serializable{
+public class LoginEntity implements Serializable{
         private String u_guid;
         private String avatar;
         private String nick_name;

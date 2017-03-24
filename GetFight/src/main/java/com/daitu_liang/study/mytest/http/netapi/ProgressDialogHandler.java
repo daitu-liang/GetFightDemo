@@ -19,6 +19,7 @@ public class ProgressDialogHandler extends Handler {
     private boolean cancelable;
     private ProgressCancelListener mProgressCancelListener;
 
+
     public ProgressDialogHandler(Context context, ProgressCancelListener mProgressCancelListener,
                                  boolean cancelable) {
         super();
@@ -45,6 +46,8 @@ public class ProgressDialogHandler extends Handler {
                 pd.show();
             }
         }
+
+
     }
 
     private void dismissProgressDialog(){

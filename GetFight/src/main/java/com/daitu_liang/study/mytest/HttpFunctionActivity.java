@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SanFunctionActivity extends AppCompatActivity {
+public class HttpFunctionActivity extends AppCompatActivity {
     @BindView(R.id.content_tv)
     TextView contentTv;
 
@@ -39,18 +39,21 @@ public class SanFunctionActivity extends AppCompatActivity {
     }
 
     @OnClick({   R.id.btn7, R.id.btn8,
-            R.id.btn9})
+            R.id.btn9, R.id.btn10})
     public void onClick(View view) {
         switch (view.getId()) {
 
             case R.id.btn7:
-                startActivity(new Intent(SanFunctionActivity.this, RetroftActivity.class));
+                startActivity(new Intent(HttpFunctionActivity.this, RetroftActivity.class));
                 break;
             case R.id.btn8:
-                startActivity(new Intent(SanFunctionActivity.this, HttpTestActivity.class));
+                startActivity(new Intent(HttpFunctionActivity.this, HttpTestActivity.class));
                 break;
             case R.id.btn9:
-                startActivity(new Intent(SanFunctionActivity.this, ImageViewActivity.class));
+                startActivity(new Intent(HttpFunctionActivity.this, ImageViewActivity.class));
+                break;
+            case R.id.btn10:
+                startActivity(new Intent(HttpFunctionActivity.this, MatrixActivity.class));
                 break;
 
         }

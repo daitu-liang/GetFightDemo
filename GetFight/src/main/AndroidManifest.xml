@@ -82,7 +82,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".SanFunctionActivity" />
+        <activity android:name=".HttpFunctionActivity" />
         <activity android:name=".html.HtmlToActivity"></activity>
     </application>
 
