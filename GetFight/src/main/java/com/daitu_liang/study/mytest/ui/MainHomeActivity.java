@@ -1,4 +1,4 @@
-package com.daitu_liang.study.mytest;
+package com.daitu_liang.study.mytest.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.adapter.MainFragmentPagerAdapter;
 import com.daitu_liang.study.mytest.app.GetFightApplication;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
-import com.daitu_liang.study.mytest.modle.NiuxInfo;
+import com.daitu_liang.study.mytest.entity.NiuxInfo;
 import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
@@ -66,6 +67,7 @@ public class MainHomeActivity extends AppCompatActivity
                 startActivity(new Intent(MainHomeActivity.this, LoginActivity.class));
             }
         });
+        initBottomNavigationBar();
         initTabLayout();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -76,6 +78,10 @@ public class MainHomeActivity extends AppCompatActivity
         //让左侧菜单显示原始设置的颜色
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initBottomNavigationBar() {
+        
     }
 
     private void initTabLayout() {
