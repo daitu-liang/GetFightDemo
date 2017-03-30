@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/FlycoTabLayout_Lib/FlycoTabLayout_Lib.iml" filepath="$PROJECT_DIR$/FlycoTabLayout_Lib/FlycoTabLayout_Lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/GetFight/GetFight.iml" filepath="$PROJECT_DIR$/GetFight/GetFight.iml" />
       <module fileurl="file://$PROJECT_DIR$/MTesy.iml" filepath="$PROJECT_DIR$/MTesy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bottom-navigation-bar/bottom-navigation-bar.iml" filepath="$PROJECT_DIR$/bottom-navigation-bar/bottom-navigation-bar.iml" />
       <module fileurl="file://$PROJECT_DIR$/fightdemo/fightdemo.iml" filepath="$PROJECT_DIR$/fightdemo/fightdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
     </modules>

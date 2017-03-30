@@ -1,74 +1,92 @@
 package com.daitu_liang.study.mytest.ui;
 
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.adapter.MainFragmentPagerAdapter;
 import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.entity.NiuxInfo;
+import com.daitu_liang.study.mytest.fragment.BookFragment;
+import com.daitu_liang.study.mytest.fragment.HomeFragment;
+import com.daitu_liang.study.mytest.fragment.MoiveFragment;
+import com.daitu_liang.study.mytest.fragment.NewsFragment;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
-import com.daitu_liang.study.mytest.entity.NiuxInfo;
 import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
 import com.daitu_liang.study.mytest.util.otto.BusProvider;
+import com.daitu_liang.study.mytest.widget.bottomnavigation.BadgeItem;
+import com.daitu_liang.study.mytest.widget.bottomnavigation.BottomNavigationBar;
+import com.daitu_liang.study.mytest.widget.bottomnavigation.BottomNavigationItem;
 import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainHomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationBar.OnTabSelectedListener {
 
     private static final String TAG = "MainHomeActivity";
+    int lastSelectedPosition = 0;
 
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
     @BindView(R.id.nav_view)
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
-    private MainFragmentPagerAdapter myFragmentPagerAdapter;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.appBarLayout)
+    AppBarLayout appBarLayout;
+    private BottomNavigationBar bottomNavigationBar;
+    private HomeFragment mHomeFragment;
+    private BadgeItem numberBadgeItem;
+    private BookFragment mBookFragment;
+    private MoiveFragment mMoiveFragment;
+    private NewsFragment mNewsFragment;
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_main);
         ButterKnife.bind(this);
-        Log.i("MainHomeActivity","onCreate="+savedInstanceState);
-
-        getData();
+        Log.i("MainHomeActivity", "onCreate=" + savedInstanceState);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("测试demo");
         setSupportActionBar(toolbar);
+        getData();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainHomeActivity.this, LoginActivity.class));
-            }
-        });
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainHomeActivity.this, LoginActivity.class));
+//            }
+//        });
+
         initBottomNavigationBar();
-        initTabLayout();
+        initFragment(savedInstanceState);
+        //为了生成，工具栏左上角的动态图标，要使用下面的方法
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -79,20 +97,133 @@ public class MainHomeActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
     private void initBottomNavigationBar() {
-        
+        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar.setTabSelectedListener(this);
+        bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
+        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
+        numberBadgeItem = new BadgeItem()
+                .setBorderWidth(4)
+                .setBackgroundColorResource(R.color.blue)
+                .setText("5")
+                .setHideOnSelect(false);
+        bottomNavigationBar
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "Home").setActiveColorResource(R.color.orange).setBadgeItem(numberBadgeItem))
+                .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "Books").setActiveColorResource(R.color.teal))
+                .addItem(new BottomNavigationItem(R.drawable.ic_music_note_white_24dp, "News").setActiveColorResource(R.color.blue))
+                .addItem(new BottomNavigationItem(R.drawable.ic_tv_white_24dp, "Movies & TV").setActiveColorResource(R.color.brown))
+                .setFirstSelectedPosition(lastSelectedPosition)
+                .initialise();
     }
 
-    private void initTabLayout() {
-        mViewPager=(ViewPager)findViewById(R.id.viewPager);
-        mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        myFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(myFragmentPagerAdapter);
-        //将TabLayout与ViewPager绑定在一起
-        mTabLayout.setupWithViewPager(mViewPager);
+    /**
+     * 设置默认的
+     *
+     * @param savedInstanceState
+     */
+    private void initFragment(Bundle savedInstanceState) {
+        //判断activity是否重建，如果不是，则不需要重新建立fragment.
+        if (savedInstanceState == null) {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            if (mHomeFragment == null) {
+                mHomeFragment = new HomeFragment();
+            }
+            if (mBookFragment == null) {
+                mBookFragment = new BookFragment();
+            }
+            if (mNewsFragment == null) {
+                mNewsFragment = new NewsFragment();
+            }
+            if (mMoiveFragment == null) {
+                mMoiveFragment = new MoiveFragment();
+            }
+            currentFragment = mHomeFragment;
+
+            if (currentFragment.isAdded()) {
+                ft.show(currentFragment);
+            } else {
+                ft.replace(R.id.frame_layout, currentFragment);
+            }
+            ft.commit();
+
+        }
+       /* FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        mHomeFragment = new HomeFragment();
+        transaction.replace(R.id.frame_layout, mHomeFragment);
+        transaction.commit();*/
     }
 
+
+
+    @Override
+    public void onTabSelected(int position) {
+        Log.d(TAG, "onTabSelected() called with: " + "position = [" + position + "]");
+//        FragmentManager fm = this.getSupportFragmentManager();
+//        //开启事务
+//        FragmentTransaction transaction = fm.beginTransaction();
+        Fragment switchTo = null;
+        switch (position) {
+            case 0:
+                if (mHomeFragment == null) {
+                    mHomeFragment = new HomeFragment();
+                }
+                switchTo = mHomeFragment;
+                break;
+            case 1:
+                if (mBookFragment == null) {
+                    mBookFragment = new BookFragment();
+                }
+                switchTo = mBookFragment;
+                break;
+            case 2:
+                if (mNewsFragment == null) {
+                    mNewsFragment = new NewsFragment();
+                }
+                switchTo = mNewsFragment;
+                break;
+            case 3:
+                if (mMoiveFragment == null) {
+                    mMoiveFragment = new MoiveFragment();
+                }
+                switchTo = mMoiveFragment;
+                break;
+            default:
+                break;
+        }
+        if (switchTo != null) {
+            switchContent(currentFragment, switchTo);
+        }
+    }
+
+    /**
+     * 切换fragment
+     *
+     * @param from 当前显示的fragment
+     * @param to   切换的目标fragment
+     */
+    public void switchContent(Fragment from, Fragment to) {
+        if (from != to) {
+            currentFragment = to;
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            if (!to.isAdded()) {
+                transaction.hide(from).add(R.id.frame_layout, to).commit();
+            } else {
+                transaction.hide(from).show(to).commit();
+            }
+        }
+    }
+
+    @Override
+    public void onTabUnselected(int position) {
+        Log.d(TAG, "onTabUnselected() called with: " + "position = [" + position + "]");
+    }
+
+    @Override
+    public void onTabReselected(int position) {
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -107,20 +238,21 @@ public class MainHomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_menu, menu);
         return true;
     }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.menu_github:
+                String url = "https://github.com/daitu-liang";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -158,9 +290,11 @@ public class MainHomeActivity extends AppCompatActivity
                 pre.setSaveNunix(s.getNunix());
                 Logger.getLogger("").i(TAG, "nunix--Times=" + s.getNunix());
             }
+
             @Override
             public void onError(Throwable e) {
             }
+
             @Override
             public void onCompleted() {
             }
@@ -168,43 +302,44 @@ public class MainHomeActivity extends AppCompatActivity
         HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber, this), "https://webapi.hsuperior.com/sys/getnunix");
     }
 
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("MainHomeActivity", "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("MainHomeActivity", "onStop");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.i("MainHomeActivity", "onNewIntent");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("key", "apple");
+        Log.i("MainHomeActivity", "onSaveInstanceState");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i("MainHomeActivity", "onRestoreInstanceState");
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
         BusProvider.getInstance().unregister(this);
         RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
         refWatcher.watch(this);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("key","apple");
-        Log.i("MainHomeActivity","onSaveInstanceState");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.i("MainHomeActivity","onRestoreInstanceState");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("MainHomeActivity","onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i("MainHomeActivity","onStop");
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        Log.i("MainHomeActivity","onNewIntent");
     }
 
 }

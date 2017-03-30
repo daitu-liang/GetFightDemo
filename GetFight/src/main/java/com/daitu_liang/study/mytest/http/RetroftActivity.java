@@ -14,10 +14,10 @@ import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.HttpResultTest;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
-import com.daitu_liang.study.mytest.modle.MessageEvent;
-import com.daitu_liang.study.mytest.modle.MovieEntity;
-import com.daitu_liang.study.mytest.modle.NiuxInfo;
-import com.daitu_liang.study.mytest.modle.Subject;
+import com.daitu_liang.study.mytest.entity.MessageEvent;
+import com.daitu_liang.study.mytest.entity.MovieEntity;
+import com.daitu_liang.study.mytest.entity.NiuxInfo;
+import com.daitu_liang.study.mytest.entity.Subject;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
 import com.daitu_liang.study.mytest.util.otto.BusProvider;
 

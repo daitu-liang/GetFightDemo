@@ -338,6 +338,7 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         };
 
+
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -367,6 +368,7 @@ public class ScrollingActivity extends AppCompatActivity {
 //                e.onError(new Exception("555"));
             }
         });
+
         Observer observer=new Observer() {
             @Override
             public void onSubscribe(Disposable d) {

@@ -1,5 +1,6 @@
 package com.daitu_liang.study.mytest.html;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,8 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.daitu_liang.study.mytest.LoginActivity;
 import com.daitu_liang.study.mytest.R;
+import com.daitu_liang.study.mytest.ui.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

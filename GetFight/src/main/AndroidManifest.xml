@@ -42,7 +42,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainHomeActivity"
+            android:name=".ui.MainHomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -51,19 +51,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AnimateEffectActivity" />
-        <activity android:name=".AnimationActivity" />
-        <activity android:name=".PaintActivity" />
-        <activity android:name=".MatrixActivity" />
-        <activity android:name=".PorterDuffXfermodeActivity" />
-        <activity android:name=".WaveDemoActivity" />
-        <activity android:name=".svg.MainActivity" />
-        <activity android:name=".FloatActivity" />
-        <activity android:name=".IndraftActivity" />
-        <activity android:name=".SnowActivity" />
-        <activity android:name=".FloatTestActivity" />
-        <activity android:name=".BottomActivity" />
-        <activity android:name=".javanature.HandleTestActivity" />
         <activity
             android:name=".datepicker.SignDialogActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -77,13 +64,28 @@
         <service android:name=".unittest.ServiceTest" />
 
         <activity
-            android:name=".PullDownActivity"
+            android:name=".ui.PullDownActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".HttpFunctionActivity" />
-        <activity android:name=".html.HtmlToActivity"></activity>
+        <activity android:name=".ui.HttpFunctionActivity" />
+        <activity android:name=".html.HtmlToActivity" />
+        <activity android:name=".ui.MainHomeBottomActivity" />
+        <activity android:name=".ui.AnimateEffectActivity" />
+        <activity android:name=".ui.AnimationActivity" />
+        <activity android:name=".ui.PaintActivity" />
+        <activity android:name=".ui.MatrixActivity" />
+        <activity android:name=".ui.PorterDuffXfermodeActivity" />
+        <activity android:name=".ui.WaveDemoActivity" />
+        <activity android:name=".ui.FloatTestActivity" />
+        <activity android:name=".ui.FloatActivity" />
+        <activity android:name=".ui.ScrollToAndScrollByActivity" />
+        <activity android:name=".ui.SnowActivity" />
+        <activity android:name=".ui.BottomActivity" />
+        <activity android:name=".svg.MainActivity" />
+        <activity android:name=".javanature.HandleTestActivity" />
+        <activity android:name=".ui.PieViewActivity"></activity>
     </application>
 
 </manifest>

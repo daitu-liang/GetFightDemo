@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="#ff000000">
 
-    <com.daitu_liang.study.mytest.TabViewLayout
+    <com.daitu_liang.study.mytest.widget.TabViewLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="30dip"/>

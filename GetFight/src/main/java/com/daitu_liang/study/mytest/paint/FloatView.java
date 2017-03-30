@@ -162,6 +162,16 @@ public class FloatView extends View {
         mStarThreeHeight = mStarThree.getHeight();
     }
 
+    /**
+     *在测量完View并使用setMeasuredDimension函数之后View的大小基本上已经确定了，
+     * 那么为什么还要再次确定View的大小呢？
+     *  这是因为View的大小不仅由View本身控制，而且受父控件的影响，
+     *  所以我们在确定View大小的时候最好使用系统提供的onSizeChanged回调函数。
+     * @param w
+     * @param h
+     * @param oldw
+     * @param oldh
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -177,6 +187,13 @@ public class FloatView extends View {
         Log.i(TAG, "mTotalWidth=" + mTotalWidth + "---2-mTotalHeight=" + mTotalHeight);
     }
 
+    /**
+     * 如果对View的宽高进行修改了，
+     * 不要调用 super.onMeasure( widthMeasureSpec, heightMeasureSpec);
+     * 要调用 setMeasuredDimension( widthsize, heightsize); 这个函数。
+     * @param widthMeasureSpec
+     * @param heightMeasureSpec
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -325,6 +342,8 @@ public class FloatView extends View {
             StarInfo starInfo = mStarInfos.get(i);
             drawStarDynamic(i, starInfo, canvas, paint);
         }
+//        canvas.drawPicture(new Picture());
+
     }
 
     private void drawStarDynamic(int count, StarInfo starInfo,

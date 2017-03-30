@@ -1,9 +1,9 @@
 package com.daitu_liang.study.mytest.http.netapi;
 
-import com.daitu_liang.study.mytest.modle.LoginEntity;
-import com.daitu_liang.study.mytest.modle.MovieEntity;
-import com.daitu_liang.study.mytest.modle.NiuxInfo;
-import com.daitu_liang.study.mytest.modle.Subject;
+import com.daitu_liang.study.mytest.entity.LoginEntity;
+import com.daitu_liang.study.mytest.entity.MovieEntity;
+import com.daitu_liang.study.mytest.entity.NiuxInfo;
+import com.daitu_liang.study.mytest.entity.Subject;
 
 import java.util.List;
 import java.util.Map;
