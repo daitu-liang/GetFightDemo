@@ -97,13 +97,13 @@ public abstract class TabTopFragmentPagerAdapter extends PagerAdapter {
 		Fragment fragment = mFragmentManager.findFragmentByTag(name);
 		if (fragment != null) {
 			if (DEBUG)
-				Log.v(TAG, "Attaching item #" + position + ": f=" + fragment);
+				Log.v(TAG, "Attaching item_book #" + position + ": f=" + fragment);
 			mCurTransaction.attach(fragment);
 		}
 		else {
 			fragment = getItem(position);
 			if (DEBUG)
-				Log.v(TAG, "Adding item #" + position + ": f=" + fragment);
+				Log.v(TAG, "Adding item_book #" + position + ": f=" + fragment);
 			mCurTransaction.add(container.getId(), fragment, makeFragmentName(container.getId(), position));
 		}
 		if (fragment != mCurrentPrimaryItem) {
@@ -120,7 +120,7 @@ public abstract class TabTopFragmentPagerAdapter extends PagerAdapter {
 			mCurTransaction = mFragmentManager.beginTransaction();
 		}
 		if (DEBUG)
-			Log.v(TAG, "Detaching item #" + position + ": f=" + object + " v=" + ((Fragment) object).getView());
+			Log.v(TAG, "Detaching item_book #" + position + ": f=" + object + " v=" + ((Fragment) object).getView());
 		mCurTransaction.detach((Fragment) object);
 	}
 

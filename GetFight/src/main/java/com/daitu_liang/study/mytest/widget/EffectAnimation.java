@@ -25,7 +25,7 @@ import com.daitu_liang.study.mytest.effect.base.EffectScence;
 	private Thread spriteThread;
 	private boolean running = false;
 	protected EffectScence scence;
-	//item attribute
+	//item_book attribute
 	private int itemNum;
 	private int itemColor = 0xffffffff;
 	private boolean randColor = false;

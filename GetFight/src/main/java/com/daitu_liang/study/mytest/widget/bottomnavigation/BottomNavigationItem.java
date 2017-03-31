@@ -260,7 +260,7 @@ public class BottomNavigationItem {
     }
 
     /**
-     * @return badge item that needs to set to respective view
+     * @return badge item_book that needs to set to respective view
      */
     protected BadgeItem getBadgeItem() {
         return mBadgeItem;

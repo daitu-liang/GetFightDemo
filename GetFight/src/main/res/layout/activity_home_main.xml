@@ -12,13 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.daitu_liang.study.mytest.widget.bottomnavigation.BottomNavigationBar
-        android:id="@+id/bottom_navigation_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         />
-
-
     <!--app:bnbAutoHideEnabled="false"/>-->
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

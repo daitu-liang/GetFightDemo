@@ -109,7 +109,7 @@ public class BookFragment extends Fragment {
         listData = new ArrayList<String>();
         mAdapter =new BooksAdapter(getActivity(), R.layout.item_book, listData);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.refresh();
+//        mRecyclerView.refresh();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -117,7 +117,7 @@ public class BookFragment extends Fragment {
                 if(newState==RecyclerView.SCROLL_STATE_IDLE ){//静止,没有滚动
                     ((MainHomeActivity) getActivity()).showBottomNavigationBar();
                 }else if(newState==RecyclerView.SCROLL_STATE_DRAGGING){//正在被外部拖拽,一般为用户正在用手指滚动
-                    ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
+//                    ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
                 }else if(newState==RecyclerView.SCROLL_STATE_SETTLING ){//自动滚动开始
                     ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
                 }

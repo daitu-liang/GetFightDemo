@@ -140,6 +140,8 @@ public class GradientView extends View {
 //        canvas.rotate(45,200,200);
 //        canvas.scale(0.5f, 0.5f);
 
+        //float sx:将画布在x方向上倾斜相应的角度，sx倾斜角度的tan值，
+        //float sy:将画布在y轴方向上倾斜相应的角度，sy为倾斜角度的tan值.
         canvas.skew(1,0);
         mGradientPaint.setColor(0x8800ff00);
         canvas.drawRect(new Rect(0, 0, 400, 400), mGradientPaint);

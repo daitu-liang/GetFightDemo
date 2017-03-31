@@ -21,11 +21,11 @@ public abstract class EffectItem implements EffectBase{
 	 */
 	protected Random rand;
 	/**
-	 * item color
+	 * item_book color
 	 */
 	protected int color;
 	/**
-	 * rand item color
+	 * rand item_book color
 	 */
 	protected boolean randColor;
 	

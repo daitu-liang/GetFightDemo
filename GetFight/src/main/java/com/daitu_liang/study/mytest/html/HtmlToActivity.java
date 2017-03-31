@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.ui.LoginActivity;
+import com.daitu_liang.study.mytest.ui.activity.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -474,10 +474,10 @@ public class BottomNavigationBar extends FrameLayout {
     /**
      * Internal method to setup tabs
      *
-     * @param bottomNavigationTab Tab item
-     * @param currentItem         data structure for tab item
-     * @param itemWidth           tab item in-active width
-     * @param itemActiveWidth     tab item active width
+     * @param bottomNavigationTab Tab item_book
+     * @param currentItem         data structure for tab item_book
+     * @param itemWidth           tab item_book in-active width
+     * @param itemActiveWidth     tab item_book active width
      */
     private void setUpTab(BottomNavigationTab bottomNavigationTab, BottomNavigationItem currentItem, int itemWidth, int itemActiveWidth) {
         bottomNavigationTab.setInactiveWidth(itemWidth);
