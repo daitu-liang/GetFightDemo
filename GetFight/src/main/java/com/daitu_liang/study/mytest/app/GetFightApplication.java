@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.daitu_liang.study.mytest.util.PreferencesManager;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -28,6 +29,7 @@ public class GetFightApplication extends Application {
     private void init() {
         preferenceManager = PreferencesManager.getInstance(this);
         refWatcher = LeakCanary.install(this);
+        Fresco.initialize(this);
     }
     private static void setContext(Context mContext) {
         CONTEXT = mContext;

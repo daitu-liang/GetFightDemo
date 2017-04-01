@@ -17,6 +17,7 @@
     <color name="gray_background">#f4f4f4</color>
     <color name="gray_text">#b3bcbf</color>
     <color name="time_text">#8c98a1</color>
+    <color name="text_content">#cf1e1e1d</color>
     <color name="text_yellow">#cfffa422</color>
     <color name="text_red_dark">#c9a52020</color>
     <color name="text_color_select">#FFFB595A</color>

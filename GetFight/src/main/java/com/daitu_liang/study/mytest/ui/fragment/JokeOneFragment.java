@@ -71,16 +71,9 @@ public class JokeOneFragment extends Fragment {
         });
        getContetList();
         listData = new ArrayList<TypeListEntity.DataBean>();
-        mAdapter =new JokeOneAdapter(getActivity(), R.layout.item_book, listData);
- /*       mRecyclerView.setAdapter(new CommonAdapter<TypeListEntity.DataBean>(getActivity(), R.layout.item_book, listData) {
-            @Override
-            protected void convert(ViewHolder holder, TypeListEntity.DataBean info, int position) {
-                holder.setText(R.id.text, position + "-" + info.getGroup().getTitle());
-            }
-        });*/
+        mAdapter =new JokeOneAdapter(getActivity(), R.layout.item_joke_one, listData);
+        mRecyclerView.setAdapter(mAdapter);
 //        mRecyclerView.refresh();
-
-
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

@@ -253,6 +253,19 @@ public class TypeListEntity implements Serializable{
             private int display_type;
 //            private List<DislikeReasonBean> dislike_reason;
 
+
+            private ImageList middle_image;
+
+
+
+            public ImageList getMiddle_image() {
+                return middle_image;
+            }
+
+            public void setMiddle_image(ImageList middle_image) {
+                this.middle_image = middle_image;
+            }
+
             public String getVideo_id() {
                 return video_id;
             }
@@ -780,6 +793,31 @@ public class TypeListEntity implements Serializable{
 
 
 
+
+            public static class ImageList{
+
+                private String uri;
+              private List<MiddleImgeEntity> url_list;
+
+                public String getUri() {
+                    return uri;
+                }
+
+                public void setUri(String uri) {
+                    this.uri = uri;
+                }
+
+                public List<MiddleImgeEntity> getUrl_list() {
+                    return url_list;
+                }
+
+                public void setUrl_list(List<MiddleImgeEntity> url_list) {
+                    this.url_list = url_list;
+                }
+            }
+
+
+
             public static class _$360pVideoBean {
                 /**
                  * width : 360
@@ -1009,6 +1047,15 @@ public class TypeListEntity implements Serializable{
             }
 
             public static class UserBean {
+                private String avatar_url;
+
+                public String getAvatar_url() {
+                    return avatar_url;
+                }
+
+                public void setAvatar_url(String avatar_url) {
+                    this.avatar_url = avatar_url;
+                }
             }
 
             public static class ActivityBean {

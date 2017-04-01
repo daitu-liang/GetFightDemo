@@ -62,6 +62,9 @@
     <dimen name="badge_width_padding">4dp</dimen><!-- 4 -->
     <dimen name="badge_height_padding">1dp</dimen><!-- 1 -->
     <dimen name="badge_top_margin">2dp</dimen><!-- 2 -->
+    <dimen name="dp_8">8dp</dimen>
+
+
 
     <dimen name="text_size_8sp">8sp</dimen>
     <dimen name="text_size_10sp">10sp</dimen>

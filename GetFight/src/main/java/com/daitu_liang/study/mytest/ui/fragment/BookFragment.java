@@ -109,7 +109,7 @@ public class BookFragment extends Fragment {
         listData = new ArrayList<String>();
         mAdapter =new BooksAdapter(getActivity(), R.layout.item_book, listData);
         mRecyclerView.setAdapter(mAdapter);
-//        mRecyclerView.refresh();
+        mRecyclerView.refresh();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

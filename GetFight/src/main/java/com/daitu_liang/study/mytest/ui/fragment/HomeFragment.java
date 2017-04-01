@@ -19,6 +19,7 @@ import com.daitu_liang.study.mytest.http.netapi.NetWorkApi;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
 import com.daitu_liang.study.mytest.ui.activity.MainHomeActivity;
+import com.daitu_liang.study.mytest.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HomeFragment extends Fragment {
-
+    private Logger log = Logger.getLogger("HomeFragment");
 
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
@@ -74,14 +75,18 @@ public class HomeFragment extends Fragment {
 
 
                     for (ContentTypeEntity contentTypeEntity :listType){
-                        if("推荐".equals(contentTypeEntity.getName())||"推荐".equals(contentTypeEntity.getName())
+                        if("推荐".equals(contentTypeEntity.getName())
                                 ||"视频".equals(contentTypeEntity.getName())||"段友秀".equals(contentTypeEntity.getName())
                                 ||"图片".equals(contentTypeEntity.getName())||"段子".equals(contentTypeEntity.getName())
-                                ||"精华".equals(contentTypeEntity.getName())){
+                                ){
+                            log.i("","type="+contentTypeEntity.getName());
                             newList.add(contentTypeEntity);
                         }
                     }
-
+                    log.i("","newList.size="+newList.size());
+                    for (int i=0;i<newList.size();i++){
+                        log.i("","--------------="+i+"----"+newList.get(i).getName());
+                    }
                     myFragmentPagerAdapter.setListType(newList);
                     myFragmentPagerAdapter.notifyDataSetChanged();
                 }

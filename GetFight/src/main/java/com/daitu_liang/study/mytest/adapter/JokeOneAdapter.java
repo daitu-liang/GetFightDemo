@@ -1,8 +1,12 @@
 package com.daitu_liang.study.mytest.adapter;
 
 import android.content.Context;
+import android.net.Uri;
+import android.text.TextUtils;
 
+import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.entity.TypeListEntity;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -22,5 +26,13 @@ public class JokeOneAdapter extends CommonAdapter<TypeListEntity.DataBean> {
     @Override
     protected void convert(ViewHolder holder, TypeListEntity.DataBean dataBean, int position) {
 
+        if(dataBean!=null&&dataBean.getGroup()!=null&& !TextUtils.isEmpty(dataBean.getGroup().getContent())){
+            holder.setText(R.id.joke_title_tv,  dataBean.getGroup().getContent());
+            if(dataBean.getGroup().getUser()!=null&&dataBean.getGroup().getUser().getAvatar_url()!=null){
+                Uri uri = Uri.parse(dataBean.getGroup().getUser().getAvatar_url());
+                SimpleDraweeView draweeView = (SimpleDraweeView) holder.getView(R.id.joke_image_view);
+                draweeView.setImageURI(uri);
+            }
+        }
     }
 }

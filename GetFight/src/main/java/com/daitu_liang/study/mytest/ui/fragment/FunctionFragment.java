@@ -25,6 +25,7 @@ import com.daitu_liang.study.mytest.ui.activity.AnimationActivity;
 import com.daitu_liang.study.mytest.ui.activity.FloatTestActivity;
 import com.daitu_liang.study.mytest.ui.activity.HttpFunctionActivity;
 import com.daitu_liang.study.mytest.ui.activity.LoginActivity;
+import com.daitu_liang.study.mytest.ui.activity.MainHomeActivity;
 import com.daitu_liang.study.mytest.ui.activity.MainHomeBottomActivity;
 import com.daitu_liang.study.mytest.ui.activity.PaintActivity;
 import com.daitu_liang.study.mytest.ui.activity.PieViewActivity;
@@ -73,6 +74,19 @@ public class FunctionFragment extends Fragment {
         recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         funAdapter = new FunAdapter(getActivity(), R.layout.item_main_one, mDatas);
         recyclerview.setAdapter(funAdapter);
+        recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState==RecyclerView.SCROLL_STATE_IDLE ){//静止,没有滚动
+                    ((MainHomeActivity) getActivity()).showBottomNavigationBar();
+                }else if(newState==RecyclerView.SCROLL_STATE_DRAGGING){//正在被外部拖拽,一般为用户正在用手指滚动
+//                    ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
+                }else if(newState==RecyclerView.SCROLL_STATE_SETTLING ){//自动滚动开始
+                    ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
+                }
+            }
+        });
     }
 
     private void initListData() {

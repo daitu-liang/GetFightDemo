@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_card"
+        android:layout_margin="3dp"
+        android:padding="10dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/joke_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            fresco:roundedCornerRadius="10dp"
+            fresco:roundWithOverlayColor="@null"
+            fresco:roundingBorderWidth="1dp"
+            fresco:progressBarImage="@mipmap/loading"
+            />
+        <TextView
+            android:id="@+id/joke_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="@dimen/text_size_20sp"
+            android:text=""
+            android:layout_below="@id/joke_image_view"
+            android:textColor="@color/text_content"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

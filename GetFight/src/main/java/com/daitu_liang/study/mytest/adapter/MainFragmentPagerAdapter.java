@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.daitu_liang.study.mytest.entity.ContentTypeEntity;
 import com.daitu_liang.study.mytest.ui.fragment.JokeOneFragment;
+import com.daitu_liang.study.mytest.ui.fragment.JokeThreeFragment;
+import com.daitu_liang.study.mytest.ui.fragment.JokeTwoFragment;
+import com.daitu_liang.study.mytest.util.Logger;
 
 import java.util.List;
 
@@ -34,10 +37,11 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
         if (listType != null && listType.size() > 0 && listType.get(position) != null) {
             ContentTypeEntity typeInfo = listType.get(position);
             Fragment f1 = null;
-            if (position == 0) {
-                f1 = new JokeOneFragment();
-            } else if (position == 1) {
-                f1 = new JokeOneFragment();
+            Logger.getLogger("Adapter").i("","position="+position+"---list_id="+typeInfo.getList_id());
+            if (position == 1) {//视频
+                f1 = new JokeThreeFragment();
+            } else if (position == 3) {//图片
+                f1 = new JokeTwoFragment();
             } else {
                 f1 = new JokeOneFragment();
             }
