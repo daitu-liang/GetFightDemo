@@ -37,13 +37,16 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
         if (listType != null && listType.size() > 0 && listType.get(position) != null) {
             ContentTypeEntity typeInfo = listType.get(position);
             Fragment f1 = null;
-            Logger.getLogger("Adapter").i("","position="+position+"---list_id="+typeInfo.getList_id());
-            if (position == 1) {//视频
+            Logger.getLogger("Adapter").i("","position="+position+"---list_id="+typeInfo.getList_id()+"---"+typeInfo.getName());
+            if (position == 1||position == 2) {//视频||段友秀
                 f1 = new JokeThreeFragment();
+                Logger.getLogger("Adapter").i("","newJokeThreeFragment position="+position+"---list_id="+typeInfo.getList_id()+"---"+typeInfo.getName());
             } else if (position == 3) {//图片
                 f1 = new JokeTwoFragment();
+                Logger.getLogger("Adapter").i("","newJokeTwoFragment position="+position+"---list_id="+typeInfo.getList_id()+"---"+typeInfo.getName());
             } else {
                 f1 = new JokeOneFragment();
+                Logger.getLogger("Adapter").i("","newJokeOneFragment position="+position+"---list_id="+typeInfo.getList_id()+"---"+typeInfo.getName());
             }
             Bundle bundle = new Bundle();
             bundle.putSerializable("typeInfo_key", typeInfo.getList_id());

@@ -48,22 +48,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void initTabLayout(View view) {
-        toolbar.setTitle("HomeFragment");
+        toolbar.setTitle("内涵段子");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((MainHomeActivity) getActivity()).initDrawerLayout(toolbar);
         getContetType();
-//        toolbar.setNavigationIcon(R.drawable.ic_location_on_white_24dp);
         myFragmentPagerAdapter = new MainFragmentPagerAdapter(getActivity().getSupportFragmentManager());
         mViewPager.setAdapter(myFragmentPagerAdapter);
         //将TabLayout与ViewPager绑定在一起
         mTabLayout.setupWithViewPager(mViewPager);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                BusProvider.getInstance().post(new ShowEvent("s"));
-//                ((MainHomeActivity)getActivity()).isShow();
-//            }
-//        });
     }
 
     private void getContetType() {
@@ -72,8 +64,6 @@ public class HomeFragment extends Fragment {
             public void onNext(List<ContentTypeEntity> listType) {
                 if(listType!=null){
                     List<ContentTypeEntity> newList=new ArrayList<>();
-
-
                     for (ContentTypeEntity contentTypeEntity :listType){
                         if("推荐".equals(contentTypeEntity.getName())
                                 ||"视频".equals(contentTypeEntity.getName())||"段友秀".equals(contentTypeEntity.getName())
@@ -90,14 +80,10 @@ public class HomeFragment extends Fragment {
                     myFragmentPagerAdapter.setListType(newList);
                     myFragmentPagerAdapter.notifyDataSetChanged();
                 }
-
-
             }
-
             @Override
             public void onError(Throwable e) {
             }
-
             @Override
             public void onCompleted() {
             }

@@ -1,8 +1,11 @@
 package com.daitu_liang.study.mytest.ui.fragment;
 
 
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,15 +29,20 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
+import static android.content.Context.SENSOR_SERVICE;
 
 public class JokeThreeFragment extends Fragment {
 
-    private Logger log = Logger.getLogger("JokeOneFragment");
+    private Logger log = Logger.getLogger("JokeThreeFragment");
     @BindView(R.id.recyclerview)
     XRecyclerView mRecyclerView;
     private List<TypeListEntity.DataBean> listData;
     private JokeThreeAdapter mAdapter;
     private String typeKy;
+    private SensorManager sensorManager;
+    JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,12 +54,19 @@ public class JokeThreeFragment extends Fragment {
     }
 
     private void initData(View view) {
-        typeKy=(String)getArguments().getSerializable("typeInfo_key");
-        log.i("","type-key="+typeKy);
-        typeKy="-104";
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
+        typeKy = (String) getArguments().getSerializable("typeInfo_key");
+        log.i("", "type-视频-key=" + typeKy);
+//        typeKy="-104";
+        if("-301".equals(typeKy)){
+            GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
+            layoutManager.setOrientation(layoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(layoutManager);
+        }else {
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(layoutManager);
+        }
+
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
@@ -62,7 +77,8 @@ public class JokeThreeFragment extends Fragment {
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                  //refresh data here
+                //refresh data here
+                getContetList();
             }
 
             @Override
@@ -70,46 +86,68 @@ public class JokeThreeFragment extends Fragment {
 
             }
         });
-       getContetList();
         listData = new ArrayList<TypeListEntity.DataBean>();
-        mAdapter =new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData);
+        mAdapter = new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData);
         mRecyclerView.setAdapter(mAdapter);
+        getContetList();
+
 //        mRecyclerView.refresh();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if(newState==RecyclerView.SCROLL_STATE_IDLE ){//静止,没有滚动
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {//静止,没有滚动
                     ((MainHomeActivity) getActivity()).showBottomNavigationBar();
-                }else if(newState==RecyclerView.SCROLL_STATE_DRAGGING){//正在被外部拖拽,一般为用户正在用手指滚动
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {//正在被外部拖拽,一般为用户正在用手指滚动
 //                    ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
-                }else if(newState==RecyclerView.SCROLL_STATE_SETTLING ){//自动滚动开始
+                } else if (newState == RecyclerView.SCROLL_STATE_SETTLING) {//自动滚动开始
                     ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
                 }
             }
         });
+        sensorManager = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
+        sensorEventListener = new JCVideoPlayer.JCAutoFullscreenListener();
+
     }
 
     private void getContetList() {
         SubscriberOnNextListener<TypeListEntity> getSubscriber = new SubscriberOnNextListener<TypeListEntity>() {
             @Override
             public void onNext(TypeListEntity listInfo) {
-                log.i("","listInfo="+listInfo.getTip());
+                log.i("", "视频listInfo=" + listInfo.getTip());
+
+                listData.clear();
                 List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
                 listData.addAll(dataGroup);
                 mAdapter.notifyDataSetChanged();
-                log.i("","dataGroup="+dataGroup.size());
+                log.i("", "视频dataGroup=" + dataGroup.size());
+                mRecyclerView.refreshComplete();
             }
 
             @Override
             public void onError(Throwable e) {
-                log.i("","异常="+e.getMessage());
+                log.i("", "异常=" + e.getMessage());
             }
 
             @Override
             public void onCompleted() {
             }
         };
-        HttpJokeMethods.getInstance().getJokeTypeListEntity(new ProgressSubscriber<TypeListEntity>(getSubscriber, getActivity()), NetWorkApi.getJokeRcommendUrl+typeKy);
+        HttpJokeMethods.getInstance().getJokeTypeListEntity(new ProgressSubscriber<TypeListEntity>(getSubscriber, getActivity()), NetWorkApi.getJokeRcommendUrl + typeKy);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(sensorEventListener);
+        JCVideoPlayer.releaseAllVideos();
     }
 }

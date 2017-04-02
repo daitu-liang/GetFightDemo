@@ -47,7 +47,7 @@ public class JokeOneFragment extends Fragment {
 
     private void initData(View view) {
         typeKy=(String)getArguments().getSerializable("typeInfo_key");
-        log.i("","type-key="+typeKy);
+        log.i("","type-其他形式-key="+typeKy);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -56,12 +56,11 @@ public class JokeOneFragment extends Fragment {
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 //        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recyclerview_header, (ViewGroup)view.findViewById(android.R.id.content),false);
 //        mRecyclerView.addHeaderView(header);
-
-
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                   //refresh data here
+                getContetList();
             }
 
             @Override
@@ -69,10 +68,11 @@ public class JokeOneFragment extends Fragment {
 
             }
         });
-       getContetList();
+
         listData = new ArrayList<TypeListEntity.DataBean>();
         mAdapter =new JokeOneAdapter(getActivity(), R.layout.item_joke_one, listData);
         mRecyclerView.setAdapter(mAdapter);
+        getContetList();
 //        mRecyclerView.refresh();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -93,6 +93,7 @@ public class JokeOneFragment extends Fragment {
         SubscriberOnNextListener<TypeListEntity> getSubscriber = new SubscriberOnNextListener<TypeListEntity>() {
             @Override
             public void onNext(TypeListEntity listInfo) {
+                listData.clear();
                 log.i("","listInfo="+listInfo.getTip());
                 List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
                 listData.addAll(dataGroup);

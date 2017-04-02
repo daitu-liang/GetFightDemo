@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 
 public class JokeTwoFragment extends Fragment {
 
-    private Logger log = Logger.getLogger("JokeOneFragment");
+    private Logger log = Logger.getLogger("JokeTwoFragment");
     @BindView(R.id.recyclerview)
     XRecyclerView mRecyclerView;
     private List<TypeListEntity.DataBean> listData;
@@ -47,8 +47,8 @@ public class JokeTwoFragment extends Fragment {
 
     private void initData(View view) {
         typeKy=(String)getArguments().getSerializable("typeInfo_key");
-        log.i("","type-key="+typeKy);
-        typeKy="-103";
+        log.i("","type-图片-key="+typeKy);
+//        typeKy="-103";
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -58,11 +58,11 @@ public class JokeTwoFragment extends Fragment {
 //        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recyclerview_header, (ViewGroup)view.findViewById(android.R.id.content),false);
 //        mRecyclerView.addHeaderView(header);
 
-
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                   //refresh data here
+                getContetList();
             }
 
             @Override
@@ -95,10 +95,12 @@ public class JokeTwoFragment extends Fragment {
             @Override
             public void onNext(TypeListEntity listInfo) {
                 log.i("","listInfo="+listInfo.getTip());
+                listData.clear();
                 List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
                 listData.addAll(dataGroup);
                 mAdapter.notifyDataSetChanged();
                 log.i("","dataGroup="+dataGroup.size());
+                mRecyclerView.refreshComplete();
             }
 
             @Override
