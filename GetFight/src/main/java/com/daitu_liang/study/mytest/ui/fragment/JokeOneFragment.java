@@ -47,31 +47,33 @@ public class JokeOneFragment extends Fragment {
 
     private void initData(View view) {
         typeKy=(String)getArguments().getSerializable("typeInfo_key");
-        log.i("","type-其他形式-key="+typeKy);
+        String typeInfo_name = (String) getArguments().getSerializable("typeInfo_name");
+        log.i("","type-其他形式-key="+typeKy+" ----1----typeInfo_name="+typeInfo_name);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
-//        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recyclerview_header, (ViewGroup)view.findViewById(android.R.id.content),false);
-//        mRecyclerView.addHeaderView(header);
+
+        listData = new ArrayList<TypeListEntity.DataBean>();
+        mAdapter =new JokeOneAdapter(getActivity(), R.layout.item_joke_one, listData);
+        mRecyclerView.setAdapter(mAdapter);
+
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                   //refresh data here
+                if(listData!=null){
+                    listData.clear();
+                }
                 getContetList();
             }
-
             @Override
             public void onLoadMore() {
 
             }
         });
-
-        listData = new ArrayList<TypeListEntity.DataBean>();
-        mAdapter =new JokeOneAdapter(getActivity(), R.layout.item_joke_one, listData);
-        mRecyclerView.setAdapter(mAdapter);
         getContetList();
 //        mRecyclerView.refresh();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -93,23 +95,38 @@ public class JokeOneFragment extends Fragment {
         SubscriberOnNextListener<TypeListEntity> getSubscriber = new SubscriberOnNextListener<TypeListEntity>() {
             @Override
             public void onNext(TypeListEntity listInfo) {
-                listData.clear();
-                log.i("","listInfo="+listInfo.getTip());
-                List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
-                listData.addAll(dataGroup);
-                mAdapter.notifyDataSetChanged();
-                log.i("","dataGroup="+dataGroup.size());
+                initAdpaterView(listInfo);
             }
-
             @Override
             public void onError(Throwable e) {
                 log.i("","异常="+e.getMessage());
             }
-
             @Override
             public void onCompleted() {
             }
         };
         HttpJokeMethods.getInstance().getJokeTypeListEntity(new ProgressSubscriber<TypeListEntity>(getSubscriber, getActivity()), NetWorkApi.getJokeRcommendUrl+typeKy);
+    }
+    private void initAdpaterView(TypeListEntity listInfo) {
+        if(listInfo==null) return;
+        List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
+        listData.addAll(dataGroup);
+        log.i("","其他形式-listData="+listData.size());
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.refreshComplete();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(listData!=null){
+            listData.clear();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
     }
 }

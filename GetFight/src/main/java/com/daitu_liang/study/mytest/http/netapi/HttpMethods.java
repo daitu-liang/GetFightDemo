@@ -1,5 +1,6 @@
 package com.daitu_liang.study.mytest.http.netapi;
 
+import com.daitu_liang.study.mytest.entity.BaiduTokenEntity;
 import com.daitu_liang.study.mytest.entity.LoginEntity;
 import com.daitu_liang.study.mytest.entity.MovieEntity;
 import com.daitu_liang.study.mytest.entity.NiuxInfo;
@@ -23,7 +24,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
     public static final String BASE_URL1 = "https://api.douban.com/v2/movie/";
-    public static final String BASE_URL = "";
+    public static final String BASE_URL = "https://webapi.hsuperior.com";
 
     private final ApiClientService mService;
     private final Retrofit retrofit;
@@ -101,6 +102,12 @@ public class HttpMethods {
     }
 
 
+
+    public void getBaiduTokenEntity(Subscriber<BaiduTokenEntity> subscriber, String url) {
+        Observable<BaiduTokenEntity> observable =  mService.getBaiduTokenEntity(url)
+                .map(new HttpResultFunc<BaiduTokenEntity>());
+        toSubscribe(observable, subscriber);
+    }
     /**
      * @param movieEntitySubscriber
      * @param start

@@ -47,7 +47,9 @@ public class JokeTwoFragment extends Fragment {
 
     private void initData(View view) {
         typeKy=(String)getArguments().getSerializable("typeInfo_key");
-        log.i("","type-图片-key="+typeKy);
+        String typeInfo_name = (String) getArguments().getSerializable("typeInfo_name");
+        
+        log.i("","type-图片-key="+typeKy+" ----2-----typeInfo_name="+typeInfo_name);
 //        typeKy="-103";
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -57,11 +59,16 @@ public class JokeTwoFragment extends Fragment {
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 //        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recyclerview_header, (ViewGroup)view.findViewById(android.R.id.content),false);
 //        mRecyclerView.addHeaderView(header);
-
+        listData = new ArrayList<TypeListEntity.DataBean>();
+        mAdapter =new JokeTwoAdapter(getActivity(), R.layout.item_joke_two, listData);
+        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                   //refresh data here
+                if(listData!=null){
+                    listData.clear();
+                }
                 getContetList();
             }
 
@@ -71,10 +78,7 @@ public class JokeTwoFragment extends Fragment {
             }
         });
        getContetList();
-        listData = new ArrayList<TypeListEntity.DataBean>();
-        mAdapter =new JokeTwoAdapter(getActivity(), R.layout.item_joke_two, listData);
-        mRecyclerView.setAdapter(mAdapter);
-//        mRecyclerView.refresh();
+
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -94,15 +98,9 @@ public class JokeTwoFragment extends Fragment {
         SubscriberOnNextListener<TypeListEntity> getSubscriber = new SubscriberOnNextListener<TypeListEntity>() {
             @Override
             public void onNext(TypeListEntity listInfo) {
-                log.i("","listInfo="+listInfo.getTip());
-                listData.clear();
-                List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
-                listData.addAll(dataGroup);
-                mAdapter.notifyDataSetChanged();
-                log.i("","dataGroup="+dataGroup.size());
-                mRecyclerView.refreshComplete();
-            }
+                initAdpaterView(listInfo);
 
+            }
             @Override
             public void onError(Throwable e) {
                 log.i("","异常="+e.getMessage());
@@ -113,5 +111,22 @@ public class JokeTwoFragment extends Fragment {
             }
         };
         HttpJokeMethods.getInstance().getJokeTypeListEntity(new ProgressSubscriber<TypeListEntity>(getSubscriber, getActivity()), NetWorkApi.getJokeRcommendUrl+typeKy);
+    }
+
+    private void initAdpaterView(TypeListEntity listInfo) {
+        if(listInfo==null) return;
+        List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
+        listData.addAll(dataGroup);
+        log.i("","其他形式-listData="+listData.size());
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.refreshComplete();
+
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(listData!=null){
+            listData.clear();
+        }
     }
 }

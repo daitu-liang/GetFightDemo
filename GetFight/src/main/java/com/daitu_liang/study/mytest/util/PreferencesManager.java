@@ -5,14 +5,10 @@ import android.content.Context;
 
 public class PreferencesManager extends BasePreferencesManager {
 
-
     private static PreferencesManager instance;
-
-
-
     private static final String NUNIX_VALUE = "Nunix";//保存时间戳
 
-
+    private static final String BAIDU_TOKEN = "baidToken";//百度token
 
     public String getSaveNunix() {
         return saveNunix;
@@ -20,6 +16,15 @@ public class PreferencesManager extends BasePreferencesManager {
 
     private String saveNunix;
 
+    public String getSaveBaiduToken() {
+        return saveBaiduToken;
+    }
+
+    public void setSaveBaiduToken(String saveBaiduToken) {
+        this.saveBaiduToken = saveBaiduToken;
+    }
+
+    private String saveBaiduToken;
 
     public static PreferencesManager getInstance(Context context) {
         if (null == instance) instance = new PreferencesManager(context.getApplicationContext());
@@ -39,14 +44,9 @@ public class PreferencesManager extends BasePreferencesManager {
     private void loadData() {
         try {
             saveNunix=getString(NUNIX_VALUE, "");
-
+            saveBaiduToken=getString("BAIDU_TOKEN","");
         } catch (Exception e){}
     }
-
-
-
-
-
 
     /**
      * 保存时间戳
@@ -58,5 +58,9 @@ public class PreferencesManager extends BasePreferencesManager {
         Logger.getLogger("").e("保存时间戳","nunix--Times="+nunix);
     }
 
+    public void setBaiduToken(String baiduToken) {
+        this.saveBaiduToken = baiduToken;
+        saveString(NUNIX_VALUE, baiduToken);
 
+    }
 }

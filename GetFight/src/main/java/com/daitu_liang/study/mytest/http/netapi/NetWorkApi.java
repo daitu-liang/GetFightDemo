@@ -9,6 +9,10 @@ public class NetWorkApi {
     //    首页轮播
     public static final String getCarousel="/api/v1/slide/6";
 
+    public static final String getBaiDu="https://aip.baidubce.com/oauth/2.0/token?" +
+            "grant_type=client_credentials&" +
+            "client_id=Va5yQRHlA4Fq4eR3LT0vuXV4&" +
+            "client_secret=juHjKZKvcV1A62IUWLAUnmwIXPVny5hR&";
 
     /**
      * 内涵段子相关接口

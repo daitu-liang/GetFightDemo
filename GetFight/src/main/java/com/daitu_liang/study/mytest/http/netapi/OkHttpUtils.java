@@ -40,8 +40,8 @@ public class OkHttpUtils {
                         .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                         .readTimeout(DEFAULT_READ_TIMEOUT, TimeUnit.SECONDS)
                         .writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
-                        .addInterceptor(new HttpLoggerInterceptor())
-//                        .addInterceptor(new LoggerInterceptor("HttpMethods",true))
+//                        .addInterceptor(new HttpLoggerInterceptor())
+                        .addInterceptor(new LoggerInterceptor("HttpMethods",true))
                         .addInterceptor(getHttpLoggingInterceptor())
                         .addNetworkInterceptor(getCacheInterceptor()).cache(cache).addInterceptor(getCacheInterceptor())
                         .build();

@@ -55,7 +55,8 @@ public class JokeThreeFragment extends Fragment {
 
     private void initData(View view) {
         typeKy = (String) getArguments().getSerializable("typeInfo_key");
-        log.i("", "type-视频-key=" + typeKy);
+        String typeInfo_name = (String) getArguments().getSerializable("typeInfo_name");
+        log.i("","type-视频-key="+typeKy+" ----3-----typeInfo_name="+typeInfo_name);
 //        typeKy="-104";
         if("-301".equals(typeKy)){
             GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
@@ -72,12 +73,16 @@ public class JokeThreeFragment extends Fragment {
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 //        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recyclerview_header, (ViewGroup)view.findViewById(android.R.id.content),false);
 //        mRecyclerView.addHeaderView(header);
-
-
+        listData = new ArrayList<TypeListEntity.DataBean>();
+        mAdapter = new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData);
+        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                 //refresh data here
+                if(listData!=null){
+                    listData.clear();
+                }
                 getContetList();
             }
 
@@ -86,9 +91,6 @@ public class JokeThreeFragment extends Fragment {
 
             }
         });
-        listData = new ArrayList<TypeListEntity.DataBean>();
-        mAdapter = new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData);
-        mRecyclerView.setAdapter(mAdapter);
         getContetList();
 
 //        mRecyclerView.refresh();
@@ -114,19 +116,12 @@ public class JokeThreeFragment extends Fragment {
         SubscriberOnNextListener<TypeListEntity> getSubscriber = new SubscriberOnNextListener<TypeListEntity>() {
             @Override
             public void onNext(TypeListEntity listInfo) {
-                log.i("", "视频listInfo=" + listInfo.getTip());
-
-                listData.clear();
-                List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
-                listData.addAll(dataGroup);
-                mAdapter.notifyDataSetChanged();
-                log.i("", "视频dataGroup=" + dataGroup.size());
-                mRecyclerView.refreshComplete();
+                initAdpaterView(listInfo);
             }
-
             @Override
             public void onError(Throwable e) {
                 log.i("", "异常=" + e.getMessage());
+
             }
 
             @Override
@@ -135,7 +130,21 @@ public class JokeThreeFragment extends Fragment {
         };
         HttpJokeMethods.getInstance().getJokeTypeListEntity(new ProgressSubscriber<TypeListEntity>(getSubscriber, getActivity()), NetWorkApi.getJokeRcommendUrl + typeKy);
     }
-
+    private void initAdpaterView(TypeListEntity listInfo) {
+        if(listInfo==null) return;
+        List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
+        listData.addAll(dataGroup);
+        log.i("", "视频dataGroup=" + dataGroup.size());
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.refreshComplete();
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(listData!=null){
+            listData.clear();
+        }
+    }
 
     @Override
     public void onResume() {

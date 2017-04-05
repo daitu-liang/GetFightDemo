@@ -21,8 +21,10 @@ import android.view.MenuItem;
 
 import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.entity.BaiduTokenEntity;
 import com.daitu_liang.study.mytest.entity.NiuxInfo;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
+import com.daitu_liang.study.mytest.http.netapi.NetWorkApi;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
 import com.daitu_liang.study.mytest.svg.MainActivity;
@@ -83,7 +85,10 @@ public class MainHomeActivity extends AppCompatActivity
         //让左侧菜单显示原始设置的颜色
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
+        getBaiduToken();
     }
+
+
 
     public  void initDrawerLayout(Toolbar toolbar) {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -350,5 +355,24 @@ public class MainHomeActivity extends AppCompatActivity
         refWatcher.watch(this);
 
     }
+    private void getBaiduToken() {
+        SubscriberOnNextListener<BaiduTokenEntity> getSubscriber = new SubscriberOnNextListener<BaiduTokenEntity>() {
+            @Override
+            public void onNext(BaiduTokenEntity s) {
+                PreferencesManager pre = GetFightApplication.getPreferenceManager();
+//                pre.setSaveBaiduToken(s.getNunix());
 
+            }
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onCompleted() {
+            }
+        };
+        HttpMethods.getInstance().getBaiduTokenEntity(new ProgressSubscriber<BaiduTokenEntity>(getSubscriber, this), NetWorkApi.getBaiDu);
+
+
+    }
 }

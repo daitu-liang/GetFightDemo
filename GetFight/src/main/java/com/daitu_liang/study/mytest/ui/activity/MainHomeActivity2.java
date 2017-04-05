@@ -82,7 +82,7 @@ public class MainHomeActivity2 extends AppCompatActivity
     private void initTabLayout() {
         mViewPager=(ViewPager)findViewById(R.id.viewPager);
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        myFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
+        myFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(),null);
         mViewPager.setAdapter(myFragmentPagerAdapter);
         //将TabLayout与ViewPager绑定在一起
         mTabLayout.setupWithViewPager(mViewPager);

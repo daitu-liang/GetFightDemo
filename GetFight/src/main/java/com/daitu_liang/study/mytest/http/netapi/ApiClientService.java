@@ -1,5 +1,6 @@
 package com.daitu_liang.study.mytest.http.netapi;
 
+import com.daitu_liang.study.mytest.entity.BaiduTokenEntity;
 import com.daitu_liang.study.mytest.entity.LoginEntity;
 import com.daitu_liang.study.mytest.entity.MovieEntity;
 import com.daitu_liang.study.mytest.entity.NiuxInfo;
@@ -56,4 +57,8 @@ public interface ApiClientService {
     @FormUrlEncoded
     @POST(NetWorkApi.getCarousel)
     Observable<HttpResult<String>> getCodeqw(@Field("username") String username);
+
+
+    @GET
+    Observable<HttpResult<BaiduTokenEntity>> getBaiduTokenEntity(@Url String url);
 }

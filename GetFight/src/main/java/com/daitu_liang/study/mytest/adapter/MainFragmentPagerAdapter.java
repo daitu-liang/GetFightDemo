@@ -27,9 +27,9 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
         this.listType = listType;
     }
 
-    public MainFragmentPagerAdapter(FragmentManager fm) {
+    public MainFragmentPagerAdapter(FragmentManager fm,List<ContentTypeEntity> listType) {
         super(fm);
-        /*this.listType = listType;*/
+        this.listType = listType;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
         if (listType != null && listType.size() > 0 && listType.get(position) != null) {
             ContentTypeEntity typeInfo = listType.get(position);
             Fragment f1 = null;
-            Logger.getLogger("Adapter").i("","position="+position+"---list_id="+typeInfo.getList_id()+"---"+typeInfo.getName());
-            if (position == 1||position == 2) {//视频||段友秀
+            Logger.getLogger("Adapter").i("","if-之前-position="+position+"---list_id="+typeInfo.getList_id()+"---"+typeInfo.getName());
+            if (position == 1||position == 2) { //视频||段友秀
                 f1 = new JokeThreeFragment();
                 Logger.getLogger("Adapter").i("","newJokeThreeFragment position="+position+"---list_id="+typeInfo.getList_id()+"---"+typeInfo.getName());
             } else if (position == 3) {//图片
@@ -50,6 +50,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
             }
             Bundle bundle = new Bundle();
             bundle.putSerializable("typeInfo_key", typeInfo.getList_id());
+            bundle.putSerializable("typeInfo_name", typeInfo.getName());
             f1.setArguments(bundle);
             return f1;
         }
@@ -68,6 +69,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
     //ViewPager与TabLayout绑定后，这里获取到PageTitle就是Tab的Text
     @Override
     public CharSequence getPageTitle(int position) {
+        Logger.getLogger("Adapter").i("","getPageTitle--->>position="+position+"---------listType.get(position).getName()="+listType.get(position).getName());
         if (listType != null && listType.size() > 0) {
             return listType.get(position).getName();
         } else {
