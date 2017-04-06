@@ -15,10 +15,12 @@ import android.widget.TextView;
 
 import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.adapter.BooksAdapter;
+import com.daitu_liang.study.mytest.baidu.BaiduMainActivity;
 import com.daitu_liang.study.mytest.ui.activity.MainHomeActivity;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
 
@@ -122,6 +124,17 @@ public class MoiveFragment extends Fragment {
             }
         }
     });
+        mAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                startActivity(BaiduMainActivity.getIntent(getActivity()));
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
 }
 
 

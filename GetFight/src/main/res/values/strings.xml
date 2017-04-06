@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">fightSir</string>
+    <string name="app_name">fighterSir</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -43,4 +43,8 @@
     <string name="auto_hide_badge">Auto hide badge</string>
     <string name="toggle_hide">Toggle Hide</string>
     <string name="toggle_badge">Toggle Badge</string>
+
+    <string name="idCardLabel">身份证识别</string>
+    <string name="bankCardLabel">银行卡识别</string>
+    <string name="generalLabel">通用文字识别</string>
 </resources>

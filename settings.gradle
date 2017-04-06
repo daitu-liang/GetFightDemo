@@ -1,1 +1,1 @@
-include ':GetFight', ':lib', ':fightdemo', ':FlycoTabLayout_Lib', ':bottom-navigation-bar', ':jcvideoplayer-lib'
+include ':GetFight', ':lib', ':fightdemo', ':FlycoTabLayout_Lib', ':bottom-navigation-bar', ':jcvideoplayer-lib', ':ocr_ui'

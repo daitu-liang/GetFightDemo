@@ -22,6 +22,7 @@ import com.daitu_liang.study.mytest.imageview.ImageViewActivity;
 import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.ui.activity.AnimateEffectActivity;
 import com.daitu_liang.study.mytest.ui.activity.AnimationActivity;
+import com.daitu_liang.study.mytest.ui.activity.BezierActivity;
 import com.daitu_liang.study.mytest.ui.activity.FloatTestActivity;
 import com.daitu_liang.study.mytest.ui.activity.HttpFunctionActivity;
 import com.daitu_liang.study.mytest.ui.activity.LoginActivity;
@@ -107,7 +108,7 @@ public class FunctionFragment extends Fragment {
         mDatas.add("-BottomNavigationBar");
         mDatas.add("- PieView");
         mDatas.add("- Md-LoginActivity");
-        mDatas.add("- nothing");
+        mDatas.add("- Bezier");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
@@ -154,7 +155,9 @@ public class FunctionFragment extends Fragment {
                     startActivity(new Intent(getActivity(), PieViewActivity.class));
                 }else if (position == 14) {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
-                }else {
+                }else if (position == 15) {
+                    startActivity(BezierActivity.getIntent(getActivity()));
+                }else{
                 }
             }
 
