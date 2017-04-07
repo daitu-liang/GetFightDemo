@@ -50,6 +50,7 @@ public class TestDispatchEvent extends ViewGroup {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+//        switch (MotionEvent.ACTION_DOWN)event.getAction()==;
         return super.onTouchEvent(event);
     }
 }

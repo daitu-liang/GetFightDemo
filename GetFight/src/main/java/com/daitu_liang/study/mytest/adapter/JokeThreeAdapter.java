@@ -36,8 +36,7 @@ public class JokeThreeAdapter extends CommonAdapter<TypeListEntity.DataBean> {
                 String url = vedioInfo.getUrl_list().get(1).getUrl();
                 Logger.getLogger("JokeThreeAdapter").i("","333url="+url);
                 JCVideoPlayerStandard jcVideoPlayerStandard = (JCVideoPlayerStandard) holder.getView(R.id.videoplayer);
-                jcVideoPlayerStandard.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, "");
-
+                jcVideoPlayerStandard.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_LIST,  dataBean.getGroup().getTitle());
                 String imgeUrlVedio = dataBean.getGroup().getLarge_cover().getUrl_list().get(2).getUrl();
                 Logger.getLogger("JokeThreeAdapter").i("","imgeUrlVedio="+imgeUrlVedio);
 //                jcVideoPlayerStandard.thumbImageView.setImageURI(Uri.parse("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640"));
