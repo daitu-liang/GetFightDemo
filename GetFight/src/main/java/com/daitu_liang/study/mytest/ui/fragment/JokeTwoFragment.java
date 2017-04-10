@@ -118,8 +118,9 @@ public class JokeTwoFragment extends Fragment {
         List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
         listData.addAll(dataGroup);
         log.i("","其他形式-listData="+listData.size());
-        mAdapter.notifyDataSetChanged();
         mRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
+
 
     }
     @Override

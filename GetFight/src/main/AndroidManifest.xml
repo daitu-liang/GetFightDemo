@@ -7,7 +7,6 @@
     <permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
 
     <uses-feature android:name="android.hardware.nfc.hce" />
@@ -22,10 +21,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -44,7 +46,10 @@
         <activity
             android:name=".ui.activity.MainHomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -86,11 +91,14 @@
         <activity android:name=".svg.MainActivity" />
         <activity android:name=".javanature.HandleTestActivity" />
         <activity android:name=".ui.activity.PieViewActivity" />
-        <activity android:name=".ui.activity.BezierActivity"></activity>
-        <activity android:name="com.daitu_liang.study.mytest.baidu.BaiduMainActivity" />
-        <activity android:name="com.daitu_liang.study.mytest.baidu.BankCardActivity" />
-        <activity android:name="com.daitu_liang.study.mytest.baidu.GeneralActivity" />
-        <activity android:name="com.daitu_liang.study.mytest.baidu.IDCardActivity" />
+        <activity android:name=".ui.activity.BezierActivity" />
+        <activity android:name=".baidu.ocr.BaiduMainActivity" />
+        <activity android:name=".baidu.ocr.IDCardActivity" />
+        <activity android:name=".baidu.ocr.GeneralActivity" />
+        <activity android:name=".baidu.ocr.BankCardActivity" />
+        <activity android:name=".baidu.voice.BaiduVoiceActivity"></activity>
+        <activity android:name="com.daitu_liang.study.mytest.baidu.voice.ModelManagerActivity"></activity>
+
     </application>
 
 </manifest>

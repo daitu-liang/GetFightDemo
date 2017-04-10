@@ -58,14 +58,17 @@ public class JokeThreeFragment extends Fragment {
         String typeInfo_name = (String) getArguments().getSerializable("typeInfo_name");
         log.i("","type-视频-key="+typeKy+" ----3-----typeInfo_name="+typeInfo_name);
 //        typeKy="-104";
+        listData = new ArrayList<TypeListEntity.DataBean>();
         if("-301".equals(typeKy)){
             GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
             layoutManager.setOrientation(layoutManager.VERTICAL);
             mRecyclerView.setLayoutManager(layoutManager);
+            mAdapter = new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData,12);
         }else {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             mRecyclerView.setLayoutManager(layoutManager);
+            mAdapter = new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData,0);
         }
 
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
@@ -73,8 +76,7 @@ public class JokeThreeFragment extends Fragment {
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 //        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recyclerview_header, (ViewGroup)view.findViewById(android.R.id.content),false);
 //        mRecyclerView.addHeaderView(header);
-        listData = new ArrayList<TypeListEntity.DataBean>();
-        mAdapter = new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData);
+
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -135,8 +137,8 @@ public class JokeThreeFragment extends Fragment {
         List<TypeListEntity.DataBean> dataGroup = listInfo.getData();
         listData.addAll(dataGroup);
         log.i("", "视频dataGroup=" + dataGroup.size());
-        mAdapter.notifyDataSetChanged();
         mRecyclerView.refreshComplete();
+        mAdapter.notifyDataSetChanged();
     }
     @Override
     public void onDestroyView() {

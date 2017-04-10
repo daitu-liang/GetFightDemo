@@ -22,8 +22,11 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 public class JokeThreeAdapter extends CommonAdapter<TypeListEntity.DataBean> {
 
-    public JokeThreeAdapter(Context context, int layoutId, List<TypeListEntity.DataBean> datas) {
+    private  int setSize;
+
+    public JokeThreeAdapter(Context context, int layoutId, List<TypeListEntity.DataBean> datas, int setSize) {
         super(context, layoutId, datas);
+        this.setSize=setSize;
     }
 
     @Override
@@ -36,6 +39,11 @@ public class JokeThreeAdapter extends CommonAdapter<TypeListEntity.DataBean> {
                 String url = vedioInfo.getUrl_list().get(1).getUrl();
                 Logger.getLogger("JokeThreeAdapter").i("","333url="+url);
                 JCVideoPlayerStandard jcVideoPlayerStandard = (JCVideoPlayerStandard) holder.getView(R.id.videoplayer);
+                if(setSize==12){
+                    jcVideoPlayerStandard.widthRatio=2;
+                    jcVideoPlayerStandard.heightRatio=3;
+                }
+
                 jcVideoPlayerStandard.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_LIST,  dataBean.getGroup().getTitle());
                 String imgeUrlVedio = dataBean.getGroup().getLarge_cover().getUrl_list().get(2).getUrl();
                 Logger.getLogger("JokeThreeAdapter").i("","imgeUrlVedio="+imgeUrlVedio);

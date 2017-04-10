@@ -31,7 +31,7 @@ import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.ui.fragment.BookFragment;
 import com.daitu_liang.study.mytest.ui.fragment.FunctionFragment;
 import com.daitu_liang.study.mytest.ui.fragment.HomeFragment;
-import com.daitu_liang.study.mytest.ui.fragment.MoiveFragment;
+import com.daitu_liang.study.mytest.ui.fragment.ARFragment;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
 import com.daitu_liang.study.mytest.util.otto.BusProvider;
@@ -62,7 +62,7 @@ public class MainHomeActivity extends AppCompatActivity
     private HomeFragment mHomeFragment;
     private BadgeItem numberBadgeItem;
     private BookFragment mBookFragment;
-    private MoiveFragment mMoiveFragment;
+    private ARFragment mARFragment;
     private FunctionFragment mFunctionFragment;
     private Fragment currentFragment;
 
@@ -138,8 +138,8 @@ public class MainHomeActivity extends AppCompatActivity
             if (mBookFragment == null) {
                 mBookFragment = new BookFragment();
             }
-            if (mMoiveFragment == null) {
-                mMoiveFragment = new MoiveFragment();
+            if (mARFragment == null) {
+                mARFragment = new ARFragment();
             }
             if (mFunctionFragment == null) {
                 mFunctionFragment = new FunctionFragment();
@@ -184,10 +184,10 @@ public class MainHomeActivity extends AppCompatActivity
                 switchTo = mBookFragment;
                 break;
             case 2:
-                if (mMoiveFragment == null) {
-                    mMoiveFragment = new MoiveFragment();
+                if (mARFragment == null) {
+                    mARFragment = new ARFragment();
                 }
-                switchTo = mMoiveFragment;
+                switchTo = mARFragment;
                 break;
             case 3:
                 if (mFunctionFragment == null) {

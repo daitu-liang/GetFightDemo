@@ -122,7 +122,7 @@ public class JCMediaManager implements TextureView.SurfaceTextureListener, Media
         if (savedSurfaceTexture == null) {
             savedSurfaceTexture = surfaceTexture;
             prepare();
-        } else if(textureView!=null){
+        } else{
             textureView.setSurfaceTexture(savedSurfaceTexture);
         }
     }

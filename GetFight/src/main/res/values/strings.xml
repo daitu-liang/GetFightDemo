@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">fighterSir</string>
+    <string name="app_name">fightSir</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -47,4 +47,48 @@
     <string name="idCardLabel">身份证识别</string>
     <string name="bankCardLabel">银行卡识别</string>
     <string name="generalLabel">通用文字识别</string>
+    <string name="baidu_voice1">人生在世只有一次，不必勉强选择自己不喜欢的路，随性而生或随性而死都没关系，不过，无论选择哪条路，都不要忘记保护自己所珍惜的人。————三代火影</string>
+    <string name="baidu_voice2">我啊，只想安稳地做个忍者，安稳地生活，和一个不美也不丑的女人安稳地结婚，安稳地生两个小孩，第一个是女孩，之后是男孩。等女儿结了婚，儿子独立后便退休，之后闲时和朋友下下象棋或围棋，过着悠哉悠哉的隐居生活，然后先太太一步离开这个世界，能有这种人生就好了。————鹿丸-</string>
+    <string name="baidu_voice3">鸣人，想想看，你就和那部小说的主角一样，你坚强的接受了你父母的愿望祈求，可是，我却。。。。。。说到做到还有无论如何都不放弃，如果那就是你的忍道的话——鸣人啊，作为你的师父，我可不能放弃啊，因为，徒弟的忍道是会感染师父的。永不放弃——那才是我该作出的真正“选择”。————自来也</string>
+
+
+    <string name="baidu_voice4">我如果爱你
+　　绝不像攀援的凌霄花，
+　　借你的高枝炫耀自己；
+　　我如果爱你——
+　　绝不学痴情的鸟儿，
+　　为绿荫重复单调的歌曲；
+　　也不止像泉源，
+　　常年送来清凉的慰藉；
+　　也不止像险峰，
+　　增加你的高度，衬托你的威仪。
+　　甚至日光，
+　　甚至春雨。
+不，这些都还不够！
+　　我必须是你近旁的一株木棉，
+　　作为树的形象和你站在一起。
+　　根，紧握在地下；
+　　叶，相触在云里。
+　　每一阵风过，
+　　我们都互相致意，
+　　但没有人，
+　　听懂我们的言语。
+　　你有你的铜枝铁干，
+　　像刀，像剑，也像戟；
+　　我有我红硕的花朵，
+　　像沉重的叹息，
+　　又像英勇的火炬。
+我们分担寒潮、风雷、霹雳；
+　　我们共享雾霭、流岚、虹霓。
+　　仿佛永远分离，
+　　却又终身相依。
+　　这才是伟大的爱情，
+　　坚贞就在这里：
+　　爱——
+　　不仅爱你伟岸的身躯，
+　　也爱你坚持的位置，
+　　足下的土地。
+    </string>
+
+
 </resources>

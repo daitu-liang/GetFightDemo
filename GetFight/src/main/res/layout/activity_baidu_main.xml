@@ -16,7 +16,7 @@
         android:baselineAligned="false">
 
     <Button
-            android:text="通用"
+            android:text="图片转化为文字"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/general_button"
