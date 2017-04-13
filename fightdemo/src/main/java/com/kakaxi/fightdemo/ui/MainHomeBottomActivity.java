@@ -19,7 +19,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.kakaxi.fightdemo.R;
 import com.kakaxi.fightdemo.ScrollingActivity;
-import com.kakaxi.fightdemo.entity.TabEntity;
+import com.kakaxi.fightdemo.bean.TabBean;
 import com.kakaxi.fightdemo.ui.fragment.SimpleCardFragment;
 import com.kakaxi.fightdemo.utils.ViewFindUtils;
 
@@ -54,7 +54,8 @@ public class MainHomeBottomActivity extends AppCompatActivity
             public void onClick(View view) {
                /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                startActivity(new Intent(MainHomeBottomActivity.this, ScrollingActivity.class));
+              startActivity(new Intent(MainHomeBottomActivity.this, ScrollingActivity.class));
+
             }
         });
         fab.setVisibility(View.GONE);
@@ -77,7 +78,7 @@ public class MainHomeBottomActivity extends AppCompatActivity
             mFragments2.add(SimpleCardFragment.getInstance("Switch Fragment " + title));
         }
         for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+            mTabEntities.add(new TabBean(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
 
         }
 

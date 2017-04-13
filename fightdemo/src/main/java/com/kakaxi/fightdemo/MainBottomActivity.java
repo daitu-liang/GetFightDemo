@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,14 +16,24 @@ import android.view.View;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.kakaxi.fightdemo.entity.TabEntity;
+import com.kakaxi.fightdemo.app.FightApplication;
+import com.kakaxi.fightdemo.bean.NiuxInfo;
+import com.kakaxi.fightdemo.bean.TabBean;
+import com.kakaxi.fightdemo.network.ApiSubscriber;
+import com.kakaxi.fightdemo.network.RetrofitClient;
+import com.kakaxi.fightdemo.network.api.commom.ApiCommom;
+import com.kakaxi.fightdemo.network.config.HttpConfig;
 import com.kakaxi.fightdemo.ui.fragment.SimpleCardFragment;
+import com.kakaxi.fightdemo.utils.Logger;
+import com.kakaxi.fightdemo.utils.PreferencesManager;
 import com.kakaxi.fightdemo.utils.ViewFindUtils;
 
 import java.util.ArrayList;
 
-public class MainBottomActivity extends AppCompatActivity
+public class MainBottomActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "MainBottomActivity";
+    private Logger log = Logger.getLogger("MainBottomActivity");
     private String[] mTitles = {"首页", "消息", "联系人", "更多"};
     private ArrayList<Fragment> mFragments2 = new ArrayList<>();
     private int[] mIconUnselectIds = {
@@ -66,8 +75,11 @@ public class MainBottomActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         intTabLayout();
+        getData();
 
     }
+
+
 
     private void intTabLayout() {
         if(mFragments2!=null){
@@ -77,7 +89,7 @@ public class MainBottomActivity extends AppCompatActivity
             mFragments2.add(SimpleCardFragment.getInstance("Switch Fragment " + title));
         }
         for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+            mTabEntities.add(new TabBean(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
 
         }
 
@@ -166,6 +178,20 @@ public class MainBottomActivity extends AppCompatActivity
     @Override
     public void onStop() {
         super.onStop();
+    }
 
+    private void getData() {
+        RetrofitClient.getInstance()
+                .builder(ApiCommom.class)
+                .getNunix()
+                .compose(HttpConfig.<NiuxInfo>toTransformer())
+                .subscribe(new ApiSubscriber<NiuxInfo>() {
+                    @Override
+                    protected void onSuccess(NiuxInfo bean) {
+                        log.d(TAG,"time="+bean.getNunix());
+                        PreferencesManager pre = FightApplication.getPreferenceManager();
+                        pre.setSaveNunix(bean.getNunix());
+                    }
+                });
     }
 }

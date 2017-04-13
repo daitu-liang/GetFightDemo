@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.util.Logger;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -14,7 +15,7 @@ import rx.Subscriber;
  * Created by leixiaoliang on 2017/1/6.
  */
 public  class ProgressSubscriber<T> extends Subscriber<T>  implements ProgressCancelListener{
-
+    private Logger log = Logger.getLogger("ProgressSubscriber");
     private SubscriberOnNextListener mSubscriberOnNextListener;
     private ProgressDialogHandler mProgressDialogHandler;
 
@@ -50,6 +51,7 @@ public  class ProgressSubscriber<T> extends Subscriber<T>  implements ProgressCa
         if (mSubscriberOnNextListener != null) {
             mSubscriberOnNextListener.onCompleted();
         }
+        log.e("","onComplete-CanlSubscriberror="+ this.isUnsubscribed());
         Toast.makeText(GetFightApplication.CONTEXT, " Completed", Toast.LENGTH_SHORT).show();
     }
 
@@ -75,6 +77,7 @@ public  class ProgressSubscriber<T> extends Subscriber<T>  implements ProgressCa
         if (mSubscriberOnNextListener != null) {
             mSubscriberOnNextListener.onNext(t);
         }
+        log.e("","onNext-CanlSubscriberror="+ this.isUnsubscribed());
     }
 
 

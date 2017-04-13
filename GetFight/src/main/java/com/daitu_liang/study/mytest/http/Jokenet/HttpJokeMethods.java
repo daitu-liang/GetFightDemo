@@ -75,9 +75,6 @@ public class HttpJokeMethods {
         toSubscribe(observable, subscriber);
     }
 
-
-
-
     private void toSubscribe(Observable observable, Subscriber subscriber) {
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

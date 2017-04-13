@@ -9,15 +9,16 @@ import android.widget.Toast;
 
 import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.entity.MessageEvent;
+import com.daitu_liang.study.mytest.entity.MovieEntity;
+import com.daitu_liang.study.mytest.entity.NiuxInfo;
+import com.daitu_liang.study.mytest.entity.Subject;
 import com.daitu_liang.study.mytest.http.netapi.ApiClientService;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.HttpResultTest;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
-import com.daitu_liang.study.mytest.entity.MessageEvent;
-import com.daitu_liang.study.mytest.entity.MovieEntity;
-import com.daitu_liang.study.mytest.entity.NiuxInfo;
-import com.daitu_liang.study.mytest.entity.Subject;
+import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
 import com.daitu_liang.study.mytest.util.otto.BusProvider;
 
@@ -38,8 +39,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class RetroftActivity extends AppCompatActivity {
 
+
+public class RetroftActivity extends AppCompatActivity {
+    private Logger log = Logger.getLogger("RetroftActivity");
 
     private static final String TAG = "RetroftActivity";
     @BindView(R.id.click_me_BN)
@@ -51,6 +54,8 @@ public class RetroftActivity extends AppCompatActivity {
     private Subscriber<HttpResultTest<List<Subject>>> subscriber1;
     private Subscriber<List<Subject>> subscriber2;
     private SubscriberOnNextListener<List<Subject>> getMovieOnNext;
+    private ProgressSubscriber<NiuxInfo> sub;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +78,7 @@ public class RetroftActivity extends AppCompatActivity {
                 resultTV.setText(s.getNunix());
                 PreferencesManager pre = GetFightApplication.getPreferenceManager();
                 pre.setSaveNunix(s.getNunix());
-                MessageEvent messageEvent=new MessageEvent();
+                MessageEvent messageEvent = new MessageEvent();
                 messageEvent.setMsg(s.getNunix());
                 BusProvider.getInstance().post(messageEvent);
                 finish();
@@ -91,7 +96,8 @@ public class RetroftActivity extends AppCompatActivity {
 
             }
         };
-        HttpMethods.getInstance().getNunix(new ProgressSubscriber<NiuxInfo>(getSubscriber,this),"https://webapi.hsuperior.com/sys/getnunix");
+        sub=new ProgressSubscriber<NiuxInfo>(getSubscriber,this);
+        HttpMethods.getInstance().getNunix(sub,"https://webapi.hsuperior.com/sys/getnunix");
     }
 
 
@@ -283,5 +289,13 @@ public class RetroftActivity extends AppCompatActivity {
             }
         });
         Toast.makeText(this, "sss", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        log.e("","onDestroy-1CanlSubscriberror="+ sub.isUnsubscribed());
+        sub.onCancelProgress();
+        log.e("","onDestroy-2CanlSubscriberror="+ sub.isUnsubscribed());
     }
 }
