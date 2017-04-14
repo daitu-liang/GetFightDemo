@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.kakaxi.fightdemo.BaseActivity;
@@ -22,6 +24,7 @@ public class TestHttpActivity extends BaseActivity {
     private Logger log = Logger.getLogger("TestHttpActivity");
     private TextView title_tv;
 
+    int i=100;
 
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, TestHttpActivity.class);
@@ -33,6 +36,16 @@ public class TestHttpActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_http);
         title_tv = (TextView) findViewById(R.id.textView2);
+        Button Buttont = (Button)findViewById(R.id.button2);
+
+        Buttont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i+=100;
+                String b = "老高丢"+(i)+"块钱";
+              showToast(b);
+            }
+        });
         getData();
     }
 
@@ -53,7 +66,6 @@ public class TestHttpActivity extends BaseActivity {
                     }
                 });
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
