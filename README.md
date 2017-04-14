@@ -13,6 +13,7 @@
 
 <br>2017.04.06
 <br>1.添加百度人工智能-文字识别，2.贝塞尔使用
+<br>2.增加对retofit2.2和rxjava2.0进行封装
 <br>
 
 <br>学习于https://github.com/ReactiveX/RxJava
