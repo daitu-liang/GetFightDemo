@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.daitu_liang.study.mytest.widget.SlidingButtonView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dip"
-    android:paddingLeft="10dip"
+    android:layout_height="100dp"
+    android:background="@android:color/white"
+    android:layout_marginBottom="1dp"
+    android:id="@+id/sliding_view"
     >
-    <View
-        android:layout_width="60dip"
-        android:layout_height="60dip"
-        android:background="#999999"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_gravity="center"/>
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/layout_content"
+            android:text="删 除"
+            android:background="@drawable/ic_cool"
+            android:textColor="#DDFFFFFF"
+            />
+        <RelativeLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/text_tv"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textSize="@dimen/text_size_20sp"
+                android:textColor="#DD000000"
+                android:gravity="center"
+                android:background="@color/colorAccent"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</com.daitu_liang.study.mytest.widget.SlidingButtonView>

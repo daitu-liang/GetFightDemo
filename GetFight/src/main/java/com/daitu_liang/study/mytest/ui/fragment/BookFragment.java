@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BookFragment extends Fragment {
+public class BookFragment extends Fragment implements BooksAdapter.IonSlidingViewClickListener{
     private Logger log = Logger.getLogger("BookFragment");
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -60,7 +60,6 @@ public class BookFragment extends Fragment {
 //        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recyclerview_header, (ViewGroup)view.findViewById(android.R.id.content),false);
 //        mRecyclerView.addHeaderView(header);
 
-
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
@@ -84,7 +83,7 @@ public class BookFragment extends Fragment {
                 if(times < 2){
                     new Handler().postDelayed(new Runnable(){
                         public void run() {
-                            for(int i = 0; i < 15 ;i++){
+                            for(int i = 0; i <= 15 ;i++){
                                 listData.add("item_book" + (1 + listData.size() ) );
                             }
                             mRecyclerView.loadMoreComplete();
@@ -106,9 +105,11 @@ public class BookFragment extends Fragment {
             }
         });
 
+
         listData = new ArrayList<String>();
         mAdapter =new BooksAdapter(getActivity(), R.layout.item_book, listData);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setIonSlidingViewClickListener(this);
         mRecyclerView.refresh();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -123,12 +124,23 @@ public class BookFragment extends Fragment {
                 }
             }
         });
+
+
     }
-
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        log.i("","点击项："+position);
+    }
+
+    @Override
+    public void onDeleteBtnCilck(View view, int position) {
+        log.i("","删除项："+position);
+        mAdapter.removeData(position);
     }
 }
