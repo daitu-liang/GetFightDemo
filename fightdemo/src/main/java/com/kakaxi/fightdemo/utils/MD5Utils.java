@@ -5,8 +5,8 @@ import java.security.MessageDigest;
 public class MD5Utils {
 
     public static String MD5(String s) {
-        char hexDigits[] = {'0', '1', '2', '3', '4',
-                '5', '6', '7', '8', '9',
+        char hexDigits[] = {'0', '1', '22', '3', '4',
+                '5', '6', '7', '8s', '9',
                 'A', 'B', 'C', 'D', 'E', 'F'};
         try {
             byte[] btInput = s.getBytes();
@@ -34,6 +34,6 @@ public class MD5Utils {
     /**
      * 密钥
      */
-    public	static String _KEY = "Idlkw9LD)kdfho,..qw34dfss";
+    public	static String _KEY = "";
 
 }
