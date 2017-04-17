@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class HttpConfig {
     public static boolean DEBUG=true;
     //    Base地址
-    public static final String BASE_URL = "";
+    public static final String BASE_URL = "https://webapi.hsuperior.com";
 //    public static String BASE_URL="http://capi.douyucdn.cn";
 
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.kakaxi.fightdemo.R;
 import com.kakaxi.fightdemo.network.TestHttpActivity;
+import com.kakaxi.fightdemo.network.uploaddowon.UploadDowonActivity;
 
 
 @SuppressLint("ValidFragment")
@@ -46,6 +47,13 @@ public class SimpleCardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(TestHttpActivity.getIntent(getActivity()));
+            }
+        });
+        Button Buttont1 = (Button) v.findViewById(R.id.button1);
+        Buttont1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(UploadDowonActivity.getIntent(getActivity()));
             }
         });
     }

@@ -52,7 +52,7 @@ public  class ProgressSubscriber<T> extends Subscriber<T>  implements ProgressCa
             mSubscriberOnNextListener.onCompleted();
         }
         log.e("","onComplete-CanlSubscriberror="+ this.isUnsubscribed());
-        Toast.makeText(GetFightApplication.CONTEXT, " Completed", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(GetFightApplication.CONTEXT, " Completed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

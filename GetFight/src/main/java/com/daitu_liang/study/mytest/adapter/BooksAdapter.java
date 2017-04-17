@@ -22,7 +22,7 @@ import java.util.List;
 public class BooksAdapter extends CommonAdapter<String> implements SlidingButtonView.IonSlidingButtonListener{
     private Context mContext;
 
-    private IonSlidingViewClickListener mIDeleteBtnClickListener;
+    private IonSlidingItemViewClickListener mIDeleteBtnClickListener;
     private SlidingButtonView mMenu;
 
     public BooksAdapter(Context context, int layoutId, List datas) {
@@ -32,7 +32,7 @@ public class BooksAdapter extends CommonAdapter<String> implements SlidingButton
 //        mIDeleteBtnClickListener = (IonSlidingViewClickListener) context;
     }
 
-    public void  setIonSlidingViewClickListener(IonSlidingViewClickListener mIDeleteBtnClickListener){
+    public void  setIonSlidingViewClickListener(IonSlidingItemViewClickListener mIDeleteBtnClickListener){
         this.mIDeleteBtnClickListener=mIDeleteBtnClickListener;
     }
 
@@ -121,7 +121,7 @@ public class BooksAdapter extends CommonAdapter<String> implements SlidingButton
     }
 
 
-    public interface IonSlidingViewClickListener {
+    public interface IonSlidingItemViewClickListener {
         void onItemClick(View view,int position);
         void onDeleteBtnCilck(View view,int position);
     }

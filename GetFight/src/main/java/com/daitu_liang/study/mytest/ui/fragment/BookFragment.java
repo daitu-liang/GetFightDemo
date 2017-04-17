@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BookFragment extends Fragment implements BooksAdapter.IonSlidingViewClickListener{
+public class BookFragment extends Fragment implements BooksAdapter.IonSlidingItemViewClickListener{
     private Logger log = Logger.getLogger("BookFragment");
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -59,7 +59,6 @@ public class BookFragment extends Fragment implements BooksAdapter.IonSlidingVie
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 //        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recyclerview_header, (ViewGroup)view.findViewById(android.R.id.content),false);
 //        mRecyclerView.addHeaderView(header);
-
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
@@ -69,7 +68,7 @@ public class BookFragment extends Fragment implements BooksAdapter.IonSlidingVie
                     public void run() {
                         listData.clear();
                         for(int i = 0; i < 15 ;i++){
-                            listData.add("item_book" + i + "after " + refreshTime + " times of refresh");
+                            listData.add("item_book" + i +  "侧滑删除 ");
                         }
                         mAdapter.notifyDataSetChanged();
                         mRecyclerView.refreshComplete();

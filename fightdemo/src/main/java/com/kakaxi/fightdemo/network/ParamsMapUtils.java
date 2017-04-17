@@ -32,4 +32,13 @@ public class ParamsMapUtils extends BaseParamsMapUtil {
         mapParams.put("sign", GetSign.giveSign(mapParams));
         return mapParams;
     }
+
+    public static Map<String, String> setUpLoad(String screen_size,String id) {
+        mapParams = getDefaultParams();
+
+        mapParams.put("u_guid", id);
+        mapParams.put("screen_size", screen_size);
+        mapParams.put("sign", GetSign.giveSign(mapParams));
+        return mapParams;
+    }
 }

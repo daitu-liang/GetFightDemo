@@ -16,16 +16,10 @@ import android.view.View;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.kakaxi.fightdemo.app.FightApplication;
-import com.kakaxi.fightdemo.bean.NiuxInfo;
+import com.kakaxi.fightdemo.base.BaseActivity;
 import com.kakaxi.fightdemo.bean.TabBean;
-import com.kakaxi.fightdemo.network.ApiSubscriber;
-import com.kakaxi.fightdemo.network.RetrofitClient;
-import com.kakaxi.fightdemo.network.api.commom.ApiCommom;
-import com.kakaxi.fightdemo.network.config.HttpConfig;
 import com.kakaxi.fightdemo.ui.fragment.SimpleCardFragment;
 import com.kakaxi.fightdemo.utils.Logger;
-import com.kakaxi.fightdemo.utils.PreferencesManager;
 import com.kakaxi.fightdemo.utils.ViewFindUtils;
 
 import java.util.ArrayList;
@@ -71,14 +65,10 @@ public class MainBottomActivity extends BaseActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         intTabLayout();
-        getData();
-
     }
-
 
 
     private void intTabLayout() {
@@ -180,18 +170,5 @@ public class MainBottomActivity extends BaseActivity
         super.onStop();
     }
 
-    private void getData() {
-        RetrofitClient.getInstance()
-                .builder(ApiCommom.class)
-                .getNunix()
-                .compose(HttpConfig.<NiuxInfo>toTransformer())
-                .subscribe(new ApiSubscriber<NiuxInfo>() {
-                    @Override
-                    protected void onSuccess(NiuxInfo bean) {
-                        log.d(TAG,"time="+bean.getNunix());
-                        PreferencesManager pre = FightApplication.getPreferenceManager();
-                        pre.setSaveNunix(bean.getNunix());
-                    }
-                });
-    }
+
 }

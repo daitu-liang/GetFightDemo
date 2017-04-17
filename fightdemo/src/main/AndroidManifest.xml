@@ -55,6 +55,7 @@
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".network.TestHttpActivity"></activity>
+        <activity android:name="com.kakaxi.fightdemo.network.uploaddowon.UploadDowonActivity"></activity>
     </application>
 
 </manifest>

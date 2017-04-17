@@ -11,5 +11,10 @@ public class NetApi {
      * 登录
      */
     public static final String USER_LOGIN="user/login";
+
     public static final String UGET_NUIX="sys/getnunix";
+    /**
+     * 上传文件
+     */
+    public static final String UPLOAD_FILE="/user/avatarupload";
 }
