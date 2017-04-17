@@ -73,6 +73,7 @@ public class UploadDowonActivity extends AppCompatActivity implements DownloadPr
     }
     private void downloadFile() {
         String url = "http://i.snssdk.com/neihan/video/playback/?video_id=7bc19ddf04494438ac14dcf140de67ba&quality=360p&line=0";
+        String url2="http://t.img.i.hsuperior.com/a38ee054-b941-4eb9-9e83-ba45a2ae13a8";
         ApiCommom downloadService = ServiceGenerator.createDownloadService(ApiCommom.class,this);
         String savePath = getExternalFilesDir(null)+ File.separator+"apple.mp4";
 //        observable = downloadService.downloadFile(url,savePath);
@@ -107,11 +108,14 @@ public class UploadDowonActivity extends AppCompatActivity implements DownloadPr
 
     @Override
     public void onDownloadProgress(long bytesRead, long contentLength, boolean done) {
-        log.e(TAG,"onDownloadProgress--bytesRead="+bytesRead+"-------contentLength="+contentLength);
-        int readNum =(int)((bytesRead / contentLength) * 100);
-        mProgressBar.setMax(100);
-        mProgressBar.setProgress(readNum);
-
+        log.e(TAG,"onDownloadProgress--bytesRead="+bytesRead+"-------contentLength="+contentLength+"----是否完成下载="+done);
+        double readNum = (bytesRead / (double) contentLength) * 100;
         log.e(TAG,"onDownloadProgress--readNum="+readNum);
+        int progress = (int) Math.ceil(readNum);
+        log.e(TAG,"onDownloadProgress--progress="+progress);
+//        title_tv.setText("5555555555%");
+        mProgressBar.setProgress(progress);
+        log.e(TAG,"onDownloadProgress--thread="+Thread.currentThread().getName());
+
     }
 }

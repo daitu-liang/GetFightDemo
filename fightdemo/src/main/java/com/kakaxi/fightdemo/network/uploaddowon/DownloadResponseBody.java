@@ -1,5 +1,7 @@
 package com.kakaxi.fightdemo.network.uploaddowon;
 
+import com.kakaxi.fightdemo.utils.Logger;
+
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -16,6 +18,7 @@ import okio.Source;
  */
 
 public class DownloadResponseBody extends ResponseBody {
+    private Logger log = Logger.getLogger("DownloadResponseBody");
     //实际的待包装响应体
     private final ResponseBody responseBody;
     //进度回调接口
@@ -98,12 +101,10 @@ public class DownloadResponseBody extends ResponseBody {
 
     /**
      * 读取，回调进度接口
-     *
      * @param source Source
      * @return Source
      */
     private Source source(Source source) {
-
         return new ForwardingSource(source) {
             //当前读取字节数
             long totalBytesRead = 0L;
@@ -115,6 +116,7 @@ public class DownloadResponseBody extends ResponseBody {
                 totalBytesRead += bytesRead != -1 ? bytesRead : 0;
                 //回调，如果contentLength()不知道长度，会返回-1
                 if(progressListener != null){
+                    log.i("source","source--totalBytesRead="+totalBytesRead+"-------contentLength="+contentLength()+"----是否完成下载="+(bytesRead == -1));
                     progressListener.onDownloadProgress(totalBytesRead, responseBody.contentLength(), bytesRead == -1);
                 }
                 return bytesRead;
