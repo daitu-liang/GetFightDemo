@@ -45,11 +45,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.MainHomeActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
             android:screenOrientation="portrait"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -96,9 +95,9 @@
         <activity android:name=".baidu.ocr.IDCardActivity" />
         <activity android:name=".baidu.ocr.GeneralActivity" />
         <activity android:name=".baidu.ocr.BankCardActivity" />
-        <activity android:name=".baidu.voice.BaiduVoiceActivity"></activity>
-        <activity android:name="com.daitu_liang.study.mytest.baidu.voice.ModelManagerActivity"></activity>
-
+        <activity android:name=".baidu.voice.BaiduVoiceActivity" />
+        <activity android:name=".baidu.voice.ModelManagerActivity" />
+        <activity android:name=".ui.activity.VP3DActivity"></activity>
     </application>
 
 </manifest>

@@ -32,6 +32,7 @@ import com.daitu_liang.study.mytest.ui.activity.PaintActivity;
 import com.daitu_liang.study.mytest.ui.activity.PieViewActivity;
 import com.daitu_liang.study.mytest.ui.activity.PorterDuffXfermodeActivity;
 import com.daitu_liang.study.mytest.ui.activity.PullDownActivity;
+import com.daitu_liang.study.mytest.ui.activity.VP3DActivity;
 import com.daitu_liang.study.mytest.ui.activity.WaveDemoActivity;
 import com.daitu_liang.study.mytest.widget.DividerItemDecoration;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -42,7 +43,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FunctionFragment extends Fragment {
-
 
 
     @BindView(R.id.toolbar)
@@ -79,11 +79,11 @@ public class FunctionFragment extends Fragment {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if(newState==RecyclerView.SCROLL_STATE_IDLE ){//静止,没有滚动
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {//静止,没有滚动
                     ((MainHomeActivity) getActivity()).showBottomNavigationBar();
-                }else if(newState==RecyclerView.SCROLL_STATE_DRAGGING){//正在被外部拖拽,一般为用户正在用手指滚动
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {//正在被外部拖拽,一般为用户正在用手指滚动
 //                    ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
-                }else if(newState==RecyclerView.SCROLL_STATE_SETTLING ){//自动滚动开始
+                } else if (newState == RecyclerView.SCROLL_STATE_SETTLING) {//自动滚动开始
                     ((MainHomeActivity) getActivity()).hideBottomNavigationBar();
                 }
             }
@@ -109,7 +109,7 @@ public class FunctionFragment extends Fragment {
         mDatas.add("- PieView");
         mDatas.add("- Md-LoginActivity");
         mDatas.add("- Bezier");
-        mDatas.add("- nothing");
+        mDatas.add("- 3D_vp");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
@@ -153,12 +153,15 @@ public class FunctionFragment extends Fragment {
                     startActivity(new Intent(getActivity(), MainHomeBottomActivity.class));
                 } else if (position == 13) {
                     startActivity(new Intent(getActivity(), PieViewActivity.class));
-                }else if (position == 14) {
+                } else if (position == 14) {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
-                }else if (position == 15) {
+                } else if (position == 15) {
                     startActivity(BezierActivity.getIntent(getActivity()));
-                }else{
+                } else if (position == 16) {
+                    startActivity(VP3DActivity.getIntent(getActivity()));
+                } else {
                 }
+
             }
 
             @Override
