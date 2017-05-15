@@ -248,11 +248,17 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
                                     //如果y轴滑动距离超过设置的处理范围，那么进行滑动事件处理
                                     if (mDownX < mScreenWidth * 0.5f) {//左侧改变亮度
                                         mChangeBrightness = true;
-                                        try {
-                                            mGestureDownBrightness = Settings.System.getInt(getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
-                                            System.out.println("当前亮度 " + mGestureDownBrightness);
-                                        } catch (Settings.SettingNotFoundException e) {
-                                            e.printStackTrace();
+                                        WindowManager.LayoutParams lp = JCUtils.getAppCompActivity(getContext()).getWindow().getAttributes();
+                                        if (lp.screenBrightness < 0) {
+                                            try {
+                                                mGestureDownBrightness = Settings.System.getInt(getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+                                                Log.i(TAG, "current system brightness: " + mGestureDownBrightness);
+                                            } catch (Settings.SettingNotFoundException e) {
+                                                e.printStackTrace();
+                                            }
+                                        } else {
+                                            mGestureDownBrightness = lp.screenBrightness * 255;
+                                            Log.i(TAG, "current activity brightness: " + mGestureDownBrightness);
                                         }
                                     } else {//右侧改变声音
                                         mChangeVolume = true;
@@ -280,7 +286,6 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
                         //dialog中显示百分比
                         int volumePercent = (int) (mGestureDownVolume * 100 / max + deltaY * 3 * 100 / mScreenHeight);
                         showVolumeDialog(-deltaY, volumePercent);
-                        System.out.println("percentfdsfdsf : " + volumePercent + " " + deltaY);
                     }
 
                     if (mChangeBrightness) {
@@ -297,7 +302,6 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
                         JCUtils.getAppCompActivity(getContext()).getWindow().setAttributes(params);
                         //dialog中显示百分比
                         int brightnessPercent = (int) (mGestureDownBrightness * 100 / 255 + deltaY * 3 * 100 / mScreenHeight);
-                        System.out.println("percentfdsfdsf : " + brightnessPercent + " " + deltaY + " " + mGestureDownBrightness);
                         showBrightnessDialog(brightnessPercent);
 //                        mDownY = y;
                     }
@@ -325,8 +329,8 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
         return false;
     }
 
-    public int widthRatio = 16;
-    public int heightRatio = 9;
+    public int widthRatio = 0;
+    public int heightRatio = 0;
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -356,8 +360,8 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
 
     public void addTextureView() {
         Log.d(TAG, "addTextureView [" + this.hashCode() + "] ");
-        FrameLayout.LayoutParams layoutParams =
-                new FrameLayout.LayoutParams(
+        LayoutParams layoutParams =
+                new LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         Gravity.CENTER);
@@ -461,9 +465,6 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
             backPress();
         }
         JCUtils.saveProgress(getContext(), url, 0);
-
-        JCMediaManager.textureView = null;
-        JCMediaManager.savedSurfaceTexture = null;
     }
 
     public void onCompletion() {
@@ -505,11 +506,11 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
     public void clearFloatScreen() {
         JCUtils.getAppCompActivity(getContext()).setRequestedOrientation(NORMAL_ORIENTATION);
         showSupportActionBar(getContext());
-        JCVideoPlayer secJcvd = JCVideoPlayerManager.getCurrentJcvd();
-        secJcvd.textureViewContainer.removeView(JCMediaManager.textureView);
+        JCVideoPlayer currJcvd = JCVideoPlayerManager.getCurrentJcvd();
+        currJcvd.textureViewContainer.removeView(JCMediaManager.textureView);
         ViewGroup vp = (ViewGroup) (JCUtils.scanForActivity(getContext()))//.getWindow().getDecorView();
                 .findViewById(Window.ID_ANDROID_CONTENT);
-        vp.removeView(secJcvd);
+        vp.removeView(currJcvd);
         JCVideoPlayerManager.setSecondFloor(null);
     }
 
@@ -575,7 +576,9 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
 
     public void onVideoSizeChanged() {
         Log.i(TAG, "onVideoSizeChanged " + " [" + this.hashCode() + "] ");
-        JCMediaManager.textureView.setVideoSize(JCMediaManager.instance().getVideoSize());
+        if (JCMediaManager.textureView != null) {
+            JCMediaManager.textureView.setVideoSize(JCMediaManager.instance().getVideoSize());
+        }
     }
 
     @Override
@@ -653,7 +656,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
             Constructor<JCVideoPlayer> constructor = (Constructor<JCVideoPlayer>) JCVideoPlayer.this.getClass().getConstructor(Context.class);
             JCVideoPlayer jcVideoPlayer = constructor.newInstance(getContext());
             jcVideoPlayer.setId(FULLSCREEN_ID);
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+            LayoutParams lp = new LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             vp.addView(jcVideoPlayer, lp);
             jcVideoPlayer.setUp(url, JCVideoPlayerStandard.SCREEN_WINDOW_FULLSCREEN, objects);
@@ -685,7 +688,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
             Constructor<JCVideoPlayer> constructor = (Constructor<JCVideoPlayer>) JCVideoPlayer.this.getClass().getConstructor(Context.class);
             JCVideoPlayer jcVideoPlayer = constructor.newInstance(getContext());
             jcVideoPlayer.setId(TINY_ID);
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(400, 400);
+            LayoutParams lp = new LayoutParams(400, 400);
             lp.gravity = Gravity.RIGHT | Gravity.BOTTOM;
             vp.addView(jcVideoPlayer, lp);
             jcVideoPlayer.setUp(url, JCVideoPlayerStandard.SCREEN_WINDOW_TINY, objects);
@@ -716,7 +719,8 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
 
     public int getCurrentPositionWhenPlaying() {
         int position = 0;
-        if (JCMediaManager.instance().mediaPlayer == null) return position;//这行代码不应该在这，如果代码和逻辑万无一失的话，心头之恨呐
+        if (JCMediaManager.instance().mediaPlayer == null)
+            return position;//这行代码不应该在这，如果代码和逻辑万无一失的话，心头之恨呐
         if (currentState == CURRENT_STATE_PLAYING ||
                 currentState == CURRENT_STATE_PAUSE ||
                 currentState == CURRENT_STATE_PLAYING_BUFFERING_START) {
@@ -849,7 +853,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
             Constructor<JCVideoPlayer> constructor = _class.getConstructor(Context.class);
             final JCVideoPlayer jcVideoPlayer = constructor.newInstance(context);
             jcVideoPlayer.setId(JCVideoPlayer.FULLSCREEN_ID);
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+            LayoutParams lp = new LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             vp.addView(jcVideoPlayer, lp);
 //            final Animation ra = AnimationUtils.loadAnimation(context, R.anim.start_fullscreen);

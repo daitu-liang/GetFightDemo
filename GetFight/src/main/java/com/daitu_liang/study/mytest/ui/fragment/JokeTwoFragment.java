@@ -92,6 +92,7 @@ public class JokeTwoFragment extends Fragment {
                 }
             }
         });
+
     }
 
     private void getContetList() {

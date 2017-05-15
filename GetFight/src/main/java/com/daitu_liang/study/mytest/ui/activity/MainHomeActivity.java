@@ -152,7 +152,8 @@ public class MainHomeActivity extends AppCompatActivity
                 ft.replace(R.id.frame_layout, currentFragment);
             }
             ft.commit();
-
+//            ft.addToBackStack(null);
+//            getFragmentManager().findFragmentById(R.id.frame_layout)
         }
        /* FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
