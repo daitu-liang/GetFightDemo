@@ -97,7 +97,8 @@
         <activity android:name=".baidu.ocr.BankCardActivity" />
         <activity android:name=".baidu.voice.BaiduVoiceActivity" />
         <activity android:name=".baidu.voice.ModelManagerActivity" />
-        <activity android:name=".ui.activity.VP3DActivity"></activity>
+        <activity android:name=".ui.activity.VP3DActivity" />
+        <activity android:name=".litepal.LitePalActivity"></activity>
     </application>
 
 </manifest>

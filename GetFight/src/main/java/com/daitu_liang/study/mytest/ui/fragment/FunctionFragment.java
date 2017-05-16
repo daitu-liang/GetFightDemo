@@ -19,6 +19,7 @@ import com.daitu_liang.study.mytest.adapter.FunAdapter;
 import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
 import com.daitu_liang.study.mytest.html.HtmlToActivity;
 import com.daitu_liang.study.mytest.imageview.ImageViewActivity;
+import com.daitu_liang.study.mytest.litepal.LitePalActivity;
 import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.ui.activity.AnimateEffectActivity;
 import com.daitu_liang.study.mytest.ui.activity.AnimationActivity;
@@ -110,7 +111,7 @@ public class FunctionFragment extends Fragment {
         mDatas.add("- Md-LoginActivity");
         mDatas.add("- Bezier");
         mDatas.add("- 3D_vp");
-        mDatas.add("- nothing");
+        mDatas.add("- LitePal");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
@@ -159,6 +160,8 @@ public class FunctionFragment extends Fragment {
                     startActivity(BezierActivity.getIntent(getActivity()));
                 } else if (position == 16) {
                     startActivity(VP3DActivity.getIntent(getActivity()));
+                }else if (position == 17) {
+                    startActivity(LitePalActivity.getIntent(getActivity()));
                 } else {
                 }
 

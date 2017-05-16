@@ -8,6 +8,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import org.litepal.LitePal;
+
 /**
  * Created by leixiaoliang on 2017/1/10.
  */
@@ -27,9 +29,11 @@ public class GetFightApplication extends Application {
         init();
     }
     private void init() {
+
         preferenceManager = PreferencesManager.getInstance(this);
         refWatcher = LeakCanary.install(this);
         Fresco.initialize(this);
+        LitePal.initialize(this);
     }
     private static void setContext(Context mContext) {
         CONTEXT = mContext;

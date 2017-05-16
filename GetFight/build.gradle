@@ -67,6 +67,6 @@ dependencies {
     compile files('libs/ocr-sdk.jar')
     compile project(':ocr_ui')
     compile files('libs/com.baidu.tts_2.2.9.20161020_154fa02_release.jar')
-
+    compile 'org.litepal.android:core:1.5.1'
 
 }
