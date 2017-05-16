@@ -16,7 +16,9 @@
 <br>2017.04.13
 <br>1.增加对retofit2.2和rxjava2.0进行封装
 <br>
-
+<br>2017.05.16
+<br>1.解决视频闪退问题，
+<br>2.添加LitePal的使用
 <br>学习于https://github.com/ReactiveX/RxJava
 <br>http://square.github.io/retrofit/
 <br>http://gank.io/post/56e80c2c677659311bed9841
