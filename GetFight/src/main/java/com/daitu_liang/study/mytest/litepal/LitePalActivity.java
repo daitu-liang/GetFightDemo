@@ -1,13 +1,20 @@
 package com.daitu_liang.study.mytest.litepal;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.entity.Album;
@@ -24,6 +31,7 @@ import butterknife.OnClick;
 
 public class LitePalActivity extends AppCompatActivity {
     private static final String TAG = "LitePalActivity";
+
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, LitePalActivity.class);
         return intent;
@@ -43,7 +51,7 @@ public class LitePalActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.button, R.id.button2})
+    @OnClick({R.id.button, R.id.button2, R.id.button3, R.id.button4})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
@@ -52,7 +60,41 @@ public class LitePalActivity extends AppCompatActivity {
             case R.id.button2:
                 doUsedByLitePal();
                 break;
+            case R.id.button3:
+                getPession();
+                break;
+            case R.id.button4:
+                startActivity(OnlineSurveyActivity.getInent(this));
+                break;
         }
+    }
+
+    private void getPession() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+        } else {
+            call();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    call();
+                } else {
+                    Toast.makeText(LitePalActivity.this, "不授权了，开溜", Toast.LENGTH_LONG).show();
+                }
+        }
+    }
+
+    private void call() {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:10086"));
+        startActivity(intent);
     }
 
     private void doUsedByLitePal1() {
@@ -61,21 +103,21 @@ public class LitePalActivity extends AppCompatActivity {
         albumToUpdate.save();
 
 
-        albumToUpdate.updateAll("name=? and price=?" ,"album","4.2");
-         Song song=new Song();
+        albumToUpdate.updateAll("name=? and price=?", "album", "4.2");
+        Song song = new Song();
         song.setToDefault("name");
         song.updateAll();
 
-        DataSupport.deleteAll(Song.class,"duration>?","2015");
-        List<Album> list=DataSupport.findAll(Album.class);
-        for (Album album:list){
-            Log.e(TAG, "doUsedByLitePal1: ---"+album.getName());
+        DataSupport.deleteAll(Song.class, "duration>?", "2015");
+        List<Album> list = DataSupport.findAll(Album.class);
+        for (Album album : list) {
+            Log.e(TAG, "doUsedByLitePal1: ---" + album.getName());
         }
 
         DataSupport.findFirst(Song.class);
         DataSupport.findLast(Song.class);
-        DataSupport.select("name","price").find(Song.class);
-        DataSupport.where("price>?","200").find(Song.class);
+        DataSupport.select("name", "price").find(Song.class);
+        DataSupport.where("price>?", "200").find(Song.class);
         DataSupport.order("price desc").find(Song.class);
         DataSupport.limit(5).find(Song.class);
         DataSupport.limit(6).offset(3).find(Song.class);
