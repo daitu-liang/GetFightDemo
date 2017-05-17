@@ -89,6 +89,8 @@
 　　也爱你坚持的位置，
 　　足下的土地。
     </string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 
 </resources>

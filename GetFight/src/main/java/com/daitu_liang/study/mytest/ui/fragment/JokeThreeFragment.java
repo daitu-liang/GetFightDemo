@@ -68,7 +68,7 @@ public class JokeThreeFragment extends Fragment {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             mRecyclerView.setLayoutManager(layoutManager);
-            mAdapter = new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData,0);
+            mAdapter = new JokeThreeAdapter(getActivity(), R.layout.item_joke_three, listData,12);
         }
 
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);

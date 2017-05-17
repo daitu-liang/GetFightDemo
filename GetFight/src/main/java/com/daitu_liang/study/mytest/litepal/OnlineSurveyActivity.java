@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +13,6 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.daitu_liang.study.mytest.R;
-
-import static android.R.attr.type;
 
 /**
  * Created by zhaocd on 2017/5/15.
@@ -33,14 +30,7 @@ public class OnlineSurveyActivity extends AppCompatActivity {
 
     private String TAG = "OnlineSurveyActivity";
 
-    /**
-     *
-     * @param mContent
-     * @param loginName  登陆的用户名
-     * @param url   网页url
-     * @param type  类型
-     * @return
-     */
+
    public static Intent getInent(Context mContent){
        Intent intent = new Intent(mContent, OnlineSurveyActivity.class);
 

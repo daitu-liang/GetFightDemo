@@ -51,7 +51,7 @@ public class LitePalActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.button, R.id.button2, R.id.button3, R.id.button4})
+    @OnClick({R.id.button, R.id.button2, R.id.button3, R.id.button4, R.id.button5})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
@@ -65,6 +65,9 @@ public class LitePalActivity extends AppCompatActivity {
                 break;
             case R.id.button4:
                 startActivity(OnlineSurveyActivity.getInent(this));
+                break;
+            case R.id.button5:
+                startActivity(Main2Activity.getInent(this));
                 break;
         }
     }

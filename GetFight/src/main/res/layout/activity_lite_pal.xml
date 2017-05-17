@@ -56,4 +56,12 @@
         android:layout_marginStart="29dp"
         android:layout_marginBottom="41dp"
         android:id="@+id/button4" />
+    <Button
+        android:text="自带viewpage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button4"
+        android:layout_alignEnd="@+id/button"
+        android:layout_marginEnd="9dp"
+        android:id="@+id/button5" />
 </RelativeLayout>

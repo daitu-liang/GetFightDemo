@@ -98,8 +98,12 @@
         <activity android:name=".baidu.voice.BaiduVoiceActivity" />
         <activity android:name=".baidu.voice.ModelManagerActivity" />
         <activity android:name=".ui.activity.VP3DActivity" />
-        <activity android:name=".litepal.LitePalActivity"></activity>
-        <activity android:name=".litepal.OnlineSurveyActivity"></activity>
+        <activity android:name=".litepal.LitePalActivity" />
+        <activity android:name=".litepal.OnlineSurveyActivity" />
+        <activity
+            android:name=".litepal.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
