@@ -1,5 +1,6 @@
 # GetFightDemo
-[GetFightDemo.apk](https://github.com/daitu-liang/GetFightDemo/blob/master/GetFight/GetFight-release.apk) 
+[GetFightDemo.apk](https://raw.githubusercontent.com/daitu-liang/GetFightDemo/master/GetFight/GetFight-release.apk) 
+<br>
 整理的知识点，包括动画自定义view，补间动画，属性动画矢量动画，请求Retrofit2.0.0+RxJava1.1.0+okhttp，Material Design，Otto,ButterKnife等的使用，这里只是自己的测试项目，平时涉及的知识点，学习到的内容放在里面，积累而成；
 <br>动画效果向固定点进行散状的缩放，星星的漂浮，左右上下方向，倾斜方向，可以用来做类似下飘落雪花，下雨等效果，代码的实现原理，值得借鉴；
 <br>![image](https://github.com/daitu-liang/GetFightDemo/blob/master/screenshots/Video_2017-04-02_121104.gif)
