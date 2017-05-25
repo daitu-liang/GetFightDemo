@@ -10,12 +10,13 @@
         app:contentView="@+id/display_image_view"
         app:leftDownView="@+id/cancel_button"
         app:rightUpView="@+id/confirm_button">
+
     <ImageView
             android:id="@+id/display_image_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-        android:src="@drawable/bd_ocr_id_card_locator_front"/>
+            app:srcCompat="@drawable/bd_ocr_id_card_locator_front"/>
 
     <ImageView
             android:id="@+id/cancel_button"

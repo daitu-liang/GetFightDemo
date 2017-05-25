@@ -3,6 +3,10 @@
  */
 package com.baidu.ocr.ui.crop;
 
+import java.io.IOException;
+
+import com.baidu.ocr.ui.util.ImageUtil;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,10 +21,6 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.WindowManager;
-
-import com.baidu.ocr.ui.util.ImageUtil;
-
-import java.io.IOException;
 
 public class CropView extends View {
 

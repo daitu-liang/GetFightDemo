@@ -181,5 +181,6 @@ public class FunctionFragment extends Fragment {
             mDatas.clear();
             mDatas = null;
         }
+
     }
 }

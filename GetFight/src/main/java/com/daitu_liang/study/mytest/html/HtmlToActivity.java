@@ -4,6 +4,9 @@ package com.daitu_liang.study.mytest.html;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
@@ -25,7 +28,8 @@ public class HtmlToActivity extends AppCompatActivity {
     Button htmlBtn;
     @BindView(R.id.html_btn_bg)
     Button htmlBtnBg;
-
+    @BindView(R.id.toolbar_pull)
+    Toolbar toolbarPull;
     private Unbinder bf;
 
     @Override
@@ -33,6 +37,7 @@ public class HtmlToActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_html_to);
         bf = ButterKnife.bind(this);
+        setSupportActionBar(toolbarPull);
         initViewJavaToH5();
         initViewH5ToJava();
     }
@@ -77,6 +82,30 @@ public class HtmlToActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.backup:
+                Toast.makeText(this,"backup",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.delete:
+                Toast.makeText(this,"delete",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.settings:
+                Toast.makeText(this,"settings",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
