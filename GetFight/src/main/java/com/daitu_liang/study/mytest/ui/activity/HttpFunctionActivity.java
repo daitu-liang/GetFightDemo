@@ -54,7 +54,7 @@ public class HttpFunctionActivity extends AppCompatActivity {
                 startActivity(new Intent(HttpFunctionActivity.this, ImageViewActivity.class));
                 break;
             case R.id.btn10:
-                startActivity(new Intent(HttpFunctionActivity.this, MatrixActivity.class));
+                startActivity(new Intent(HttpFunctionActivity.this, DialogActivity.class));
                 break;
 
         }

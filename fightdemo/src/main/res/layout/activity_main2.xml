@@ -16,26 +16,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-
         android:layout_marginTop="97dp"
         android:id="@+id/textView2" />
 
 
     <Button
-        android:text="btn_down"
+        android:text="下载"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:background="@color/text_color_select"
+        android:background="@color/colorAccent"
         android:id="@+id/btn_down" />
 
     <Button
-        android:text="btn_upload"
+        android:text="上传"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@color/text_color_select"
+        android:background="@color/colorAccent"
         android:id="@+id/btn_upload" />
 
     <ProgressBar

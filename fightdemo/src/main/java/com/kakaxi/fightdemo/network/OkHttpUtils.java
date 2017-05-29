@@ -11,9 +11,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * Created by leixiaoliang on 2017/1/10.
  */
 public class OkHttpUtils {
-    private static final int DEFAULT_TIMEOUT = 5;
-    private static final int DEFAULT_READ_TIMEOUT = 20;
-    private static final int DEFAULT_WRITE_TIMEOUT = 20;
+    private static final int DEFAULT_TIMEOUT = 10;
+    private static final int DEFAULT_READ_TIMEOUT = 10;
+    private static final int DEFAULT_WRITE_TIMEOUT = 10;
     private static class OkHttpHolder {
         private static final OkHttpUtils INSTANCE = new OkHttpUtils();
 

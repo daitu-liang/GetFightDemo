@@ -69,7 +69,7 @@
 
         <activity
             android:name=".ui.activity.PullDownActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/pullActivityTheme" />
         <activity
             android:name=".ui.activity.LoginActivity"
             android:label="@string/title_activity_login" />
@@ -81,7 +81,7 @@
         <activity android:name=".ui.activity.AnimateEffectActivity" />
         <activity android:name=".ui.activity.AnimationActivity" />
         <activity android:name=".ui.activity.PaintActivity" />
-        <activity android:name=".ui.activity.MatrixActivity" />
+        <activity android:name=".ui.activity.DialogActivity" />
         <activity android:name=".ui.activity.PorterDuffXfermodeActivity" />
         <activity android:name=".ui.activity.WaveDemoActivity" />
         <activity android:name=".ui.activity.FloatTestActivity" />

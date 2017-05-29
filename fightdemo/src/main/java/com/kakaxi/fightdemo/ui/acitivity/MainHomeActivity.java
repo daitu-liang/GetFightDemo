@@ -1,4 +1,4 @@
-package com.kakaxi.fightdemo;
+package com.kakaxi.fightdemo.ui.acitivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.view.View;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.kakaxi.fightdemo.R;
 import com.kakaxi.fightdemo.base.BaseActivity;
 import com.kakaxi.fightdemo.bean.TabBean;
 import com.kakaxi.fightdemo.ui.fragment.SimpleCardFragment;
@@ -24,10 +25,10 @@ import com.kakaxi.fightdemo.utils.ViewFindUtils;
 
 import java.util.ArrayList;
 
-public class MainBottomActivity extends BaseActivity
+public class MainHomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "MainBottomActivity";
-    private Logger log = Logger.getLogger("MainBottomActivity");
+    private static final String TAG = "MainHomeActivity";
+    private Logger log = Logger.getLogger("MainHomeActivity");
     private String[] mTitles = {"首页", "消息", "联系人", "更多"};
     private ArrayList<Fragment> mFragments2 = new ArrayList<>();
     private int[] mIconUnselectIds = {
@@ -55,10 +56,10 @@ public class MainBottomActivity extends BaseActivity
             public void onClick(View view) {
                /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                startActivity(new Intent(MainBottomActivity.this, ScrollingActivity.class));
+                startActivity(new Intent(MainHomeActivity.this, ScrollingActivity.class));
             }
         });
-        fab.setVisibility(View.GONE);
+//        fab.setVisibility(View.GONE);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

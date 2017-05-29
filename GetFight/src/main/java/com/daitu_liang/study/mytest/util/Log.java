@@ -10,7 +10,7 @@ import java.util.Date;
 public class Log extends Logger implements ExtStorageHelper.ExtStorageNotifyListener {
 
 
-	private static final String APP_TAG = "HttpMethods";
+	private static final String APP_TAG = "GetFight";
 	private static final String LOG_FILE_NAME = "test.txt";
 	private static PrintStream logStream;
 	private static final String LOG_ENTRY_FORMAT = "[%tF %tT]%s";

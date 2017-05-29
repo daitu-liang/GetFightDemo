@@ -286,7 +286,7 @@ public class MainHomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
             startActivity(new Intent(MainHomeActivity.this, PorterDuffXfermodeActivity.class));
         } else if (id == R.id.nav_share) {
-            startActivity(new Intent(MainHomeActivity.this, MatrixActivity.class));
+            startActivity(new Intent(MainHomeActivity.this, DialogActivity.class));
         } else if (id == R.id.nav_send) {
             startActivity(new Intent(MainHomeActivity.this, WaveDemoActivity.class));
         }

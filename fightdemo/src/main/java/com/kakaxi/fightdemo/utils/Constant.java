@@ -10,7 +10,7 @@ public class Constant {
      * 程序文件
      */
     public static class FileName {
-        public static final String USER_INFO = "user_app_info";
+        public static final String USER_INFO = "user_fightdemo_info";
 
     }
 

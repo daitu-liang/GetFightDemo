@@ -1,6 +1,5 @@
 package com.kakaxi.fightdemo.ui.fragment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,16 +10,29 @@ import android.widget.TextView;
 
 import com.kakaxi.fightdemo.R;
 import com.kakaxi.fightdemo.network.TestHttpActivity;
-import com.kakaxi.fightdemo.network.uploaddowon.UploadDowonActivity;
+import com.kakaxi.fightdemo.ui.acitivity.ScrollingActivity;
+import com.kakaxi.fightdemo.ui.acitivity.UploadDowonActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
-@SuppressLint("ValidFragment")
 public class SimpleCardFragment extends Fragment {
-    private String mTitle;
+    @BindView(R.id.button1)
+    Button button1;
+    @BindView(R.id.button2)
+    Button button2;
+    @BindView(R.id.button3)
+    Button button3;
+    @BindView(R.id.type_tv)
+    TextView mTitle;
+    private String mTitleStr;
+
 
     public static SimpleCardFragment getInstance(String title) {
         SimpleCardFragment sf = new SimpleCardFragment();
-        sf.mTitle = title;
+        sf.mTitleStr = title;
         return sf;
     }
 
@@ -31,30 +43,33 @@ public class SimpleCardFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fr_simple_card, null);
-
-
-
-        initView(v);
-        return v;
+        View view = inflater.inflate(R.layout.fr_simple_card, null);
+        ButterKnife.bind(this, view);
+        initView(view);
+        return view;
     }
 
     private void initView(View v) {
-        TextView card_title_tv = (TextView) v.findViewById(R.id.card_title_tv);
-        card_title_tv.setText(mTitle);
-        Button Buttont = (Button) v.findViewById(R.id.button);
-        Buttont.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mTitle.setText(mTitleStr);
+    }
+
+    @OnClick({R.id.button1, R.id.button2, R.id.button3})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.button1:
                 startActivity(TestHttpActivity.getIntent(getActivity()));
-            }
-        });
-        Button Buttont1 = (Button) v.findViewById(R.id.button1);
-        Buttont1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+            case R.id.button2:
+                startActivity(ScrollingActivity.getIntent(getActivity()));
+                break;
+            case R.id.button3:
                 startActivity(UploadDowonActivity.getIntent(getActivity()));
-            }
-        });
+                break;
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

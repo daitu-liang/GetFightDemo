@@ -13,10 +13,20 @@ android {
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
         multiDexEnabled true
     }
+
+    signingConfigs{
+        config{
+            storeFile file(KEY_PATH);
+            storePassword KEY_PASS
+            keyAlias ALIAS_NAME
+            keyPassword ALIAS_PASS
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
         debug {
             minifyEnabled false
@@ -33,6 +43,20 @@ android {
 //
 //        all*.exclude module: 'okio'
 //    }
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+        disable 'MissingTranslation'
+    }
+    productFlavors{
+        qihoo{
+            applicationId "com.daitu_liang.study.mytest.qihoo"
+        }
+        baidu{
+            applicationId "com.daitu_liang.study.mytest.baidu"
+        }
+    }
 }
 
 dependencies {

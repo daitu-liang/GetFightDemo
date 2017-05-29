@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MatrixActivity extends AppCompatActivity {
+public class DialogActivity extends AppCompatActivity {
 
     @BindView(R.id.btn1)
     Button btn1;
@@ -64,7 +64,7 @@ public class MatrixActivity extends AppCompatActivity {
         attributes.width =500;
         attributes.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(attributes);
-        alertDialog.setCancelable(false);
+        alertDialog.setCancelable(true);
 
     }
 
