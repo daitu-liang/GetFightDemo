@@ -8,10 +8,10 @@ package com.kakaxi.fightdemo.network.uploaddowon;
 public interface DownloadProgressListener {
     /**
      * 下载进度
-     * @param bytesRead
-     * @param contentLength
+     * @param currentBytesCount
+     * @param totalBytesCount
      * @param done
      */
 
-    void onDownloadProgress(long bytesRead, long contentLength, boolean done);
+    void onDownloadProgress(long currentBytesCount, long totalBytesCount,int progress, boolean done);
 }

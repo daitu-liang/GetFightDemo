@@ -2,6 +2,7 @@ package com.kakaxi.fightdemo.network.uploaddowon;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 /**
  * Created by leixiaoliang on 2017/4/15.
@@ -13,14 +14,11 @@ public class ServiceGenerator {
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(HOST)
-            .addConverterFactory(FileConverterFactory.create());
-
-
+            .addConverterFactory(FileConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
     public static <T> T createService(Class<T> tClass){
         return builder.build().create(tClass);
     }
-
-
     /**
      * 创建带响应进度(下载进度)回调的service
      */
@@ -31,8 +29,6 @@ public class ServiceGenerator {
                 .build()
                 .create(tClass);
     }
-
-
     /**
      * 创建带请求体进度(上传进度)回调的service
      */

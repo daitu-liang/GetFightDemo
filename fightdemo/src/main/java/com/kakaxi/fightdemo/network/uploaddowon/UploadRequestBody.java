@@ -88,7 +88,9 @@ public class UploadRequestBody extends RequestBody {
                             @Override
                             public void accept(@NonNull Long aLong) throws Exception {
                                 if(progressListener!=null){
-                                    progressListener.onUploadProgress(writtenBytesCount, totalBytesCount,writtenBytesCount==totalBytesCount);
+                                    double readNum = (writtenBytesCount / (double) totalBytesCount) * 100;
+                                    int progress = (int) Math.ceil(readNum);
+                                    progressListener.onUploadProgress(writtenBytesCount, totalBytesCount,progress,writtenBytesCount==totalBytesCount);
                                 }
                             }
                         });

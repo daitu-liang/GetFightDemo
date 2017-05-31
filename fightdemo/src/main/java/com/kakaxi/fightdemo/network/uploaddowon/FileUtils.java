@@ -21,33 +21,22 @@ public class FileUtils {
 
         File saveFile = null;
         try {
-
             saveFile = new File(path);
-
             createDirs(saveFile);
-
             InputStream inputStream = null;
             OutputStream outputStream = null;
-
             try {
                 byte[] fileReader = new byte[4096];
-
                 inputStream = body.byteStream();
                 outputStream = new FileOutputStream(saveFile);
-
                 while (true) {
                     int read = inputStream.read(fileReader);
-
                     if (read == -1) {
                         break;
                     }
-
                     outputStream.write(fileReader, 0, read);
-
                 }
-
                 outputStream.flush();
-
                 return saveFile;
             } catch (IOException e) {
                 return saveFile;
@@ -55,7 +44,6 @@ public class FileUtils {
                 if (inputStream != null) {
                     inputStream.close();
                 }
-
                 if (outputStream != null) {
                     outputStream.close();
                 }

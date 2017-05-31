@@ -13,5 +13,5 @@ public interface UploadProgressListener {
      * @param done
      */
 
-    void onUploadProgress(long currentBytesCount, long totalBytesCount,boolean done);
+    void onUploadProgress(long currentBytesCount, long totalBytesCount,int progress,boolean done);
 }

@@ -4,6 +4,10 @@ import com.kakaxi.fightdemo.utils.Logger;
 
 import java.io.IOException;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import okio.Buffer;
@@ -107,17 +111,36 @@ public class DownloadResponseBody extends ResponseBody {
     private Source source(Source source) {
         return new ForwardingSource(source) {
             //当前读取字节数
-            long totalBytesRead = 0L;
-
+            long currentBytesCount = 0L;
+            //总字节长度，避免多次调用contentLength()方法
+            long totalBytesCount = 0L;
             @Override
             public long read(Buffer sink, long byteCount) throws IOException {
                 long bytesRead = super.read(sink, byteCount);
                 //增加当前读取的字节数，如果读取完成了bytesRead会返回-1
-                totalBytesRead += bytesRead != -1 ? bytesRead : 0;
+                currentBytesCount += bytesRead != -1 ? bytesRead : 0;
                 //回调，如果contentLength()不知道长度，会返回-1
+
+                if (totalBytesCount == 0) {
+                    totalBytesCount = contentLength();
+                }
                 if(progressListener != null){
-                    log.i("source","source--totalBytesRead="+totalBytesRead+"-------contentLength="+contentLength()+"----是否完成下载="+(bytesRead == -1));
-                    progressListener.onDownloadProgress(totalBytesRead, responseBody.contentLength(), bytesRead == -1);
+                    Observable.just(currentBytesCount)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Consumer<Long>() {
+                                @Override
+                                public void accept(@NonNull Long aLong) throws Exception {
+                                    if(progressListener!=null){
+                                        log.i("source","source--currentBytesCount="+currentBytesCount+"-------totalBytesCount="+totalBytesCount+"----是否完成下载="+(currentBytesCount==totalBytesCount));
+                                        double readNum = (currentBytesCount / (double) totalBytesCount) * 100;
+                                        int progress = (int) Math.ceil(readNum);
+                                        progressListener.onDownloadProgress(currentBytesCount, totalBytesCount,progress, currentBytesCount==totalBytesCount);
+                                    }
+                                }
+                            });
+
+
+
                 }
                 return bytesRead;
             }
