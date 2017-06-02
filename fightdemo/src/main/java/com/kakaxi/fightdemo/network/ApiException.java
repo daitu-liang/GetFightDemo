@@ -7,6 +7,7 @@ public class ApiException extends RuntimeException  {
     public static final int USER_NOT_EXIST = 100;
     public static final int WRONG_PASSWORD = 101;
     public static final int WRONG_CODE = 401;
+    public static final int WRONG_NO_RESOURCE_CODE = 404;
 
     public ApiException(int resultCode, String errMsg) {
         this(getApiExceptionMessage(resultCode,errMsg));
@@ -35,6 +36,10 @@ public class ApiException extends RuntimeException  {
             case WRONG_CODE:
                 message = errMsg;
                 break;
+            case WRONG_NO_RESOURCE_CODE:
+                message = "访问资源不存在";
+                break;
+
 
             default:
                 message = errMsg;

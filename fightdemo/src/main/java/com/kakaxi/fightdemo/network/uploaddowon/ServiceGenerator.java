@@ -10,7 +10,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  */
 
 public class ServiceGenerator {
-    private static final String HOST = "http://g.hiphotos.baidu.com/image/pic/item/";
+    private static final String HOST = "http://192.168.1.115:8080/";
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(HOST)

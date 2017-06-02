@@ -49,7 +49,6 @@ public class HttpClientHelper {
                 Request request = chain.request();
                 //拦截
                 Response originalResponse = chain.proceed(request);
-
                 List<String> segments = request.url().pathSegments();
                 String filename = segments.get(segments.size()-1);
 

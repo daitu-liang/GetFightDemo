@@ -16,5 +16,5 @@ public class NetApi {
     /**
      * 上传文件
      */
-    public static final String UPLOAD_FILE="/user/avatarupload";
+    public static final String UPLOAD_FILE="UploadTest/UploadFileServlet";
 }

@@ -84,7 +84,7 @@ public class UploadDowonActivity extends AppCompatActivity implements DownloadPr
         mProgressBar.setVisibility(View.VISIBLE);
         //之前的请求方法
         ApiCommom uploadService = ServiceGenerator.createUploadService(ApiCommom.class, this);
-        File file = new File("/storage/emulated/0/Android/data/com.kakaxi.fightdemo/files/pic.jpg");
+        File file = new File("/storage/emulated/0/Android/data/com.kakaxi.fightdemo/files/test_upload.jpg");
         log.e(TAG, "file=" + file);
         if (file == null) return;
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -99,7 +99,6 @@ public class UploadDowonActivity extends AppCompatActivity implements DownloadPr
                         log.e("onResponse", "upLoadFile--->-----上传结束--:" + responseBody.contentLength());
                     }
                 });
-
     }
 
     /**
@@ -107,9 +106,9 @@ public class UploadDowonActivity extends AppCompatActivity implements DownloadPr
      */
     private void downloadFileRxjava() {
         mProgressBar.setVisibility(View.VISIBLE);
-        String url = "http://issuecdn.baidupcs.com/issue/netdisk/apk/BaiduNetdisk_7.15.1.apk";
-        String url2 = "http://t.img.i.hsuperior.com/a38ee054-b941-4eb9-9e83-ba45a2ae13a8";
-        String savePath = getExternalFilesDir(null) + File.separator + "pic.jpg";
+        String url1 = "http://issuecdn.baidupcs.com/issue/netdisk/apk/BaiduNetdisk_7.15.1.apk";
+        String url = "http://192.168.1.115:8080/downzone/map.zip";
+        String savePath = getExternalFilesDir(null) + File.separator + "map.zip";
         ApiCommom downloadService = ServiceGenerator.createDownloadService(ApiCommom.class, this);
         observable = downloadService.downloadFile(url, savePath);
         observable.subscribeOn(Schedulers.io())
@@ -157,13 +156,12 @@ public class UploadDowonActivity extends AppCompatActivity implements DownloadPr
      * @param done
      */
     @Override
-    public void onDownloadProgress(long currentBytesCount, long totalBytesCount,int progress, boolean done) {
-        log.e(TAG, "onDownloadProgress--bytesRead=" + currentBytesCount + "---totalBytesCount=" + totalBytesCount +"--progress="+progress +"----是否完成下载=" + done);
+    public void onDownloadProgress(long currentBytesCount, long totalBytesCount, int progress, boolean done) {
+        log.e(TAG, "onDownloadProgress--bytesRead=" + currentBytesCount + "---totalBytesCount=" + totalBytesCount + "--progress=" + progress + "----是否完成下载=" + done);
         mProgressBar.setProgress(progress);
-        progressBarTv.setText(progress + "%");//就报错
+        progressBarTv.setText(progress + "%");
         log.e(TAG, "onDownloadProgress--------》------thread=" + Thread.currentThread().getName());
     }
-
 
 
     /**
@@ -174,9 +172,10 @@ public class UploadDowonActivity extends AppCompatActivity implements DownloadPr
      * @param done
      */
     @Override
-    public void onUploadProgress(long currentBytesCount, long totalBytesCount,int progress, boolean done) {
+    public void onUploadProgress(long currentBytesCount, long totalBytesCount, int progress, boolean done) {
         log.e(TAG, "onUploadProgress--progress=" + progress);
         mProgressBar.setProgress(progress);
+        progressBarTv.setText(progress + "%");
         progressBarTv.setText(progress + "%");
         log.e(TAG, "onUploadProgress--------》------thread=" + Thread.currentThread().getName());
     }
