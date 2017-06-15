@@ -1,14 +1,21 @@
 package com.daitu_liang.study.mytest.ui.fragment;
 
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +25,16 @@ import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.adapter.ARAdapter;
 import com.daitu_liang.study.mytest.baidu.ocr.BaiduMainActivity;
 import com.daitu_liang.study.mytest.baidu.voice.BaiduVoiceActivity;
+import com.daitu_liang.study.mytest.tinker.BaseBuildInfo;
+import com.daitu_liang.study.mytest.tinker.BuildInfo;
 import com.daitu_liang.study.mytest.ui.activity.MainHomeActivity;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.tencent.tinker.lib.tinker.Tinker;
+import com.tencent.tinker.lib.tinker.TinkerInstaller;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
+import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
@@ -51,7 +64,7 @@ public class ARFragment extends Fragment {
         return view;
     }
     private void initView(View view) {
-    mTitle.setText("ARFragment");
+    mTitle.setText("ARFragment-我终于热修复成功了");
     toolbar.setTitle("");
     ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
@@ -70,6 +83,8 @@ public class ARFragment extends Fragment {
                     listData.clear();
                     listData.add("人工智能-文字识别");
                     listData.add("人工智能-语音合成识别");
+                    listData.add("热修复-tinkerload");
+                    listData.add("热修复-showInfo");
                     for(int i = 0; i < 15 ;i++){
                         listData.add("num" + i + "after " + refreshTime + " times of refresh");
                     }
@@ -132,7 +147,13 @@ public class ARFragment extends Fragment {
                     startActivity(BaiduMainActivity.getIntent(getActivity()));
                 } else if (position == 2) {
                     startActivity(BaiduVoiceActivity.getIntent(getActivity()));
-                } else {
+                } else if(position == 3){
+
+                    Log.e("tinker","点击LOAD PATCH");
+                    TinkerInstaller.onReceiveUpgradePatch(getActivity().getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/abc.apk");
+                }else if(position == 4){
+                    showInfo(getActivity());
+                }else {
 
                 }
             }
@@ -144,5 +165,45 @@ public class ARFragment extends Fragment {
         });
 }
 
+    public boolean showInfo(Context context) {
+        // add more Build Info
+        final StringBuilder sb = new StringBuilder();
+        Tinker tinker = Tinker.with(getActivity().getApplicationContext());
+        if (tinker.isTinkerLoaded()) {
+            sb.append(String.format("[patch is loaded] \n"));
+            sb.append(String.format("[buildConfig TINKER_ID] %s \n", BuildInfo.TINKER_ID));
+            sb.append(String.format("[buildConfig BASE_TINKER_ID] %s \n", BaseBuildInfo.BASE_TINKER_ID));
 
+            sb.append(String.format("[buildConfig MESSSAGE] %s \n", BuildInfo.MESSAGE));
+            sb.append(String.format("[TINKER_ID] %s \n", tinker.getTinkerLoadResultIfPresent().getPackageConfigByName(ShareConstants.TINKER_ID)));
+            sb.append(String.format("[packageConfig patchMessage] %s \n", tinker.getTinkerLoadResultIfPresent().getPackageConfigByName("patchMessage")));
+            sb.append(String.format("[TINKER_ID Rom Space] %d k \n", tinker.getTinkerRomSpace()));
+
+        } else {
+            sb.append(String.format("[patch is not loaded] \n"));
+            sb.append(String.format("[buildConfig TINKER_ID] %s \n", BuildInfo.TINKER_ID));
+            sb.append(String.format("[buildConfig BASE_TINKER_ID] %s \n", BaseBuildInfo.BASE_TINKER_ID));
+
+            sb.append(String.format("[buildConfig MESSSAGE] %s \n", BuildInfo.MESSAGE));
+            sb.append(String.format("[TINKER_ID] %s \n", ShareTinkerInternals.getManifestTinkerID(getActivity().getApplicationContext())));
+        }
+        sb.append(String.format("[BaseBuildInfo Message] %s \n", BaseBuildInfo.TEST_MESSAGE));
+
+        final TextView v = new TextView(context);
+        v.setText(sb);
+        v.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+        v.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+        v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        v.setTextColor(0xFF000000);
+        v.setTypeface(Typeface.MONOSPACE);
+        final int padding = 16;
+        v.setPadding(padding, padding, padding, padding);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(true);
+        builder.setView(v);
+        final AlertDialog alert = builder.create();
+        alert.show();
+        return true;
+    }
 }

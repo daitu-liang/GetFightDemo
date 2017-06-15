@@ -86,22 +86,25 @@ public class MainHomeActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
         getBaiduToken();
+        Log.d(TAG, "bvbbbbbbbbbbbbbbbbbbbbbb");
     }
 
 
-
-    public  void initDrawerLayout(Toolbar toolbar) {
+    public void initDrawerLayout(Toolbar toolbar) {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
     }
-    public  void showBottomNavigationBar() {
+
+    public void showBottomNavigationBar() {
         bottomNavigationBar.show();
     }
-    public  void hideBottomNavigationBar() {
+
+    public void hideBottomNavigationBar() {
         bottomNavigationBar.hide();
     }
+
     private void initBottomNavigationBar() {
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.setAutoHideEnabled(true);
@@ -161,7 +164,6 @@ public class MainHomeActivity extends AppCompatActivity
         transaction.replace(R.id.frame_layout, mHomeFragment);
         transaction.commit();*/
     }
-
 
 
     @Override
@@ -231,6 +233,7 @@ public class MainHomeActivity extends AppCompatActivity
     public void onTabReselected(int position) {
 
     }
+
     public void isShow() {
         Log.i("MainHomeActivity", "Subscribe-ShowEvent");
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -239,6 +242,7 @@ public class MainHomeActivity extends AppCompatActivity
             drawerLayout.openDrawer(GravityCompat.START);
         }
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -317,7 +321,6 @@ public class MainHomeActivity extends AppCompatActivity
     }
 
 
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -348,6 +351,7 @@ public class MainHomeActivity extends AppCompatActivity
         super.onRestoreInstanceState(savedInstanceState);
         Log.i("MainHomeActivity", "onRestoreInstanceState");
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -356,6 +360,7 @@ public class MainHomeActivity extends AppCompatActivity
         refWatcher.watch(this);
 
     }
+
     private void getBaiduToken() {
         SubscriberOnNextListener<BaiduTokenEntity> getSubscriber = new SubscriberOnNextListener<BaiduTokenEntity>() {
             @Override
@@ -364,6 +369,7 @@ public class MainHomeActivity extends AppCompatActivity
 //                pre.setSaveBaiduToken(s.getNunix());
 
             }
+
             @Override
             public void onError(Throwable e) {
             }
