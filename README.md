@@ -22,6 +22,8 @@
 <br>2.添加LitePal的使用
 <br>3.添加6.0动态权限获取
 <br>
+<br>2017.06.15
+<br>1.添加腾讯的tinker热修复
 <br>
 # fightDemo
 <br>1.增加对retofit2.2和rxjava2.0进行封装
