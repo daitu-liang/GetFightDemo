@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.squareup.leakcanary.RefWatcher;
 
 import java.util.Random;
@@ -137,7 +137,7 @@ public class IndraftActivity extends AppCompatActivity {
             parent.removeAllViews();
             parent=null;
         }
-        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        RefWatcher refWatcher = GetFightApplicationTinker.getRefWatcher(this);
         refWatcher.watch(this);
     }
 

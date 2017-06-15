@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.paint.SnowView;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -22,7 +22,7 @@ public class SnowActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        RefWatcher refWatcher = GetFightApplicationTinker.getRefWatcher(this);
         refWatcher.watch(this);
         if(startBtn!=null){
             startBtn=null;

@@ -52,7 +52,7 @@ public class ARFragment extends Fragment {
         return view;
     }
     private void initView(View view) {
-    mTitle.setText("ARFragment-我终于热修复成功了!!!");
+    mTitle.setText("ARFragment");
 //    toolbar.setTitle("");
     ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);

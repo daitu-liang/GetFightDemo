@@ -1,6 +1,6 @@
 package com.daitu_liang.study.mytest.http.netapi;
 
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.util.AppInfoUtil;
 
 import java.io.IOException;
@@ -21,8 +21,8 @@ import okhttp3.Response;
 public class HttpLoggerInterceptor implements Interceptor {
     public String from = "2";//不可空，1、IOS  2、安卓  3、PC
     public String sys_version = android.os.Build.VERSION.RELEASE + "";//
-    public String nunix = GetFightApplication.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
-    public String version = AppInfoUtil.getVsersionName(GetFightApplication.CONTEXT);//APP版本名称
+    public String nunix = GetFightApplicationTinker.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
+    public String version = AppInfoUtil.getVsersionName(GetFightApplicationTinker.CONTEXT);//APP版本名称
 
     @Override
     public Response intercept(Chain chain) throws IOException {

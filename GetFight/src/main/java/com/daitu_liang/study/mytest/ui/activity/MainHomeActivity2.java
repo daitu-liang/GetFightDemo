@@ -18,7 +18,7 @@ import android.view.View;
 
 import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.adapter.MainFragmentPagerAdapter;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.entity.NiuxInfo;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
@@ -149,7 +149,7 @@ public class MainHomeActivity2 extends AppCompatActivity
         SubscriberOnNextListener<NiuxInfo> getSubscriber = new SubscriberOnNextListener<NiuxInfo>() {
             @Override
             public void onNext(NiuxInfo s) {
-                PreferencesManager pre = GetFightApplication.getPreferenceManager();
+                PreferencesManager pre = GetFightApplicationTinker.getPreferenceManager();
                 pre.setSaveNunix(s.getNunix());
                 Logger.getLogger("").i(TAG, "nunix--Times=" + s.getNunix());
             }
@@ -167,7 +167,7 @@ public class MainHomeActivity2 extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         BusProvider.getInstance().unregister(this);
-        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        RefWatcher refWatcher = GetFightApplicationTinker.getRefWatcher(this);
         refWatcher.watch(this);
     }
 

@@ -34,7 +34,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.squareup.leakcanary.RefWatcher;
 
 /**
@@ -95,7 +95,7 @@ public class HandleTestActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        RefWatcher refWatcher = GetFightApplicationTinker.getRefWatcher(this);
         refWatcher.watch(this);
     }
 

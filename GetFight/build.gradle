@@ -92,11 +92,11 @@ ext {
     //for normal build
     //old apk file to build patch apk
     //基准apk包的路径，必须输入，否则会报错。
-    tinkerOldApkPath = "${bakPath}/GetFight-debug-0615-15-47-22.apk"
+    tinkerOldApkPath = "${bakPath}/GetFight-debug-0615-17-32-57.apk"
     //proguard mapping file to build patch apk
     tinkerApplyMappingPath = "${bakPath}/app-debug-1018-17-32-47-mapping.txt"
     //resource R.txt to build patch apk, must input if there is resource changed
-    tinkerApplyResourcePath = "${bakPath}/GetFight-debug-0615-15-47-22-R.txt"
+    tinkerApplyResourcePath = "${bakPath}/GetFight-debug-0615-17-32-57-R.txt"
 
     //only use for build all flavor, if not, just ignore this field
     tinkerBuildFlavorDirectory = "${bakPath}/app-1018-17-32-47"

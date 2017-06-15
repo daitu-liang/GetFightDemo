@@ -8,7 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.adapter.TabTopFragmentPagerAdapter;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.ui.fragment.LightFragment;
 import com.daitu_liang.study.mytest.ui.fragment.MusicFragment;
 import com.daitu_liang.study.mytest.ui.fragment.RainFragment;
@@ -79,7 +79,7 @@ public class AnimateEffectActivity extends FragmentActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        RefWatcher refWatcher = GetFightApplication.getRefWatcher(this);
+        RefWatcher refWatcher = GetFightApplicationTinker.getRefWatcher(this);
         refWatcher.watch(this);
     }
 }

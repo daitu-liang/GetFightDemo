@@ -19,7 +19,7 @@ import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.daitu_liang.study.mytest.util.PreferencesManager;
 
@@ -74,7 +74,7 @@ public class BaiduMainActivity extends AppCompatActivity {
             public void onResult(AccessToken accessToken) {
                 String token = accessToken.getAccessToken();
                 log.i("baidu","token="+token);
-                PreferencesManager pre = GetFightApplication.getPreferenceManager();
+                PreferencesManager pre = GetFightApplicationTinker.getPreferenceManager();
                pre.setBaiduToken(token);
             }
 

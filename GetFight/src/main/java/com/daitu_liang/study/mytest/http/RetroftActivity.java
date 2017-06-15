@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.entity.MessageEvent;
 import com.daitu_liang.study.mytest.entity.MovieEntity;
 import com.daitu_liang.study.mytest.entity.NiuxInfo;
@@ -76,7 +76,7 @@ public class RetroftActivity extends AppCompatActivity {
             @Override
             public void onNext(NiuxInfo s) {
                 resultTV.setText(s.getNunix());
-                PreferencesManager pre = GetFightApplication.getPreferenceManager();
+                PreferencesManager pre = GetFightApplicationTinker.getPreferenceManager();
                 pre.setSaveNunix(s.getNunix());
                 MessageEvent messageEvent = new MessageEvent();
                 messageEvent.setMsg(s.getNunix());

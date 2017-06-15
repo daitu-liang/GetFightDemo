@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.http.netapi.HttpMethods;
 import com.daitu_liang.study.mytest.http.netapi.ProgressSubscriber;
 import com.daitu_liang.study.mytest.http.netapi.SubscriberOnNextListener;
@@ -51,13 +51,13 @@ public class HttpTestActivity extends AppCompatActivity {
     private void getData() {
 
         String phone = "18200399223";
-        DisplayMetrics dm = GetFightApplication.CONTEXT.getResources()
+        DisplayMetrics dm = GetFightApplicationTinker.CONTEXT.getResources()
                 .getDisplayMetrics();
 
         String from = "2";//不可空，1、IOS  2、安卓  3、PC
         String sys_version = android.os.Build.VERSION.RELEASE + "";//
-        String nunix = GetFightApplication.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
-        String version = AppInfoUtil.getVsersionName(GetFightApplication.CONTEXT);//APP版本名称
+        String nunix = GetFightApplicationTinker.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
+        String version = AppInfoUtil.getVsersionName(GetFightApplicationTinker.CONTEXT);//APP版本名称
         HashMap<String, String> map = new HashMap<>();
         map.put("from", "2");
         map.put("version", version);
@@ -86,12 +86,12 @@ public class HttpTestActivity extends AppCompatActivity {
     private void getData2() {
         String phone = "18200399223";
         String md5_passworld = MD5Utils.MD5("666666").toLowerCase();
-        DisplayMetrics dm = GetFightApplication.CONTEXT.getResources()
+        DisplayMetrics dm = GetFightApplicationTinker.CONTEXT.getResources()
                 .getDisplayMetrics();
         String from = "2";//不可空，1、IOS  2、安卓  3、PC
         String sys_version = android.os.Build.VERSION.RELEASE + "";//
-        String nunix = GetFightApplication.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
-        String version = AppInfoUtil.getVsersionName(GetFightApplication.CONTEXT);//APP版本名称
+        String nunix = GetFightApplicationTinker.getPreferenceManager().getSaveNunix();//unix时间戳	不可空
+        String version = AppInfoUtil.getVsersionName(GetFightApplicationTinker.CONTEXT);//APP版本名称
         Logger.getLogger("").e("", "nunix-huoqu时间戳-Times=" + nunix);
         HashMap<String, String> map = new HashMap<>();
         map.put("dev_name", AppInfoUtil.getAppDeviceName());

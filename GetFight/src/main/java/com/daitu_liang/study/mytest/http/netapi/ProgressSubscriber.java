@@ -3,7 +3,7 @@ package com.daitu_liang.study.mytest.http.netapi;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.util.Logger;
 
 import java.net.ConnectException;
@@ -52,17 +52,17 @@ public  class ProgressSubscriber<T> extends Subscriber<T>  implements ProgressCa
             mSubscriberOnNextListener.onCompleted();
         }
         log.e("","onComplete-CanlSubscriberror="+ this.isUnsubscribed());
-//        Toast.makeText(GetFightApplication.CONTEXT, " Completed", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(GetFightApplicationTinker.CONTEXT, " Completed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onError(Throwable e) {
         if (e instanceof SocketTimeoutException) {
-            Toast.makeText(GetFightApplication.CONTEXT, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GetFightApplicationTinker.CONTEXT, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
         } else if (e instanceof ConnectException) {
-            Toast.makeText(GetFightApplication.CONTEXT, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GetFightApplicationTinker.CONTEXT, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(GetFightApplication.CONTEXT, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(GetFightApplicationTinker.CONTEXT, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         dismissProgressDialog();
         if (mSubscriberOnNextListener != null) {

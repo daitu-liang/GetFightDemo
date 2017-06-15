@@ -1,6 +1,6 @@
 package com.daitu_liang.study.mytest.http.netapi;
 
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.util.NetWorkUtil;
 
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class OkHttpUtils {
     private static final int DEFAULT_READ_TIMEOUT = 20;
     private static final int DEFAULT_WRITE_TIMEOUT = 20;
     //创建Cache
-    private static Cache cache = new Cache(GetFightApplication.CONTEXT.getCacheDir(), 10 * 1024 * 1024);
+    private static Cache cache = new Cache(GetFightApplicationTinker.CONTEXT.getCacheDir(), 10 * 1024 * 1024);
     private static class OkHttpHolder {
         private static final OkHttpUtils INSTANCE = new OkHttpUtils();
 
@@ -71,7 +71,7 @@ public class OkHttpUtils {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                if (!NetWorkUtil.isNetworkConnected(GetFightApplication.CONTEXT)) {
+                if (!NetWorkUtil.isNetworkConnected(GetFightApplicationTinker.CONTEXT)) {
                     //无网络下强制使用缓存，无论缓存是否过期,此时该请求实际上不会被发送出去。
                     request=request.newBuilder().cacheControl(CacheControl.FORCE_CACHE)
                             .build();
@@ -79,7 +79,7 @@ public class OkHttpUtils {
 
                 Response response = chain.proceed(request);
                 //有网络情况下，根据请求接口的设置，配置缓存。
-                if (NetWorkUtil.isNetworkConnected(GetFightApplication.CONTEXT)) {
+                if (NetWorkUtil.isNetworkConnected(GetFightApplicationTinker.CONTEXT)) {
                     //这样在下次请求时，根据缓存决定是否真正发出请求。
 //                    String cacheControl = request.cacheControl().toString();
                     //当然如果你想在有网络的情况下都直接走网络，那么只需要

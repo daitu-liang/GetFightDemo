@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.bumptech.glide.Glide;
 import com.daitu_liang.study.mytest.R;
-import com.daitu_liang.study.mytest.app.GetFightApplication;
+import com.daitu_liang.study.mytest.app.GetFightApplicationTinker;
 import com.daitu_liang.study.mytest.entity.TypeListEntity;
 import com.daitu_liang.study.mytest.util.Logger;
 import com.zhy.adapter.recyclerview.CommonAdapter;
@@ -48,7 +48,7 @@ public class JokeThreeAdapter extends CommonAdapter<TypeListEntity.DataBean> {
                 String imgeUrlVedio = dataBean.getGroup().getLarge_cover().getUrl_list().get(2).getUrl();
                 Logger.getLogger("JokeThreeAdapter").i("","imgeUrlVedio="+imgeUrlVedio);
 //                jcVideoPlayerStandard.thumbImageView.setImageURI(Uri.parse("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640"));
-                Glide.with(GetFightApplication.getContext())
+                Glide.with(GetFightApplicationTinker.getContext())
                         .load(imgeUrlVedio)
                         .into(jcVideoPlayerStandard.thumbImageView);
             }
