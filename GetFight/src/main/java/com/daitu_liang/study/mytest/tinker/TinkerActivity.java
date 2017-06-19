@@ -50,6 +50,7 @@ public class TinkerActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.load_thinker_btn:
                 Log.e("tinker","点击LOAD PATCH");
+                //合成path.dex
                 TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/tinker.zip");
                 break;
             case R.id.load_thinker_show_info_btn:

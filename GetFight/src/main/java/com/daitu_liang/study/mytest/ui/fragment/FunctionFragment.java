@@ -20,6 +20,8 @@ import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
 import com.daitu_liang.study.mytest.html.HtmlToActivity;
 import com.daitu_liang.study.mytest.imageview.ImageViewActivity;
 import com.daitu_liang.study.mytest.litepal.LitePalActivity;
+import com.daitu_liang.study.mytest.service.CommonService;
+import com.daitu_liang.study.mytest.service.LastingService;
 import com.daitu_liang.study.mytest.svg.MainActivity;
 import com.daitu_liang.study.mytest.ui.activity.AnimateEffectActivity;
 import com.daitu_liang.study.mytest.ui.activity.AnimationActivity;
@@ -112,9 +114,15 @@ public class FunctionFragment extends Fragment {
         mDatas.add("- Bezier");
         mDatas.add("- 3D_vp");
         mDatas.add("- LitePal");
+        mDatas.add("- service进程保活");
+        mDatas.add("- 普通service");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
+        mDatas.add("- nothing");
+        mDatas.add("- nothing");
+        mDatas.add("- nothing");
+
 
     }
 
@@ -162,6 +170,10 @@ public class FunctionFragment extends Fragment {
                     startActivity(VP3DActivity.getIntent(getActivity()));
                 }else if (position == 17) {
                     startActivity(LitePalActivity.getIntent(getActivity()));
+                } else if (position == 18) {
+                    getActivity().startService(new Intent(getActivity(),LastingService.class));
+                }  else if (position == 19) {
+                    getActivity().startService(new Intent(getActivity(),CommonService.class));
                 } else {
                 }
 

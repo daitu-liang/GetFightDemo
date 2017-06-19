@@ -88,7 +88,6 @@ ext {
     //for some reason, you may want to ignore tinkerBuild, such as instant run debug build?
     //是否打开tinker的功能。
     tinkerEnabled = true
-
     //for normal build
     //old apk file to build patch apk
     //基准apk包的路径，必须输入，否则会报错。
