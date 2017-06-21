@@ -28,7 +28,8 @@
 <br>2017.06.20
 <br>1.添加微信Tinker热修复功能
 <br>2.添加rv多布局，采用动态修改GridLayoutManager列数
-<br>
+<br>3.添加进程保活
+<br>4.3D轮播菜单
 <br>
 # fightDemo
 <br>1.增加对retofit2.2和rxjava2.0进行封装
