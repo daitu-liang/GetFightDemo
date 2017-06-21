@@ -56,8 +56,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.LastingService"></service>
-        <service android:name=".service.CommonService"></service>
+        <service android:name=".service.LastingService" />
+        <service android:name=".service.CommonService" />
         <service
             android:name=".tinker.service.SampleResultService"
             android:exported="false" />
@@ -114,7 +114,8 @@
             android:name=".litepal.Main2Activity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".tinker.TinkerActivity"></activity>
+        <activity android:name=".tinker.TinkerActivity" />
+        <activity android:name=".ui.activity.MultiLayoutActivity"></activity>
     </application>
 
 </manifest>

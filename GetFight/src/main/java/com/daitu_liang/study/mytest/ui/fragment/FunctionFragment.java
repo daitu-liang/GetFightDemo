@@ -29,6 +29,7 @@ import com.daitu_liang.study.mytest.ui.activity.BezierActivity;
 import com.daitu_liang.study.mytest.ui.activity.FloatTestActivity;
 import com.daitu_liang.study.mytest.ui.activity.HttpFunctionActivity;
 import com.daitu_liang.study.mytest.ui.activity.LoginActivity;
+import com.daitu_liang.study.mytest.ui.activity.MultiLayoutActivity;
 import com.daitu_liang.study.mytest.ui.activity.MainHomeActivity;
 import com.daitu_liang.study.mytest.ui.activity.MainHomeBottomActivity;
 import com.daitu_liang.study.mytest.ui.activity.PaintActivity;
@@ -116,7 +117,7 @@ public class FunctionFragment extends Fragment {
         mDatas.add("- LitePal");
         mDatas.add("- service进程保活");
         mDatas.add("- 普通service");
-        mDatas.add("- nothing");
+        mDatas.add("- 多布局样式");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
         mDatas.add("- nothing");
@@ -174,7 +175,9 @@ public class FunctionFragment extends Fragment {
                     getActivity().startService(new Intent(getActivity(),LastingService.class));
                 }  else if (position == 19) {
                     getActivity().startService(new Intent(getActivity(),CommonService.class));
-                } else {
+                } else if (position == 20) {
+                    getActivity().startActivity(MultiLayoutActivity.getIntent(getActivity()));
+                }  else {
                 }
 
             }

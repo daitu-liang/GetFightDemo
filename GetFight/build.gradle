@@ -91,12 +91,11 @@ ext {
     //for normal build
     //old apk file to build patch apk
     //基准apk包的路径，必须输入，否则会报错。
-    tinkerOldApkPath = "${bakPath}/GetFight-debug-0615-17-32-57.apk"
+    tinkerOldApkPath = "${bakPath}/GetFight-debug-0619-17-18-27.apk"
     //proguard mapping file to build patch apk
     tinkerApplyMappingPath = "${bakPath}/app-debug-1018-17-32-47-mapping.txt"
     //resource R.txt to build patch apk, must input if there is resource changed
-    tinkerApplyResourcePath = "${bakPath}/GetFight-debug-0615-17-32-57-R.txt"
-
+    tinkerApplyResourcePath = "${bakPath}/GetFight-debug-0619-17-18-27-R.txt"
     //only use for build all flavor, if not, just ignore this field
     tinkerBuildFlavorDirectory = "${bakPath}/app-1018-17-32-47"
 }
@@ -136,6 +135,7 @@ if (buildWithTinker()) {
          * add apk from the build/bakApk
          */
         oldApk = getOldApkPath()
+        //其他相关
         /**
          * optional，default 'false'
          * there are some cases we may get some warnings
@@ -449,3 +449,4 @@ dependencies {
     provided 'com.tencent.tinker:tinker-android-anno:1.7.11'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }
+

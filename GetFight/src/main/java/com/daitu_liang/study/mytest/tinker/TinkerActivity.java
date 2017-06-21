@@ -43,6 +43,7 @@ public class TinkerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tinker);
         ButterKnife.bind(this);
+        textView.setText("我终于热修复成功了");
     }
 
     @OnClick({R.id.load_thinker_btn, R.id.load_thinker_show_info_btn})
@@ -51,7 +52,8 @@ public class TinkerActivity extends AppCompatActivity {
             case R.id.load_thinker_btn:
                 Log.e("tinker","点击LOAD PATCH");
                 //合成path.dex
-                TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/tinker.zip");
+                TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(),
+                        Environment.getExternalStorageDirectory().getAbsolutePath() + "/tinker.zip");
                 break;
             case R.id.load_thinker_show_info_btn:
                 showInfo(this);

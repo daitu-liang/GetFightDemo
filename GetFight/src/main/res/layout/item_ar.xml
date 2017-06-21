@@ -7,29 +7,20 @@
     android:orientation="vertical">
 
     <RelativeLayout
-
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@color/blue"
         android:layout_margin="3dp"
         android:padding="10dp"
         >
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/joke_image_view"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            fresco:roundedCornerRadius="100dp"
-            fresco:roundWithOverlayColor="@null"
-            fresco:roundingBorderWidth="1dp"
-            />
+
         <TextView
             android:id="@+id/title_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="@dimen/text_size_20sp"
+            android:textSize="@dimen/text_size_16sp"
             android:text=""
-            android:layout_toRightOf="@id/joke_image_view"
             android:textColor="@color/text_content"
             />
 

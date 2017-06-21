@@ -28,24 +28,25 @@ import static com.tencent.tinker.loader.shareutil.ShareConstants.TINKER_ENABLE_A
  */
 
 @SuppressWarnings("unused")
-@DefaultLifeCycle(application = "com.daitu_liang.study.mytest.app.GetFightApplication",
-        flags = TINKER_ENABLE_ALL,
+@DefaultLifeCycle(
+        application = "com.daitu_liang.study.mytest.app.GetFightApplication",//application类名
+        flags = TINKER_ENABLE_ALL, //tinkerFlags
         loadVerifyFlag = false)
 public class GetFightApplicationTinker extends DefaultApplicationLike {
     public static Context CONTEXT;
     public static PreferencesManager preferenceManager;
-
     public static RefWatcher getRefWatcher(Context context) {
         return refWatcher;
     }
-
     private static final String TAG = "GetFightApplicationTinker";
-
-    public GetFightApplicationTinker(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag,
-                                     long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent) {
-        super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
+    public GetFightApplicationTinker(Application application,
+                                     int tinkerFlags,
+                                     boolean tinkerLoadVerifyFlag,
+                                     long applicationStartElapsedTime,
+                                     long applicationStartMillisTime, Intent tinkerResultIntent) {
+        super(application, tinkerFlags, tinkerLoadVerifyFlag,
+                applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
     }
-
     /**
      * install multiDex before install tinker
      * so we don't need to put the tinker lib classes in the main dex
@@ -58,15 +59,12 @@ public class GetFightApplicationTinker extends DefaultApplicationLike {
         super.onBaseContextAttached(base);
         //you must install multiDex whatever tinker is installed!
         MultiDex.install(base);
-
         SampleApplicationContext.application = getApplication();
         SampleApplicationContext.context = getApplication();
         TinkerManager.setTinkerApplicationLike(this);
-
         TinkerManager.initFastCrashProtect();
         //should set before tinker is installed
         TinkerManager.setUpgradeRetryEnable(true);
-
         //optional set logIml, or you can use default debug log
         TinkerInstaller.setLogIml(new MyLogImp());
 
@@ -75,11 +73,7 @@ public class GetFightApplicationTinker extends DefaultApplicationLike {
         TinkerManager.installTinker(this);
         Tinker tinker = Tinker.with(getApplication());
         setContext(this.getApplication());
-
     }
-
-
-
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
         getApplication().registerActivityLifecycleCallbacks(callback);

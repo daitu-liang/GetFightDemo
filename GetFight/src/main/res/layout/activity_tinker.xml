@@ -24,8 +24,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/text_red"
-        android:text="我热修复成功了"
+        android:background="@color/blue"
         android:gravity="center"
         android:textSize="26sp"
         />
