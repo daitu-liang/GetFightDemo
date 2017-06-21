@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.daitu_liang.study.mytest.R;
 import com.daitu_liang.study.mytest.adapter.FunAdapter;
+import com.daitu_liang.study.mytest.coverflowview.CoverFlowActivity;
 import com.daitu_liang.study.mytest.datepicker.SignDialogActivity;
 import com.daitu_liang.study.mytest.html.HtmlToActivity;
 import com.daitu_liang.study.mytest.imageview.ImageViewActivity;
@@ -29,14 +30,13 @@ import com.daitu_liang.study.mytest.ui.activity.BezierActivity;
 import com.daitu_liang.study.mytest.ui.activity.FloatTestActivity;
 import com.daitu_liang.study.mytest.ui.activity.HttpFunctionActivity;
 import com.daitu_liang.study.mytest.ui.activity.LoginActivity;
-import com.daitu_liang.study.mytest.ui.activity.MultiLayoutActivity;
 import com.daitu_liang.study.mytest.ui.activity.MainHomeActivity;
 import com.daitu_liang.study.mytest.ui.activity.MainHomeBottomActivity;
+import com.daitu_liang.study.mytest.ui.activity.MultiLayoutActivity;
 import com.daitu_liang.study.mytest.ui.activity.PaintActivity;
 import com.daitu_liang.study.mytest.ui.activity.PieViewActivity;
 import com.daitu_liang.study.mytest.ui.activity.PorterDuffXfermodeActivity;
 import com.daitu_liang.study.mytest.ui.activity.PullDownActivity;
-import com.daitu_liang.study.mytest.ui.activity.VP3DActivity;
 import com.daitu_liang.study.mytest.ui.activity.WaveDemoActivity;
 import com.daitu_liang.study.mytest.widget.DividerItemDecoration;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -113,7 +113,7 @@ public class FunctionFragment extends Fragment {
         mDatas.add("- PieView");
         mDatas.add("- Md-LoginActivity");
         mDatas.add("- Bezier");
-        mDatas.add("- 3D_vp");
+        mDatas.add("- 3D-coverFlow");
         mDatas.add("- LitePal");
         mDatas.add("- service进程保活");
         mDatas.add("- 普通service");
@@ -168,7 +168,7 @@ public class FunctionFragment extends Fragment {
                 } else if (position == 15) {
                     startActivity(BezierActivity.getIntent(getActivity()));
                 } else if (position == 16) {
-                    startActivity(VP3DActivity.getIntent(getActivity()));
+                    startActivity(CoverFlowActivity.getIntent(getActivity()));
                 }else if (position == 17) {
                     startActivity(LitePalActivity.getIntent(getActivity()));
                 } else if (position == 18) {

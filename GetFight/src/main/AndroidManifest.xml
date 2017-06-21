@@ -107,7 +107,6 @@
         <activity android:name=".baidu.ocr.BankCardActivity" />
         <activity android:name=".baidu.voice.BaiduVoiceActivity" />
         <activity android:name=".baidu.voice.ModelManagerActivity" />
-        <activity android:name=".ui.activity.VP3DActivity" />
         <activity android:name=".litepal.LitePalActivity" />
         <activity android:name=".litepal.OnlineSurveyActivity" />
         <activity
@@ -116,6 +115,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".tinker.TinkerActivity" />
         <activity android:name=".ui.activity.MultiLayoutActivity"></activity>
+        <activity android:name="com.daitu_liang.study.mytest.coverflowview.CoverFlowActivity"></activity>
+
     </application>
 
 </manifest>
