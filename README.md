@@ -25,6 +25,11 @@
 <br>3.添加6.0动态权限获取
 <br>
 <br>
+<br>2017.06.20
+<br>1.添加微信Tinker热修复功能
+<br>2.添加rv多布局，采用动态修改GridLayoutManager列数
+<br>
+<br>
 # fightDemo
 <br>1.增加对retofit2.2和rxjava2.0进行封装
 
