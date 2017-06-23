@@ -13,6 +13,7 @@ import com.squareup.leakcanary.RefWatcher;
 public class FloatActivity extends AppCompatActivity {
 
 
+    private FloatView startBtn;
 
     public static Intent getIntent(Context context, int typeInfo) {
         Intent intent=new Intent(context, FloatActivity.class);
@@ -24,7 +25,7 @@ public class FloatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_float);
         int typeKey = getIntent().getIntExtra("type_key", 0);
-        FloatView startBtn = (FloatView) findViewById(R.id.float_btn);
+         startBtn = (FloatView) findViewById(R.id.float_btn);
         startBtn.setFloatType(FloatView.FREE_POINT);
         if(typeKey==1){
             startBtn.setFloatType(FloatView.DEFAULT_TYPE);
@@ -45,5 +46,8 @@ public class FloatActivity extends AppCompatActivity {
         super.onDestroy();
         RefWatcher refWatcher = GetFightApplicationTinker.getRefWatcher(this);
         refWatcher.watch(this);
+        if(startBtn!=null){
+            startBtn.releaseHandle();
+        }
     }
 }

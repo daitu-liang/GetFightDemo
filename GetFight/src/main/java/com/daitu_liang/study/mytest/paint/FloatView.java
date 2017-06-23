@@ -82,6 +82,12 @@ public class FloatView extends View {
         }
     };
 
+
+    public void releaseHandle(){
+        if(handler!=null){
+            handler.removeCallbacksAndMessages(null);
+        }
+    }
     public FloatView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initData(context);

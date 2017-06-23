@@ -448,5 +448,6 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     provided 'com.tencent.tinker:tinker-android-anno:1.7.11'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    compile 'com.cleveroad:fan-layout-manager:1.0.4'
 }
 

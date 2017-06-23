@@ -96,6 +96,8 @@
         <activity android:name=".ui.activity.FloatActivity" />
         <activity android:name=".ui.activity.ScrollToAndScrollByActivity" />
         <activity android:name=".ui.activity.SnowActivity" />
+        <activity android:name=".ui.activity.IndraftActivity" />
+
         <activity android:name=".ui.activity.BottomActivity" />
         <activity android:name=".svg.MainActivity" />
         <activity android:name=".javanature.HandleTestActivity" />

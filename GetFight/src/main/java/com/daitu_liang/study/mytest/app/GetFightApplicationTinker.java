@@ -35,10 +35,13 @@ import static com.tencent.tinker.loader.shareutil.ShareConstants.TINKER_ENABLE_A
 public class GetFightApplicationTinker extends DefaultApplicationLike {
     public static Context CONTEXT;
     public static PreferencesManager preferenceManager;
+
     public static RefWatcher getRefWatcher(Context context) {
         return refWatcher;
     }
+
     private static final String TAG = "GetFightApplicationTinker";
+
     public GetFightApplicationTinker(Application application,
                                      int tinkerFlags,
                                      boolean tinkerLoadVerifyFlag,
@@ -47,6 +50,7 @@ public class GetFightApplicationTinker extends DefaultApplicationLike {
         super(application, tinkerFlags, tinkerLoadVerifyFlag,
                 applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
     }
+
     /**
      * install multiDex before install tinker
      * so we don't need to put the tinker lib classes in the main dex
@@ -74,18 +78,20 @@ public class GetFightApplicationTinker extends DefaultApplicationLike {
         Tinker tinker = Tinker.with(getApplication());
         setContext(this.getApplication());
     }
+
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
         getApplication().registerActivityLifecycleCallbacks(callback);
     }
 
-    private  static RefWatcher refWatcher;
+    private static RefWatcher refWatcher;
 
     @Override
     public void onCreate() {
         super.onCreate();
         init();
     }
+
     private void init() {
         preferenceManager = PreferencesManager.getInstance(this.getApplication());
         refWatcher = LeakCanary.install(this.getApplication());
