@@ -37,6 +37,7 @@ import com.daitu_liang.study.mytest.ui.activity.PaintActivity;
 import com.daitu_liang.study.mytest.ui.activity.PieViewActivity;
 import com.daitu_liang.study.mytest.ui.activity.PorterDuffXfermodeActivity;
 import com.daitu_liang.study.mytest.ui.activity.PullDownActivity;
+import com.daitu_liang.study.mytest.ui.activity.VauleActivity;
 import com.daitu_liang.study.mytest.ui.activity.WaveDemoActivity;
 import com.daitu_liang.study.mytest.widget.DividerItemDecoration;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -177,6 +178,8 @@ public class FunctionFragment extends Fragment {
                     getActivity().startService(new Intent(getActivity(),CommonService.class));
                 } else if (position == 20) {
                     getActivity().startActivity(MultiLayoutActivity.getIntent(getActivity()));
+                } else if (position == 21) {
+                    getActivity().startActivity(VauleActivity.getIntent(getActivity()));
                 }  else {
                 }
 

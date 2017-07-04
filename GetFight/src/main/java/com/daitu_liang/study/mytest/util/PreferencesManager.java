@@ -41,6 +41,8 @@ public class PreferencesManager extends BasePreferencesManager {
     private void loadData() {
         try {
             saveNunix=getString(NUNIX_VALUE, "");
+
+
             saveBaiduToken=getString(BAIDU_TOKEN,"");
         } catch (Exception e){}
     }
@@ -58,6 +60,6 @@ public class PreferencesManager extends BasePreferencesManager {
     public void setBaiduToken(String baiduToken) {
         this.saveBaiduToken = baiduToken;
         saveString(BAIDU_TOKEN, baiduToken);
-
     }
+
 }

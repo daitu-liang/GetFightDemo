@@ -442,12 +442,12 @@ dependencies {
     compile 'com.tencent.tinker:tinker-android-lib:1.7.11'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.cleveroad:fan-layout-manager:1.0.4'
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     provided 'com.tencent.tinker:tinker-android-anno:1.7.11'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    compile 'com.cleveroad:fan-layout-manager:1.0.4'
 }
 

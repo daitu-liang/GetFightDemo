@@ -82,4 +82,7 @@ public abstract class BasePreferencesManager {
 
 
    public abstract void logout();
+
+
+
 }

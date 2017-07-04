@@ -25,7 +25,8 @@ import com.daitu_liang.study.mytest.util.UiUtils;
 public class PorterDuffXfermodeView extends View {
 
     private static final int WAVE_TRANS_SPEED = 4;
-    private final Context mContext;
+    private  Context mContext;
+    private  ViewThread viewThread;
 
     private Paint mBitmapPaint, mPicPaint;
     private int mTotalWidth, mTotalHeight;
@@ -41,6 +42,7 @@ public class PorterDuffXfermodeView extends View {
     private PaintFlagsDrawFilter mDrawFilter;
 
     private int mCurrentPosition;
+    private boolean falg=true;
 
     public PorterDuffXfermodeView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -50,25 +52,34 @@ public class PorterDuffXfermodeView extends View {
         mPorterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
         mSpeed = UiUtils.dipToPx(mContext, WAVE_TRANS_SPEED);
         mDrawFilter = new PaintFlagsDrawFilter(Paint.ANTI_ALIAS_FLAG, Paint.DITHER_FLAG);
-        new Thread() {
-            public void run() {
-                while (true) {
-                    // 不断改变绘制的波浪的位置
-                    mCurrentPosition += mSpeed;
-                    if (mCurrentPosition >= mSrcBitmap.getWidth()) {
-                        mCurrentPosition = 0;
-                    }
-                    try {
-                        // 为了保证效果的同时，尽可能将cpu空出来，供其他部分使用
-                        Thread.sleep(30);
-                    } catch (InterruptedException e) {
-                    }
 
-                    postInvalidate();
+        viewThread=new ViewThread();
+        viewThread.start();
+
+    }
+
+    class ViewThread extends Thread{
+        public void run() {
+            while (falg) {
+                // 不断改变绘制的波浪的位置
+                mCurrentPosition += mSpeed;
+                if (mCurrentPosition >= mSrcBitmap.getWidth()) {
+                    mCurrentPosition = 0;
+                }
+                try {
+                    // 为了保证效果的同时，尽可能将cpu空出来，供其他部分使用
+                    Thread.sleep(30);
+                } catch (InterruptedException e) {
                 }
 
-            };
-        }.start();
+                postInvalidate();
+            }
+        };
+    }
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        falg=false;
 
     }
 

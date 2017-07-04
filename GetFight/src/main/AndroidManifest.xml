@@ -97,7 +97,6 @@
         <activity android:name=".ui.activity.ScrollToAndScrollByActivity" />
         <activity android:name=".ui.activity.SnowActivity" />
         <activity android:name=".ui.activity.IndraftActivity" />
-
         <activity android:name=".ui.activity.BottomActivity" />
         <activity android:name=".svg.MainActivity" />
         <activity android:name=".javanature.HandleTestActivity" />
@@ -116,9 +115,9 @@
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".tinker.TinkerActivity" />
-        <activity android:name=".ui.activity.MultiLayoutActivity"></activity>
-        <activity android:name="com.daitu_liang.study.mytest.coverflowview.CoverFlowActivity"></activity>
-
+        <activity android:name=".ui.activity.MultiLayoutActivity" />
+        <activity android:name=".coverflowview.CoverFlowActivity" />
+        <activity android:name=".ui.activity.VauleActivity"></activity>
     </application>
 
 </manifest>
