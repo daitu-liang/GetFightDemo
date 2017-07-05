@@ -7,7 +7,16 @@ package com.daitu_liang.study.mytest.entity;
 
 public class HabitInfo {
 
-    public String getHabit() {
-        return "book";
+    public String getFreeStyle() {
+        return freeStyle;
+    }
+
+    public void setFreeStyle(String freeStyle) {
+        this.freeStyle = freeStyle;
+    }
+
+    private String freeStyle;
+    public HabitInfo(String freeStyle) {
+        this.freeStyle = freeStyle;
     }
 }

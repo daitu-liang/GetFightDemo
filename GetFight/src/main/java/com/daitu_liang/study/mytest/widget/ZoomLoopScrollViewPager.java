@@ -32,6 +32,7 @@ public class ZoomLoopScrollViewPager extends ViewPager {
         int isLeftOrRight = 0;
         if (m > 0)
             isLeftOrRight = 1;
+
         int i1 = Math.abs(m);
         float postionXY = 1.0F - 0.2F * (1.0F * Math.min(getWidth(), i1) / getWidth());
 
