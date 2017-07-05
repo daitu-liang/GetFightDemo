@@ -7,7 +7,7 @@
 ![image](https://github.com/daitu-liang/GetFightDemo/blob/master/screenshots/Video_2017-04-02_130207.gif)
 
 <br>![image](https://github.com/daitu-liang/GetFightDemo/blob/master/screenshots/Video_2017-04-06_170049.gif)
-
+![image](https://github.com/daitu-liang/GetFightDemo/blob/1a1a282d56b2f6271f2a84bb1ad9b1264539d582/screenshots/thinker_show.gif)
 <br>
 <br>2017.01.03
 <br>分装网络框架Retrofit2.0.0+RxJava1.1.0
@@ -20,9 +20,10 @@
 <br>
 <br>
 <br>2017.05.16
-<br>1.解决视频闪退问题，
+<br>1.解决视频闪退问题
 <br>2.添加LitePal的使用
 <br>3.添加6.0动态权限获取
+<br>4.添加百度人工智能，语音识别
 <br>
 <br>
 <br>2017.06.20
